@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('vat_num'); //acronimo per la partita IVA 
+            $table->string('vat_num'); //acronimo per la partita IVA
             $table->rememberToken();
             $table->timestamps();
         });
