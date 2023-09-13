@@ -21,10 +21,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+    // Route::get('/', [ AdminDashboardController::class , 'home'])->name('home');
+    // Route::get('/restaurants/deleted', [Controller::class, 'deletedIndex'] )->name('restaurants.deleted');
+    // Route::post('/restaurants/deleted/{post}', [Controller::class, 'restore'] )->name('restaurants.restore');
+    // Route::delete('/restaurants/deleted/{post}', [Controller::class, 'obliterate'] )->name('restaurants.obliterate');
+    // Route::resource('/restaurants', Controller::class);
+});
