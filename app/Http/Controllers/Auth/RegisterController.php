@@ -53,7 +53,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'vat_num' => ['required', 'unique:users', 'min:13', 'max:13']
+            'vat_num' => ['required', 'unique:users', 'min:13', 'max:13', 'vat_num' => 'regex:^[A-Z]{2}\d+$^']
+        ], [
+            'vat_num.regex' => 'Il campo deve iniziare con due caratteri maiuscoli seguiti da numeri.',
         ]);
     }
 
@@ -69,6 +71,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'vat_num' => $data['vat_num']
         ]);
     }
 }
