@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->double('price', 5, 2);
             $table->text('photo');
-            $table->string('available');
+            $table->boolean('available');
             $table->timestamps();
         });
     }
