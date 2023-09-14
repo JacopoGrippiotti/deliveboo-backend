@@ -14,13 +14,14 @@ class DishSeeder extends Seeder
     public function run(): void
     {
         $dishes=[   //APERTURA MEGA ARRAY
-            
+
 
               "Italiano"=>  [   "primi"=>[
                                        [
                                          "nome"=> "Spaghetti alla Carbonara",
                                          "ingredienti"=> ["spaghetti", "uova", "guanciale", "pecorino romano", "pepe nero"],
                                          "descrizione"=> "Uno dei piatti più iconici della cucina romana, gli spaghetti alla carbonara sono una delizia cremosa preparata con uova, guanciale croccante e pecorino romano, conditi con pepe nero appena macinato."
+
                                        ],
                                        [
                                          "nome"=> "Linguine al Pesto Genovese",
@@ -67,9 +68,9 @@ class DishSeeder extends Seeder
                                         "ingredienti"=> ["pasta", "melanzane", "sugo di pomodoro", "ricotta salata", "basilico"],
                                         "descrizione"=> "Un piatto tipico siciliano, la pasta alla Norma è un connubio di pasta, melanzane fritte, sugo di pomodoro, basilico fresco e ricotta salata."
                                       ]  ],
-                                
+
                                 "secondi"=>[
-                                  
+
                                       [
                                         "nome"=> "Ossobuco alla Milanese",
                                         "ingredienti"=> ["ossobuco", "gremolada", "riso alla milanese"],
@@ -120,7 +121,7 @@ class DishSeeder extends Seeder
                                         "ingredienti"=> ["trippa", "sugo di pomodoro", "pecorino romano", "menta"],
                                         "descrizione"=> "Un piatto romano tradizionale, la trippa alla romana è cucinata lentamente con un ricco sugo di pomodoro, pecorino romano e un tocco di menta fresca."
                                       ]],
-                           
+
                                 "dolci"=> [
                                         [
                                           "nome"=> "Tiramisù",
@@ -150,7 +151,7 @@ class DishSeeder extends Seeder
                                       ]
                              ],
 
-            
+
 
                 "Francese"=>[  "primi"=> [
                     [
@@ -203,8 +204,8 @@ class DishSeeder extends Seeder
                       "ingredienti"=> ["pasta sfoglia", "pollo", "funghi", "salsa velouté", "limone"],
                       "descrizione"=> "Un elegante antipasto francese, le Boucheé à la Reine sono piccole tartellette di pasta sfoglia ripiene di un mix di pollo, funghi e salsa velouté, con un tocco di limone fresco."
                     ]],
-              
-              
+
+
                     "secondi"=> [
                 [
                   "nome"=> "Filet Mignon",
@@ -286,7 +287,7 @@ class DishSeeder extends Seeder
                   ]
                     ] ,
 
-            
+
 
               "Giapponese"=> ["primi"=> [
                 [
@@ -949,7 +950,7 @@ class DishSeeder extends Seeder
                 ]
               ]],
 
-            
+
 
               "Mediterraneo"=>["primi"=> [
                 [
@@ -1216,7 +1217,7 @@ class DishSeeder extends Seeder
               ]],
 
               "Vietnamita" => [ "primi"=> [
-                
+
                 [
                   "nome"=> "Pho",
                   "ingredienti"=> ["noodle di riso", "manzo", "brodo di carne", "erbe fresche", "lime"],
@@ -1345,7 +1346,9 @@ class DishSeeder extends Seeder
                   "ingredienti"=> ["crema caramellata", "latte condensato", "uova", "vaniglia"],
                   "descrizione"=> "Il Kem Flan è una crema caramellata con latte condensato, uova e vaniglia, spesso servita come dessert."
                 ]
-            ]]];
+            ]
+        ]
+    ];
 
-                }
+    }
 }
