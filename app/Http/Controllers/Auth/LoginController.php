@@ -37,4 +37,22 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function login(Request $request)
+    {
+        // Valida i dati dell'utente
+        $credentials = $request->only('email', 'password');
+
+        // Effettua l'autenticazione
+        if (Auth::attempt($credentials)) {
+            // Se l'autenticazione ha successo, crea un token JWT
+            $token = auth()->user()->createToken('MyToken')->accessToken;
+
+            // Restituisci il token nella risposta JSON
+            return response()->json(['token' => $token], 200);
+        }
+
+        // Se l'autenticazione fallisce, restituisci un errore
+        return response()->json(['error' => 'Credenziali non valide'], 401);
+    }
 }
