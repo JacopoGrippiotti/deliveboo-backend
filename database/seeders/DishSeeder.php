@@ -14,198 +14,198 @@ class DishSeeder extends Seeder
     public function run(): void
     {
         $dishes=[   //APERTURA MEGA ARRAY
-            [
+            
 
-              "genere"=> "Italiano",
-              "primi"=> [
-                [
-                  "nome"=> "Spaghetti alla Carbonara",
-                  "ingredienti"=> ["spaghetti", "uova", "guanciale", "pecorino romano", "pepe nero"],
-                  "descrizione"=> "Uno dei piatti più iconici della cucina romana, gli spaghetti alla carbonara sono una delizia cremosa preparata con uova, guanciale croccante e pecorino romano, conditi con pepe nero appena macinato."
-                ],
-                [
-                  "nome"=> "Linguine al Pesto Genovese",
-                  "ingredienti"=> ["linguine", "pesto genovese", "patate", "fagiolini", "pinoli"],
-                  "descrizione"=> "Un primo piatto tipico della Liguria, le linguine al pesto genovese sono arricchite con patate e fagiolini, e condite con il celebre pesto a base di basilico, pinoli, olio e formaggio."
-                ],
-                [
-                  "nome"=> "Risotto ai Funghi Porcini",
-                  "ingredienti"=> ["riso Arborio", "funghi porcini", "cipolla", "vino bianco", "brodo di carne"],
-                  "descrizione"=> "Un piatto di risotto irresistibile, il risotto ai funghi porcini è arricchito con i profumati funghi porcini, cipolla e vino bianco, cotto nel brodo di carne per una consistenza cremosa."
-                ],
-                [
-                  "nome"=> "Gnocchi alla Sorrentina",
-                  "ingredienti"=> ["gnocchi", "sugo di pomodoro", "mozzarella", "basilico", "parmigiano"],
-                  "descrizione"=> "Un piatto campano che unisce la delicatezza degli gnocchi con il sapore ricco del sugo di pomodoro, mozzarella fusa, basilico e parmigiano."
-                ],
-                [
-                  "nome"=> "Lasagne alla Bolognese",
-                  "ingredienti"=> ["lasagne", "ragù alla bolognese", "besciamella", "formaggio grattugiato", "burro"],
-                  "descrizione"=> "Un classico della cucina italiana, le lasagne alla bolognese sono strati di pasta fresca intercalati con un ricco ragù di carne, besciamella e formaggio, gratinati al forno."
-                ],
-                [
-                  "nome"=> "Pasta e Ceci",
-                  "ingredienti"=> ["pasta", "ceci", "aglio", "rosmarino", "peperoncino"],
-                  "descrizione"=> "Un piatto povero ma saporito, la pasta e ceci è una combinazione di pasta cotta nel brodo di ceci, arricchita con aglio, rosmarino e peperoncino."
-                ],
-                [
-                  "nome"=> "Ravioli al Burro e Salvia",
-                  "ingredienti"=> ["ravioli", "burro", "foglie di salvia", "parmigiano"],
-                  "descrizione"=> "Una delizia raffinata, i ravioli al burro e salvia sono ravioli ripieni di ricotta e spinaci, conditi con burro fuso e foglie di salvia croccanti."
-                ],
-                [
-                  "nome"=> "Pasta all'Amatriciana",
-                  "ingredienti"=> ["spaghetti", "guanciale", "pomodoro", "pecorino romano", "pepe nero"],
-                  "descrizione"=> "Un piatto romano classico, la pasta all'amatriciana è preparata con guanciale croccante, pomodoro, pecorino romano e una generosa spolverata di pepe nero."
-                ],
-                [
-                  "nome"=> "Minestrone",
-                  "ingredienti"=> ["verdure", "fagioli", "pasta", "brodo vegetale", "prezzemolo"],
-                  "descrizione"=> "Una zuppa italiana rustica e nutriente, il minestrone è ricco di verdure, fagioli, pasta e aromi, spesso servito con una spruzzata di prezzemolo fresco."
-                ],
-                [
-                  "nome"=> "Pasta alla Norma",
-                  "ingredienti"=> ["pasta", "melanzane", "sugo di pomodoro", "ricotta salata", "basilico"],
-                  "descrizione"=> "Un piatto tipico siciliano, la pasta alla Norma è un connubio di pasta, melanzane fritte, sugo di pomodoro, basilico fresco e ricotta salata."
-                ]
-              ],
-              "secondi"=> [
-                [
-                  "nome"=> "Ossobuco alla Milanese",
-                  "ingredienti"=> ["ossobuco", "gremolada", "riso alla milanese"],
-                  "descrizione"=> "Un piatto milanese di carne, l'ossobuco è lentamente stufato con gremolada (limone, aglio e prezzemolo) e servito con riso alla milanese, un piatto ricco di zafferano."
-                ],
-                [
-                  "nome"=> "Cotoletta alla Milanese",
-                  "ingredienti"=> ["cotoletta di vitello", "uova", "pan grattugiato", "limone"],
-                  "descrizione"=> "Una cotoletta impanata e fritta, la cotoletta alla milanese è famosa per la sua croccantezza e il suo sapore delicato, servita con fette di limone."
-                ],
-                [
-                  "nome"=> "Brasato al Barolo",
-                  "ingredienti"=> ["carne di manzo", "vino Barolo", "cipolla", "carote", "sedano"],
-                  "descrizione"=> "Un piatto del nord Italia, il brasato al Barolo è una carne di manzo brasata lentamente nel celebre vino Barolo, con cipolla, carote e sedano."
-                ],
-                [
-                  "nome"=> "Baccalà alla Livornese",
-                  "ingredienti"=> ["baccalà", "pomodoro", "cipolla", "olive nere", "prezzemolo"],
-                  "descrizione"=> "Un piatto di pesce tipico della costa toscana, il baccalà alla Livornese è preparato con baccalà, pomodoro, cipolla, olive nere e prezzemolo."
-                ],
-                [
-                  "nome"=> "Polenta e Funghi",
-                  "ingredienti"=> ["polenta", "funghi", "burro", "parmigiano", "prezzemolo"],
-                  "descrizione"=> "Un piatto comfort del nord Italia, la polenta e funghi è una polenta cremosa servita con funghi trifolati, burro fuso, parmigiano e prezzemolo."
-                ],
-                [
-                  "nome"=> "Pesce Spada alla Siciliana",
-                  "ingredienti"=> ["pesce spada", "pomodoro", "capperi", "olive verdi", "aglio"],
-                  "descrizione"=> "Un piatto di pesce tipico della Sicilia, il pesce spada alla siciliana è preparato con pomodoro, capperi, olive verdi e aglio, creando un sapore audace e mediterraneo."
-                ],
-                [
-                  "nome"=> "Bistecca alla Fiorentina",
-                  "ingredienti"=> ["bistecca di manzo", "rosmarino", "olio d'oliva", "sale grosso"],
-                  "descrizione"=> "Una specialità toscana, la bistecca alla fiorentina è una succulenta bistecca di manzo cotta alla griglia, condita con rosmarino, olio d'oliva e sale grosso."
-                ],
-                [
-                  "nome"=> "Risotto ai Frutti di Mare",
-                  "ingredienti"=> ["riso Arborio", "frutti di mare misti", "vino bianco", "brodo di pesce", "prezzemolo"],
-                  "descrizione"=> "Un piatto di risotto profumato e saporito, il risotto ai frutti di mare è preparato con frutti di mare misti, vino bianco, brodo di pesce e prezzemolo fresco."
-                ],
-                [
-                  "nome"=> "Melanzane alla Parmigiana",
-                  "ingredienti"=> ["melanzane", "sugo di pomodoro", "mozzarella", "parmigiano", "basilico"],
-                  "descrizione"=> "Un piatto classico dell'Italia meridionale, le melanzane alla parmigiana sono strati di melanzane grigliate, salse con sugo di pomodoro, mozzarella, parmigiano e basilico fresco."
-                ],
-                [
-                  "nome"=> "Trippa alla Romana",
-                  "ingredienti"=> ["trippa", "sugo di pomodoro", "pecorino romano", "menta"],
-                  "descrizione"=> "Un piatto romano tradizionale, la trippa alla romana è cucinata lentamente con un ricco sugo di pomodoro, pecorino romano e un tocco di menta fresca."
-                ]
-              ],
-              "dolci"=> [
-                [
-                  "nome"=> "Tiramisù",
-                  "ingredienti"=> ["mascarpone", "savoiardi", "caffè", "cacao in polvere"],
-                  "descrizione"=> "Il tiramisù è un dolce italiano amato in tutto il mondo. Questo dessert irresistibile si compone di strati di biscotti savoiardi inzuppati nel caffè, alternati con un cremoso mix di mascarpone, uova e zucchero, il tutto spolverato con cacao in polvere. Il suo equilibrio tra il dolce, l'amaro del caffè e la cremosità lo rende una delizia indulgente per il palato."
-                ],
-                [
-                  "nome"=> "Panna Cotta",
-                  "ingredienti"=> ["panna", "zucchero", "vaniglia", "frutti di bosco"],
-                  "descrizione"=> "La panna cotta è un dessert italiano delicato e vellutato. Preparata con panna fresca, zucchero e vaniglia, è servita con una gustosa salsa di frutti di bosco che ne esalta il sapore."
-                ],
-                [
-                  "nome"=> "Cannoli Siciliani",
-                  "ingredienti"=> ["cannoli", "ricotta", "zucchero a velo", "cioccolato", "canditi"],
-                  "descrizione"=> "Un dolce siciliano croccante e ricco di sapore, i cannoli sono cilindri di pasta fritta ripieni di una cremosa miscela di ricotta, zucchero a velo, cioccolato e canditi."
-                ],
-                [
-                  "nome"=> "Torta Tiramisù",
-                  "ingredienti"=> ["biscotti savoiardi", "mascarpone", "caffè", "cacao in polvere"],
-                  "descrizione"=> "Una variante della classica torta tiramisù, questa delizia è composta da strati di biscotti savoiardi inzuppati nel caffè e uno strato di mascarpone cremoso, il tutto finemente cosperso di cacao in polvere."
-                ],
-                [
-                  "nome"=> "Torta di Mele",
-                  "ingredienti"=> ["mele", "zucchero", "farina", "uova", "cannella"],
-                  "descrizione"=> "Una torta classica e comfort, la torta di mele è ricca di fette di mele saporite, zucchero, cannella e un morbido impasto, spesso servita calda con una pallina di gelato alla vaniglia."
-                ]
-              ]
-            ],
+              "Italiano"=>  [   "primi"=>[
+                                       [
+                                         "nome"=> "Spaghetti alla Carbonara",
+                                         "ingredienti"=> ["spaghetti", "uova", "guanciale", "pecorino romano", "pepe nero"],
+                                         "descrizione"=> "Uno dei piatti più iconici della cucina romana, gli spaghetti alla carbonara sono una delizia cremosa preparata con uova, guanciale croccante e pecorino romano, conditi con pepe nero appena macinato."
+                                       ],
+                                       [
+                                         "nome"=> "Linguine al Pesto Genovese",
+                                         "ingredienti"=> ["linguine", "pesto genovese", "patate", "fagiolini", "pinoli"],
+                                         "descrizione"=> "Un primo piatto tipico della Liguria, le linguine al pesto genovese sono arricchite con patate e fagiolini, e condite con il celebre pesto a base di basilico, pinoli, olio e formaggio."
+                                       ],
+                                       [
+                                         "nome"=> "Risotto ai Funghi Porcini",
+                                         "ingredienti"=> ["riso Arborio", "funghi porcini", "cipolla", "vino bianco", "brodo di carne"],
+                                         "descrizione"=> "Un piatto di risotto irresistibile, il risotto ai funghi porcini è arricchito con i profumati funghi porcini, cipolla e vino bianco, cotto nel brodo di carne per una consistenza cremosa."
+                                       ],
+                                       [
+                                         "nome"=> "Gnocchi alla Sorrentina",
+                                         "ingredienti"=> ["gnocchi", "sugo di pomodoro", "mozzarella", "basilico", "parmigiano"],
+                                         "descrizione"=> "Un piatto campano che unisce la delicatezza degli gnocchi con il sapore ricco del sugo di pomodoro, mozzarella fusa, basilico e parmigiano."
+                                       ],
+                                       [
+                                         "nome"=> "Lasagne alla Bolognese",
+                                         "ingredienti"=> ["lasagne", "ragù alla bolognese", "besciamella", "formaggio grattugiato", "burro"],
+                                         "descrizione"=> "Un classico della cucina italiana, le lasagne alla bolognese sono strati di pasta fresca intercalati con un ricco ragù di carne, besciamella e formaggio, gratinati al forno."
+                                       ],
+                                       [
+                                         "nome"=> "Pasta e Ceci",
+                                         "ingredienti"=> ["pasta", "ceci", "aglio", "rosmarino", "peperoncino"],
+                                         "descrizione"=> "Un piatto povero ma saporito, la pasta e ceci è una combinazione di pasta cotta nel brodo di ceci, arricchita con aglio, rosmarino e peperoncino."
+                                       ],
+                                       [
+                                         "nome"=> "Ravioli al Burro e Salvia",
+                                         "ingredienti"=> ["ravioli", "burro", "foglie di salvia", "parmigiano"],
+                                         "descrizione"=> "Una delizia raffinata, i ravioli al burro e salvia sono ravioli ripieni di ricotta e spinaci, conditi con burro fuso e foglie di salvia croccanti."
+                                       ],
+                                       [
+                                         "nome"=> "Pasta all'Amatriciana",
+                                         "ingredienti"=> ["spaghetti", "guanciale", "pomodoro", "pecorino romano", "pepe nero"],
+                                         "descrizione"=> "Un piatto romano classico, la pasta all'amatriciana è preparata con guanciale croccante, pomodoro, pecorino romano e una generosa spolverata di pepe nero."
+                                       ],
+                                       [
+                                         "nome"=> "Minestrone",
+                                         "ingredienti"=> ["verdure", "fagioli", "pasta", "brodo vegetale", "prezzemolo"],
+                                         "descrizione"=> "Una zuppa italiana rustica e nutriente, il minestrone è ricco di verdure, fagioli, pasta e aromi, spesso servito con una spruzzata di prezzemolo fresco."
+                                       ],
+                                       [
+                                        "nome"=> "Pasta alla Norma",
+                                        "ingredienti"=> ["pasta", "melanzane", "sugo di pomodoro", "ricotta salata", "basilico"],
+                                        "descrizione"=> "Un piatto tipico siciliano, la pasta alla Norma è un connubio di pasta, melanzane fritte, sugo di pomodoro, basilico fresco e ricotta salata."
+                                      ]  ],
+                                
+                                "secondi"=>[
+                                  
+                                      [
+                                        "nome"=> "Ossobuco alla Milanese",
+                                        "ingredienti"=> ["ossobuco", "gremolada", "riso alla milanese"],
+                                        "descrizione"=> "Un piatto milanese di carne, l'ossobuco è lentamente stufato con gremolada (limone, aglio e prezzemolo) e servito con riso alla milanese, un piatto ricco di zafferano."
+                                      ],
+                                      [
+                                        "nome"=> "Cotoletta alla Milanese",
+                                        "ingredienti"=> ["cotoletta di vitello", "uova", "pan grattugiato", "limone"],
+                                        "descrizione"=> "Una cotoletta impanata e fritta, la cotoletta alla milanese è famosa per la sua croccantezza e il suo sapore delicato, servita con fette di limone."
+                                      ],
+                                      [
+                                        "nome"=> "Brasato al Barolo",
+                                        "ingredienti"=> ["carne di manzo", "vino Barolo", "cipolla", "carote", "sedano"],
+                                        "descrizione"=> "Un piatto del nord Italia, il brasato al Barolo è una carne di manzo brasata lentamente nel celebre vino Barolo, con cipolla, carote e sedano."
+                                      ],
+                                      [
+                                        "nome"=> "Baccalà alla Livornese",
+                                        "ingredienti"=> ["baccalà", "pomodoro", "cipolla", "olive nere", "prezzemolo"],
+                                        "descrizione"=> "Un piatto di pesce tipico della costa toscana, il baccalà alla Livornese è preparato con baccalà, pomodoro, cipolla, olive nere e prezzemolo."
+                                      ],
+                                      [
+                                        "nome"=> "Polenta e Funghi",
+                                        "ingredienti"=> ["polenta", "funghi", "burro", "parmigiano", "prezzemolo"],
+                                        "descrizione"=> "Un piatto comfort del nord Italia, la polenta e funghi è una polenta cremosa servita con funghi trifolati, burro fuso, parmigiano e prezzemolo."
+                                      ],
+                                      [
+                                        "nome"=> "Pesce Spada alla Siciliana",
+                                        "ingredienti"=> ["pesce spada", "pomodoro", "capperi", "olive verdi", "aglio"],
+                                        "descrizione"=> "Un piatto di pesce tipico della Sicilia, il pesce spada alla siciliana è preparato con pomodoro, capperi, olive verdi e aglio, creando un sapore audace e mediterraneo."
+                                      ],
+                                      [
+                                        "nome"=> "Bistecca alla Fiorentina",
+                                        "ingredienti"=> ["bistecca di manzo", "rosmarino", "olio d'oliva", "sale grosso"],
+                                        "descrizione"=> "Una specialità toscana, la bistecca alla fiorentina è una succulenta bistecca di manzo cotta alla griglia, condita con rosmarino, olio d'oliva e sale grosso."
+                                      ],
+                                      [
+                                        "nome"=> "Risotto ai Frutti di Mare",
+                                        "ingredienti"=> ["riso Arborio", "frutti di mare misti", "vino bianco", "brodo di pesce", "prezzemolo"],
+                                        "descrizione"=> "Un piatto di risotto profumato e saporito, il risotto ai frutti di mare è preparato con frutti di mare misti, vino bianco, brodo di pesce e prezzemolo fresco."
+                                      ],
+                                      [
+                                        "nome"=> "Melanzane alla Parmigiana",
+                                        "ingredienti"=> ["melanzane", "sugo di pomodoro", "mozzarella", "parmigiano", "basilico"],
+                                        "descrizione"=> "Un piatto classico dell'Italia meridionale, le melanzane alla parmigiana sono strati di melanzane grigliate, salse con sugo di pomodoro, mozzarella, parmigiano e basilico fresco."
+                                      ],
+                                      [
+                                        "nome"=> "Trippa alla Romana",
+                                        "ingredienti"=> ["trippa", "sugo di pomodoro", "pecorino romano", "menta"],
+                                        "descrizione"=> "Un piatto romano tradizionale, la trippa alla romana è cucinata lentamente con un ricco sugo di pomodoro, pecorino romano e un tocco di menta fresca."
+                                      ]],
+                           
+                                "dolci"=> [
+                                        [
+                                          "nome"=> "Tiramisù",
+                                          "ingredienti"=> ["mascarpone", "savoiardi", "caffè", "cacao in polvere"],
+                                          "descrizione"=> "Il tiramisù è un dolce italiano amato in tutto il mondo. Questo dessert irresistibile si compone di strati di biscotti savoiardi inzuppati nel caffè, alternati con un cremoso mix di mascarpone, uova e zucchero, il tutto spolverato con cacao in polvere. Il suo equilibrio tra il dolce, l'amaro del caffè e la cremosità lo rende una delizia indulgente per il palato."
+                                        ],
+                                        [
+                                          "nome"=> "Panna Cotta",
+                                          "ingredienti"=> ["panna", "zucchero", "vaniglia", "frutti di bosco"],
+                                          "descrizione"=> "La panna cotta è un dessert italiano delicato e vellutato. Preparata con panna fresca, zucchero e vaniglia, è servita con una gustosa salsa di frutti di bosco che ne esalta il sapore."
+                                        ],
+                                        [
+                                          "nome"=> "Cannoli Siciliani",
+                                          "ingredienti"=> ["cannoli", "ricotta", "zucchero a velo", "cioccolato", "canditi"],
+                                          "descrizione"=> "Un dolce siciliano croccante e ricco di sapore, i cannoli sono cilindri di pasta fritta ripieni di una cremosa miscela di ricotta, zucchero a velo, cioccolato e canditi."
+                                        ],
+                                        [
+                                          "nome"=> "Torta Tiramisù",
+                                          "ingredienti"=> ["biscotti savoiardi", "mascarpone", "caffè", "cacao in polvere"],
+                                          "descrizione"=> "Una variante della classica torta tiramisù, questa delizia è composta da strati di biscotti savoiardi inzuppati nel caffè e uno strato di mascarpone cremoso, il tutto finemente cosperso di cacao in polvere."
+                                        ],
+                                        [
+                                          "nome"=> "Torta di Mele",
+                                          "ingredienti"=> ["mele", "zucchero", "farina", "uova", "cannella"],
+                                          "descrizione"=> "Una torta classica e comfort, la torta di mele è ricca di fette di mele saporite, zucchero, cannella e un morbido impasto, spesso servita calda con una pallina di gelato alla vaniglia."
+                                        ]
+                                      ]
+                             ],
 
-            [
+            
 
-              "genere"=> "Francese",
-              "primi"=> [
-                [
-                  "nome"=> "Coq au Vin",
-                  "ingredienti"=> ["pollo", "vino rosso", "cipolla", "funghi", "pancetta"],
-                  "descrizione"=> "Il Coq au Vin è un piatto classico della cucina francese. Pollo cotto lentamente in un ricco sugo a base di vino rosso, cipolla, funghi e pancetta, creando un sapore profondo e avvolgente."
-                ],
-                [
-                  "nome"=> "Bouillabaisse",
-                  "ingredienti"=> ["pesce misto", "crostacei", "pomodoro", "alloro", "zafferano"],
-                  "descrizione"=> "Una zuppa di pesce provenzale, la Bouillabaisse è preparata con una varietà di pesci misti e crostacei, cotti in un brodo a base di pomodoro, alloro e zafferano, servita con crostini e rouille."
-                ],
-                [
-                  "nome"=> "Quiche Lorraine",
-                  "ingredienti"=> ["pancetta", "uova", "panna", "formaggio gruyère", "noce moscata"],
-                  "descrizione"=> "Un classico della cucina francese, la Quiche Lorraine è una torta salata con un ripieno cremoso di pancetta, uova, panna, formaggio gruyère e un pizzico di noce moscata."
-                ],
-                [
-                  "nome"=> "Ratatouille",
-                  "ingredienti"=> ["melanzane", "zucchine", "peperoni", "pomodoro", "aglio"],
-                  "descrizione"=> "Un piatto provenzale, la Ratatouille è una gustosa miscela di melanzane, zucchine, peperoni, pomodoro e aglio, cotta lentamente fino a diventare un guiso aromatico e colorato."
-                ],
-                [
-                  "nome"=> "Cassoulet",
-                  "ingredienti"=> ["fagioli bianchi", "confit d'anatra", "salsicce", "carne di maiale", "aglio"],
-                  "descrizione"=> "Un piatto rustico del sud della Francia, il Cassoulet è una zuppa densa a base di fagioli bianchi cotti lentamente con confit d'anatra, salsicce e carne di maiale, condita con aglio e aromi."
-                ],
-                [
-                  "nome"=> "Soupe à l'Oignon",
-                  "ingredienti"=> ["cipolle", "brodo di carne", "pane", "formaggio gruyère", "burro"],
-                  "descrizione"=> "Una zuppa di cipolle ricca e saporita, la Soupe à l'Oignon è servita con crostini di pane coperti da formaggio gruyère fuso, creando una combinazione di sapori irresistibile."
-                ],
-                [
-                  "nome"=> "Salade Niçoise",
-                  "ingredienti"=> ["tonno", "uova sode", "fagiolini", "olive nere", "pomodori"],
-                  "descrizione"=> "Una fresca insalata provenzale, la Salade Niçoise è composta da tonno, uova sode, fagiolini, olive nere, pomodori e condita con una vinaigrette all'olio d'oliva."
-                ],
-                [
-                  "nome"=> "Escargot",
-                  "ingredienti"=> [" lumache di Borgogna", "burro all'aglio", "prezzemolo", "vino bianco", "pane"],
-                  "descrizione"=> "Una prelibatezza francese, gli Escargot sono lumache di Borgogna cotte in una deliziosa salsa di burro all'aglio e prezzemolo, servite con fette di pane croccante."
-                ],
-                [
-                  "nome"=> "Crêpes",
-                  "ingredienti"=> ["farina", "uova", "latte", "zucchero", "burro"],
-                  "descrizione"=> "Le Crêpes sono sottili frittelle di pasta, versatili e adatte a dolci e salati. Possono essere farcite con una varietà di ingredienti, come Nutella, marmellata, formaggio o prosciutto."
-                ],
-                [
-                  "nome"=> "Boucheé à la Reine",
-                  "ingredienti"=> ["pasta sfoglia", "pollo", "funghi", "salsa velouté", "limone"],
-                  "descrizione"=> "Un elegante antipasto francese, le Boucheé à la Reine sono piccole tartellette di pasta sfoglia ripiene di un mix di pollo, funghi e salsa velouté, con un tocco di limone fresco."
-                ]
-              ],
-              "secondi"=> [
+                "Francese"=>[  "primi"=> [
+                    [
+                      "nome"=> "Coq au Vin",
+                      "ingredienti"=> ["pollo", "vino rosso", "cipolla", "funghi", "pancetta"],
+                      "descrizione"=> "Il Coq au Vin è un piatto classico della cucina francese. Pollo cotto lentamente in un ricco sugo a base di vino rosso, cipolla, funghi e pancetta, creando un sapore profondo e avvolgente."
+                    ],
+                    [
+                      "nome"=> "Bouillabaisse",
+                      "ingredienti"=> ["pesce misto", "crostacei", "pomodoro", "alloro", "zafferano"],
+                      "descrizione"=> "Una zuppa di pesce provenzale, la Bouillabaisse è preparata con una varietà di pesci misti e crostacei, cotti in un brodo a base di pomodoro, alloro e zafferano, servita con crostini e rouille."
+                    ],
+                    [
+                      "nome"=> "Quiche Lorraine",
+                      "ingredienti"=> ["pancetta", "uova", "panna", "formaggio gruyère", "noce moscata"],
+                      "descrizione"=> "Un classico della cucina francese, la Quiche Lorraine è una torta salata con un ripieno cremoso di pancetta, uova, panna, formaggio gruyère e un pizzico di noce moscata."
+                    ],
+                    [
+                      "nome"=> "Ratatouille",
+                      "ingredienti"=> ["melanzane", "zucchine", "peperoni", "pomodoro", "aglio"],
+                      "descrizione"=> "Un piatto provenzale, la Ratatouille è una gustosa miscela di melanzane, zucchine, peperoni, pomodoro e aglio, cotta lentamente fino a diventare un guiso aromatico e colorato."
+                    ],
+                    [
+                      "nome"=> "Cassoulet",
+                      "ingredienti"=> ["fagioli bianchi", "confit d'anatra", "salsicce", "carne di maiale", "aglio"],
+                      "descrizione"=> "Un piatto rustico del sud della Francia, il Cassoulet è una zuppa densa a base di fagioli bianchi cotti lentamente con confit d'anatra, salsicce e carne di maiale, condita con aglio e aromi."
+                    ],
+                    [
+                      "nome"=> "Soupe à l'Oignon",
+                      "ingredienti"=> ["cipolle", "brodo di carne", "pane", "formaggio gruyère", "burro"],
+                      "descrizione"=> "Una zuppa di cipolle ricca e saporita, la Soupe à l'Oignon è servita con crostini di pane coperti da formaggio gruyère fuso, creando una combinazione di sapori irresistibile."
+                    ],
+                    [
+                      "nome"=> "Salade Niçoise",
+                      "ingredienti"=> ["tonno", "uova sode", "fagiolini", "olive nere", "pomodori"],
+                      "descrizione"=> "Una fresca insalata provenzale, la Salade Niçoise è composta da tonno, uova sode, fagiolini, olive nere, pomodori e condita con una vinaigrette all'olio d'oliva."
+                    ],
+                    [
+                      "nome"=> "Escargot",
+                      "ingredienti"=> [" lumache di Borgogna", "burro all'aglio", "prezzemolo", "vino bianco", "pane"],
+                      "descrizione"=> "Una prelibatezza francese, gli Escargot sono lumache di Borgogna cotte in una deliziosa salsa di burro all'aglio e prezzemolo, servite con fette di pane croccante."
+                    ],
+                    [
+                      "nome"=> "Crêpes",
+                      "ingredienti"=> ["farina", "uova", "latte", "zucchero", "burro"],
+                      "descrizione"=> "Le Crêpes sono sottili frittelle di pasta, versatili e adatte a dolci e salati. Possono essere farcite con una varietà di ingredienti, come Nutella, marmellata, formaggio o prosciutto."
+                    ],
+                    [
+                      "nome"=> "Boucheé à la Reine",
+                      "ingredienti"=> ["pasta sfoglia", "pollo", "funghi", "salsa velouté", "limone"],
+                      "descrizione"=> "Un elegante antipasto francese, le Boucheé à la Reine sono piccole tartellette di pasta sfoglia ripiene di un mix di pollo, funghi e salsa velouté, con un tocco di limone fresco."
+                    ]],
+              
+              
+                    "secondi"=> [
                 [
                   "nome"=> "Filet Mignon",
                   "ingredienti"=> ["filetto di manzo", "vino rosso", "scalogni", "funghi", "burro"],
@@ -256,7 +256,7 @@ class DishSeeder extends Seeder
                   "ingredienti"=> ["patate", "lardoons", "cipolla", "formaggio Reblochon", "vino bianco"],
                   "descrizione"=> "Un piatto montano, la Tartiflette è una gratinata di patate con lardoons, cipolla, formaggio Reblochon e un tocco di vino bianco, creando un comfort food irresistibile."
                 ]
-              ],
+                ],
               "dolci"=> [
                 [
                   "nome"=> "Crème Brûlée",
@@ -283,13 +283,12 @@ class DishSeeder extends Seeder
                   "ingredienti"=> ["farina", "zucchero", "burro", "uova", "limone"],
                   "descrizione"=> "Piccoli dolcetti a forma di conchiglia, le Madeleines sono leggere e profumate, spesso preparate con scorza di limone per un tocco di freschezza."
                 ]
-              ]
-            ],
+                  ]
+                    ] ,
 
-            [
+            
 
-              "genere"=> "Giapponese",
-              "primi"=> [
+              "Giapponese"=> ["primi"=> [
                 [
                   "nome"=> "Sushi",
                   "ingredienti"=> ["riso", "pesce fresco", "alghe nori", "wasabi", "zenzero marinato"],
@@ -340,7 +339,7 @@ class DishSeeder extends Seeder
                   "ingredienti"=> ["riso condito", "pesce crudo misto", "verdure sottaceto", "tamago", "nori"],
                   "descrizione"=> "Il chirashi sushi è un piatto di riso condito coperto con una varietà di pesce crudo misto, verdure sottaceto, frittata di tamago e strisce di alga nori. È un modo colorato e gustoso di gustare il sushi in stile giapponese."
                 ]
-              ],
+                ],
               "secondi"=> [
                 [
                   "nome"=> "Sukiyaki",
@@ -419,14 +418,10 @@ class DishSeeder extends Seeder
                   "ingredienti"=> ["sorbetto al yuzu", "zucchero", "acqua"],
                   "descrizione"=> "Il sorbetto al yuzu è un dessert rinfrescante. È fatto con il succo di yuzu, uno degli agrumi giapponesi più profumati, mescolato con zucchero e acqua, creando un sorbetto aromatico e leggermente amaro."
                 ]
-              ]
-            ],
+                 ]
+                ],
 
-
-            [
-
-              "genere"=> "Messicano",
-              "primi"=> [
+              "Messicano"=>[ "primi"=> [
                 [
                   "nome"=> "Tacos al Pastor",
                   "ingredienti"=> ["maiale marinato", "tortillas di mais", "cipolla", "ananas", "salsa al pastor"],
@@ -556,14 +551,9 @@ class DishSeeder extends Seeder
                   "ingredienti"=> ["pasta di tamarindo", "zucchero", "peperoncino in polvere", "sale"],
                   "descrizione"=> "I tamarindo candy sono caramelle dolci e leggermente piccanti fatte con pasta di tamarindo, zucchero, peperoncino in polvere e sale. Sono un'esplosione di sapore in bocca."
                 ]
-              ]
-            ],
+              ]],
 
-
-            [
-
-              "genere"=> "Cinese",
-              "primi"=> [
+              "Cinese"=>["primi"=> [
                 [
                   "nome"=> "Ravioli al Vapore (Jiaozi)",
                   "ingredienti"=> ["pasta all'uovo", "ripieno di carne o verdure", "salsa di soia", "aceto di riso"],
@@ -693,13 +683,9 @@ class DishSeeder extends Seeder
                   "ingredienti"=> ["latte", "crema", "tè verde in polvere", "zucchero", "tuorli d'uovo"],
                   "descrizione"=> "Il gelato al tè verde è un dessert cremoso e rinfrescante. È preparato con latte, crema, tè verde in polvere, zucchero e tuorli d'uovo, e ha un sapore unico e leggermente amaro."
                 ]
-              ]
-            ],
+              ]],
 
-            [
-
-              "genere"=> "Americano",
-              "primi"=> [
+              "Americano"=>[ "primi"=> [
                 [
                   "nome"=> "Mac 'n' Cheese",
                   "ingredienti"=> ["pasta", "formaggio cheddar", "latte", "burro", "pancetta"],
@@ -829,13 +815,9 @@ class DishSeeder extends Seeder
                   "ingredienti"=> ["banane", "gelato alla vaniglia", "cioccolato caldo", "palline di gelato", "palline di frutta"],
                   "descrizione"=> "Il Banana Split è un dessert divertente. Banane divise a metà, servite con palline di gelato alla vaniglia, cioccolato caldo, panna montata e palline di frutta."
                 ]
-              ]
-            ],
+              ]],
 
-            [
-
-              "genere"=> "Indiano",
-              "primi"=> [
+              "Indiano"=>["primi"=> [
                 [
                   "nome"=> "Biryani",
                   "ingredienti"=> ["riso basmati", "pollo", "spezie aromatiche", "cipolla", "yogurt"],
@@ -965,13 +947,11 @@ class DishSeeder extends Seeder
                   "ingredienti"=> ["carote", "latte", "zucchero", "frutta secca", "cardamomo"],
                   "descrizione"=> "Il Gajar Halwa è un dessert a base di carote. Carote grattugiate cotte con latte, zucchero, frutta secca e cardamomo per un dolce nutriente."
                 ]
-              ]
-            ],
+              ]],
 
-            [
+            
 
-              "genere"=> "Mediterraneo",
-              "primi"=> [
+              "Mediterraneo"=>["primi"=> [
                 [
                   "nome"=> "Pasta alla puttanesca",
                   "ingredienti"=> ["pasta", "pomodori", "acciughe", "olive nere", "capperi"],
@@ -1101,14 +1081,9 @@ class DishSeeder extends Seeder
                   "ingredienti"=> ["pistacchi", "fogli di pasta fillo", "zucchero", "miele", "burro"],
                   "descrizione"=> "La baklava al pistacchio è una variante della baklava greca con uno strato di pistacchi tra i fogli di pasta fillo, conditi con uno sciroppo dolce al miele."
                 ]
-              ]
-            ],
+              ]],
 
-
-            [
-
-              "genere"=> "Mediorientale",
-              "primi"=> [
+              "Mediorientale"=>["primi"=> [
                 [
                   "nome"=> "Hummus",
                   "ingredienti"=> ["ceci", "tahini", "aglio", "limone", "olio d'oliva"],
@@ -1238,12 +1213,10 @@ class DishSeeder extends Seeder
                   "ingredienti"=> ["pancake ripieni", "noci", "zucchero", "cannella", "sciroppo di zucchero"],
                   "descrizione"=> "I qatayef sono pancake ripieni di noci, zucchero, cannella e inzuppati in uno sciroppo dolce, spesso serviti durante il mese di Ramadan."
                 ]
-              ]
-            ],
+              ]],
 
-            [
-              "genere"=> "Vietnamita",
-              "primi"=> [
+              "Vietnamita" => [ "primi"=> [
+                
                 [
                   "nome"=> "Pho",
                   "ingredienti"=> ["noodle di riso", "manzo", "brodo di carne", "erbe fresche", "lime"],
@@ -1293,8 +1266,7 @@ class DishSeeder extends Seeder
                   "nome"=> "Com Tam",
                   "ingredienti"=> ["riso spezzato", "maiale alla griglia", "uovo fritto", "salsa di pesce", "insalata di verdure"],
                   "descrizione"=> "Il Com Tam è un piatto di riso spezzato con maiale alla griglia, uovo fritto, salsa di pesce e insalata di verdure."
-                ]
-              ],
+                ]],
               "secondi"=> [
                 [
                   "nome"=> "Goi Ga",
@@ -1373,9 +1345,7 @@ class DishSeeder extends Seeder
                   "ingredienti"=> ["crema caramellata", "latte condensato", "uova", "vaniglia"],
                   "descrizione"=> "Il Kem Flan è una crema caramellata con latte condensato, uova e vaniglia, spesso servita come dessert."
                 ]
-            ]
-        ]
-    ];
+            ]]];
 
-}
+                }
 }
