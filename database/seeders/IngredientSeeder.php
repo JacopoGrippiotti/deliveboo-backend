@@ -15,8 +15,6 @@ class IngredientSeeder extends Seeder
     public function run(): void
     {
         $ingredients = config("ingredients-filler");
-            $ingredientIds= Ingredient::all()->pluck('id');
-            $dishIds = Dish::all()->pluck('id');
 
             foreach($ingredients as $element){
                 $newIngredient = new Ingredient();
