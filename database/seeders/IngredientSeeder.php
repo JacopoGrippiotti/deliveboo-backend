@@ -14,9 +14,7 @@ class IngredientSeeder extends Seeder
      */
     public function run(): void
     {
-
         $ingredients = config("ingredients-filler");
-
             $ingredientIds= Ingredient::all()->pluck('id');
             $dishIds = Dish::all()->pluck('id');
 
@@ -24,9 +22,6 @@ class IngredientSeeder extends Seeder
                 $newIngredient = new Ingredient();
                 $newIngredient->name = $element;
                 $newIngredient->save();
-            }
-
-
-
         }
+    }
 }
