@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Models\User;
+use App\Models\Restaurant;
 class AdminController extends Controller
 {
     public function getUserRestaurants($userId)
@@ -19,6 +20,20 @@ class AdminController extends Controller
             'results' => [
                 'user' => $user,
                 'restaurants' => $restaurants
+            ]
+        ]);
+    }
+
+    public function getRestaurantDishes($restaurantId){
+        $restaurant = Restaurant::findOrFail($restaurantId);
+        $dishes = $restaurant->dishes;
+        $ingredients = $dishes->ingredients;
+        return response()->json([
+            'success' => true,
+            'results' => [
+                'restaurant' => $restaurant,
+                'dishes' => $dishes,
+                'ingredients' => $ingredients
             ]
         ]);
     }

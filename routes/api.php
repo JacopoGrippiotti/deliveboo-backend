@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AdminController as ApiAdminController;
+use App\Http\Controllers\Api\GuestController as ApiGuestController;
+use App\Models\Restaurant;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,4 +20,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/{id}/restaurants', [ApiAdminController::class, 'getUserRestaurants']);
+Route::name('api.admin.')->middleware('auth')->group(function () {
+    Route::get('/{user}/restaurants', [ApiAdminController::class, 'getUserRestaurants'])->name('index.restaurants');
+    Route::get('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'getRestaurantDishes'])->name('show.restaurants');
+});
+
+Route::name('api.guest.')->group(function (){
+    Route::get('/restaurants', [ApiGuestController::class, 'indexRestaurants'])->name('index.restaurants');
+    Route::get('/restaurants/{id}', [ApiGuestController::class, 'showRestaurant'])->name('show.restaurant');
+});
