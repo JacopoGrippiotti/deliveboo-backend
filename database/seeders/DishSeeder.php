@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Type;
 use Faker\Generator as Faker;
 
 class DishSeeder extends Seeder
@@ -15,6 +16,7 @@ class DishSeeder extends Seeder
     public function run(Faker $faker): void
     {
       $dishes = config("dishes-filler");
+      $typeIds= Type::all()->pluck('id');
 
       foreach($dishes as $dish=>$courseArray){
 
