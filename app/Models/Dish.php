@@ -24,4 +24,8 @@ class Dish extends Model
     public function ingredients(){
         return $this->belongsToMany(Ingredient::class);  //stiamo affermando che un piatto può avere più ingredienti
     }
+
+    public function type(){
+        return $this->belongsTo(Type::class);  
+    }
 }
