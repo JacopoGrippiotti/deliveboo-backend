@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Restaurant;
 class AdminController extends Controller
 {
-    public function getUserRestaurants($userId)
+    public function index($userId)
     {
         $user = User::findOrFail($userId); // Trova l'utente
         // Carica i ristoranti associati all'utente
@@ -24,7 +24,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function getRestaurantDishes($restaurantId){
+    public function show($restaurantId){
         $restaurant = Restaurant::findOrFail($restaurantId);
         $dishes = $restaurant->dishes;
         $ingredients = $dishes->ingredients;

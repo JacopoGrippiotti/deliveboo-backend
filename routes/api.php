@@ -23,8 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::name('api.admin.')->middleware('auth')->group(function () {
-    Route::get('/{user}/restaurants', [ApiAdminController::class, 'getUserRestaurants'])->name('index.restaurants');
-    Route::get('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'getRestaurantDishes'])->name('show.restaurants');
+    Route::get('/{user}/restaurants', [ApiAdminController::class, 'index'])->name('index.restaurants');
+    Route::get('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'show'])->name('show.restaurants');
 });
 
 Route::name('api.guest.')->group(function (){
