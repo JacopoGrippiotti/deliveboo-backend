@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             RestaurantSeeder::class, // RestaurantSeeder implementa restaurant_type
             OrderSeeder::class, // OrderSeeder implementa dish_order
             IngredientSeeder::class, // IngredientSeeder implementa dish_ingredient
+            CategoriesSeeder::class,
             DishSeeder::class,
             DishIngredientSeeder::class
         ]);
