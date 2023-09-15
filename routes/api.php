@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AdminController as ApiAdminController;
 use App\Http\Controllers\Api\GuestController as ApiGuestController;
+use App\Http\Controllers\Api\LoginController as LoginUserController;
+use App\Http\Controllers\Api\RegisterController as RegisterUserController;
 use App\Models\Restaurant;
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +30,12 @@ Route::name('api.admin.')->middleware('auth')->group(function () {
 Route::name('api.guest.')->group(function (){
     Route::get('/restaurants', [ApiGuestController::class, 'indexRestaurants'])->name('index.restaurants');
     Route::get('/restaurants/{id}', [ApiGuestController::class, 'showRestaurant'])->name('show.restaurant');
+});
+
+
+Route::post('/register', [RegisterUserController::class, 'register'])->name('api.register');
+Route::post('/login', [LoginUserController::class, 'login'])->name('api.login');
+
+Route::middleware('auth:api')->group(function(){
+    Route::post('/logout', [LoginUserController::class, 'logout'])->name('api.logout');
 });
