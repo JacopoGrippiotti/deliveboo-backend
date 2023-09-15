@@ -6,20 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('dishes', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
+            
             $table->id();
             $table->string('name');
-            $table->text('description');
-            $table->double('price', 5, 2);
-            $table->string('course');
-            $table->text('photo');
-            $table->boolean('available');
             $table->timestamps();
         });
     }
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dishes');
+        Schema::dropIfExists('categories');
     }
 };

@@ -6,20 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('dishes', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->double('price', 5, 2);
-            $table->string('course');
-            $table->text('photo');
-            $table->boolean('available');
+        Schema::create('category_dish', function (Blueprint $table) {
+            $table->unsignedBigInteger('dish_id');
+            $table->foreign('dish_id')->references('id')->on('dishes');
+
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dishes');
+        Schema::dropIfExists('category_dish');
     }
 };

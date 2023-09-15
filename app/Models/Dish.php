@@ -9,6 +9,10 @@ class Dish extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'ingredients' => 'array'
+    ];
+
     public function restaurant(){
         return $this->belongsTo(Restaurant::class);  //stiamo affermando che ogni piatto può avere un solo ristorante ad esso associato
     }
@@ -19,5 +23,13 @@ class Dish extends Model
 
     public function ingredients(){
         return $this->belongsToMany(Ingredient::class);  //stiamo affermando che un piatto può avere più ingredienti
+    }
+
+    public function type(){
+        return $this->belongsTo(Type::class);  
+    }
+
+    public function categories(){
+        return $this->belongsToMany(Category::class);  
     }
 }
