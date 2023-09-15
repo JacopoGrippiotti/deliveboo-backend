@@ -3,7 +3,7 @@
 return $listDishes=[   //APERTURA MEGA ARRAY
             
 
-    "Italiano"=>  [   "primi"=>[
+    "Italiana"=>  [   "primi"=>[
                              [
                                "nome"=> "Spaghetti alla Carbonara",
                                "ingredienti"=> ["spaghetti", "uova", "guanciale", "pecorino romano", "pepe nero"],
@@ -408,7 +408,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
        ]
       ],
 
-    "Messicano"=>[ "primi"=> [
+    "Messicana"=>[ "primi"=> [
       [
         "nome"=> "Tacos al Pastor",
         "ingredienti"=> ["maiale marinato", "tortillas di mais", "cipolla", "ananas", "salsa al pastor"],
@@ -672,7 +672,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
       ]
     ]],
 
-    "Americano"=>[ "primi"=> [
+    "Americana"=>[ "primi"=> [
       [
         "nome"=> "Mac 'n' Cheese",
         "ingredienti"=> ["pasta", "formaggio cheddar", "latte", "burro", "pancetta"],
@@ -938,7 +938,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
 
   
 
-    "Mediterraneo"=>["primi"=> [
+    "Mediterranea"=>["primi"=> [
       [
         "nome"=> "Pasta alla puttanesca",
         "ingredienti"=> ["pasta", "pomodori", "acciughe", "olive nere", "capperi"],
