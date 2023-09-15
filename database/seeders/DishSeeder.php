@@ -25,7 +25,7 @@ class DishSeeder extends Seeder
       
       $orderIds = Order::all()->pluck('id');
       foreach($dishes as $dish=>$courseArray){
-
+        
         foreach($courseArray as $course=>$elementsArray){
 
           foreach($elementsArray as $element){
@@ -42,7 +42,9 @@ class DishSeeder extends Seeder
             $randomType = $faker->randomElement($typeIds);
             $newDish = new Dish();
             $newDish->restaurant_id = $randomRestaurant;
-            $newDish->type_id = $randomType;
+            $type = Type::where('name',$dish)->first();
+            $typeId = $type->id;
+            $newDish->type_id = $typeId;
             $newDish->name = $element['nome'];
             $newDish->description = $element['descrizione'];
             $newDish->price = $faker->randomFloat(2, 5.0,40.0 );
