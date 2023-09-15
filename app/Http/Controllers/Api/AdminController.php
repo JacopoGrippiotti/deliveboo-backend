@@ -37,4 +37,14 @@ class AdminController extends Controller
             ]
         ]);
     }
+
+    public function store(Request $request){}
+    public function create(){}
+    public function edit(Restaurant $restaurant){}
+    public function update(Request $request, Restaurant $restaurant){}
+    public function delete(Restaurant $restaurant){}
+    public function deletedIndex(){}
+    public function restore(Restaurant $restaurant){}
+    public function obliterate(Restaurant $restaurant){}
+
 }

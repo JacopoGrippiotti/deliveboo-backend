@@ -25,6 +25,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::name('api.admin.')->middleware('auth')->group(function () {
     Route::get('/{user}/restaurants', [ApiAdminController::class, 'index'])->name('index.restaurants');
     Route::get('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'show'])->name('show.restaurants');
+    Route::get('/{user}/restaurants/create', [ApiAdminController::class, 'create'])->name('create.restaurants');
+    Route::post('/{user}/restaurants', [ApiAdminController::class, 'store'])->name('store.restaurants');
+    Route::get('/{user}/restaurants/{restaurant}/edit', [ApiAdminController::class, 'edit'])->name('edit.restaurants');
+    Route::put('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'update'])->name('update.restaurants');
+    Route::delete('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'delete'])->name('destroy.restaurants');
+    Route::get('{user}/restaurants/deleted', [ApiAdminController::class, 'deletedIndex'])->name('trashed.restaurants');
+    Route::delete('{user}/restaurants/deleted/{restaurant}', [ApiAdminController::class, 'restore'])->name('restore.restaurant');
+    Route::delete('{user}/restaurants/deleted/{restaurant}/hardDelete', [ApiAdminController::class, 'obliterate'])->name('obliterate.restaurants');
 });
 
 Route::name('api.guest.')->group(function (){
