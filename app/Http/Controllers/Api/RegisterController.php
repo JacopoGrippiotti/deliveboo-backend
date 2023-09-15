@@ -13,11 +13,12 @@ class RegisterController extends Controller
     {
 
         // Validazione dei dati del form
-        try{$data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'min:8'],
-            'vat_num' => ['required', 'min:13', 'max:13']
+        try{
+            $data = $request->validate([
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255'],
+                'password' => ['required', 'string', 'min:8'],
+                'vat_num' => ['required', 'min:13', 'max:13']
         ]);}catch(\Exception $e){
             return response()->json(['error' => 'errore convalida']);
         }
@@ -32,13 +33,13 @@ class RegisterController extends Controller
             'vat_num' => $data['vat_num']
         ]);
 
-        // Generazione del token JWT e restituzione di una risposta
+        // Generazione del token
         $token = $user->createToken('api-token')->plainTextToken;
 
         return response()->json([
             'user' => $user,
             'access_token' => $token,
-            'token_type' => 'Bearer',
+            'token_type' => 'api-token',
         ]);
     }catch(\Exception $e) {
         return response()->json(['error' => 'Errore durante la registrazione'], 500); // Internal Server Error
