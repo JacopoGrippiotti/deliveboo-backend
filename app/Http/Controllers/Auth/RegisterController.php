@@ -74,33 +74,5 @@ class RegisterController extends Controller
             'vat_num' => $data['vat_num']
         ]);
     }
-     // Registrazione utente tramite API
-     public function register(Request $request)
-     {
-         // Validazione dei dati inviati dalla richiesta
-         $validator = $this->validator($request->all());
 
-         if ($validator->fails()) {
-             return response()->json(['errors' => $validator->errors()], 422);
-         }
-
-         // Creazione dell'utente
-         $user = $this->create($request->all());
-
-         // Al termine della registrazione, puoi eventualmente generare un token JWT per l'utente
-         $token = auth()->login($user);
-
-         // Restituisci il token e altri dati dell'utente nella risposta JSON
-         return $this->respondWithToken($token);
-     }
-
-     protected function respondWithToken($token)
-     {
-         return response()->json([
-             'access_token' => $token,
-             'token_type' => 'bearer',
-             'expires_in' => auth()->factory()->getTTL() * 60,
-             'user' => auth()->user(),
-         ]);
-     }
 }
