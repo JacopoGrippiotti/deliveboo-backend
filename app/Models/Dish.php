@@ -28,4 +28,8 @@ class Dish extends Model
     public function type(){
         return $this->belongsTo(Type::class);  
     }
+
+    public function categories(){
+        return $this->belongsToMany(Category::class);  
+    }
 }
