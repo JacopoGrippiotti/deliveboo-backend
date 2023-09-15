@@ -29,7 +29,7 @@ class RestaurantSeeder extends Seeder
           foreach($restaurantsNames as $restaurantsName => $restaurantNamesArray){
 
             foreach($restaurantNamesArray as $restaurantName){
-
+            
             $typeArrayRandom = $faker->randomElements($types,$faker->numberBetween(1, 3));
             $randomUser= $faker->randomElement($userIds);
             $newRestaurant = new Restaurant();
