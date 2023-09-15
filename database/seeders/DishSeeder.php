@@ -9,6 +9,7 @@ use App\Models\Dish;
 use App\Models\Restaurant;
 use App\Models\Ingredient;
 use App\Models\Order;
+use App\Models\Category;
 use Faker\Generator as Faker;
 
 class DishSeeder extends Seeder
@@ -31,15 +32,22 @@ class DishSeeder extends Seeder
           foreach($elementsArray as $element){
             $orderArrayRandom = $faker->randomElements($orderIds,$faker->numberBetween(1, 3));
             $ingredientNames = $element['ingredienti'];
+            $categoriesNames = $element['categoria'];
+            $categoriesIds = [];
             $ingredientIds = [];
             foreach($ingredientNames as $ingredientName){
                $ingredient = Ingredient::where('name',$ingredientName)->first();
                if($ingredient){
                 $ingredientIds[] = $ingredient->id;
                }
-            }
+            };
+            foreach($categoriesNames as $categoryName){
+               $category = Category::where('name',$categoryName)->first();
+               if($category){
+                $categoriesIds[] = $category->id;
+               }
+            };
             $randomRestaurant = $faker->randomElement($restaurantIds);
-            $randomType = $faker->randomElement($typeIds);
             $newDish = new Dish();
             $newDish->restaurant_id = $randomRestaurant;
             $type = Type::where('name',$dish)->first();
@@ -53,6 +61,7 @@ class DishSeeder extends Seeder
             $newDish->available = $faker->boolean();
             $newDish->save();
             $newDish->ingredients()->sync($ingredientIds);
+            $newDish->categories()->sync($categoriesIds);
             $newDish->orders()->sync($orderArrayRandom);
             $newDish->save();
           }
