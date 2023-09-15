@@ -43,13 +43,15 @@ class GuestController extends Controller
     public function showRestaurant(int $id){
         $restaurant = Restaurant::findOrFail($id);
         $dishes = $restaurant->dishes;
+        $categories = $dishes->categories;
         $ingredients = $dishes->ingredients;
         return response()->json([
             'success' => true,
             'results' => [
                 $restaurant,
                 $dishes,
-                $ingredients
+                $ingredients,
+                $categories
             ]
         ]);
     }
