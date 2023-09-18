@@ -5,15 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\HasApiTokens;
 
 class LoginController extends Controller
 {
-    /**
-     * Handle a login request to the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    use HasApiTokens;
+
     public function login(Request $request)
     {
         // Validazione dei dati inviati dal client
@@ -25,10 +22,11 @@ class LoginController extends Controller
         // Tentativo di autenticazione se è true l'utente viene autenticato
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             // Genera un token JWT (se necessario) e restituiscilo nella risposta
-            $token = Auth::user()->createToken('login-token')->plainTextToken;
             $user = Auth::user();
+            $token = $user->createToken('AuthToken')->plainTextToken;
             return response()->json(['token' => $token,
-                                      'user' => $user,
+                                    'token_type' => 'Bearer',
+                                    'user' => $user,
                                     ], 200);
         }
 
