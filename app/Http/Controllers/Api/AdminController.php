@@ -11,6 +11,9 @@ class AdminController extends Controller
 {
     public function index($userId)
     {
+
+        // Verifica se l'utente è autenticato
+
         $user = User::findOrFail($userId); // Trova l'utente
         // Carica i ristoranti associati all'utente
         $restaurants = $user->restaurants;
@@ -89,12 +92,13 @@ class AdminController extends Controller
         $restaurant->types()->sync($typeIds);
     }
     public function destroy($id){
-    $restaurant = Restaurant::findOrFail($id);
-    if (!$restaurant) {
-        return response()->json(['message' => 'Ristorante non trovato'], 404);
-    }
-    $restaurant->delete();
-    return response()->json(['message' => 'Ristorante eliminato con successo']);
+        $restaurant = Restaurant::findOrFail($id);
+        if (!$restaurant) {
+            return redirect()->back()->with('error', 'Ristorante non trovato.');
+        }
+        $restaurant->types()->detach();
+        $restaurant->delete();
+        return redirect()->back()->with('success', 'Ristorante eliminato con successo.');
     }
     public function deletedIndex(int $userId){
         $user = User::findOrFail($userId);
@@ -114,7 +118,11 @@ class AdminController extends Controller
         ]);
     }
     public function obliterate(int $restaurantId){
-        $restaurant
+        $restaurant = Restaurant::onlyTrashed()->findOrFail($restaurantId);
+        // Storage::delete($restaurant->image);
+        $restaurant->forceDelete();
+
+        return redirect()->back()->with('success', 'Ristorante eliminato definitivamente.');
     }
 
 }
