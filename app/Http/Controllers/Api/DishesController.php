@@ -13,19 +13,19 @@ class DishesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    // public function index($restaurant_id)
-    // {
-    //     $restaurant = Restaurant::findOrFail($restaurantId);
+     public function index($restaurant_id)
+     {
+         $restaurant = Restaurant::findOrFail($restaurant_id);
 
-    //     $dishes = $restaurant->dishes;
+         $dishes = $restaurant->dishes;
 
-    //     return response()->json([
-    //         'success' => true,
-    //         'results' => [
-    //             'restaurant' => $restaurant,
-    //             'dishes' => $dishes]
-    //         ]);
-    // }
+         return response()->json([
+             'success' => true,
+             'results' => [
+                 'restaurant' => $restaurant,
+                 'dishes' => $dishes]
+             ]);
+     }
 
     /**
      * Show the form for creating a new resource.
