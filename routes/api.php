@@ -39,7 +39,7 @@ Route::name('api.admin.')->middleware(['auth:sanctum'])->group(function () {
 });
 
 Route::prefix('{user}/restaurants/{restaurant}')->name('api.admin.')->middleware(['auth:sanctum'])->group(function(){
-    // Route::get('/{user}/dishes', [ApiDishController::class, 'index'])->name('index.dishes');
+    Route::get('/dishes', [ApiDishController::class, 'index'])->name('index.dishes');
     Route::get('/{dish}', [ApiDishController::class, 'show'])->name('show.dishes');
     Route::get('/create', [ApiDishController::class, 'create'])->name('create.dishes');
     Route::post('/', [ApiDishController::class, 'store'])->name('store.dishes');
