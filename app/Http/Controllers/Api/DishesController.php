@@ -39,34 +39,32 @@ class DishesController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $data = $request->validate([
-            'restaurant_id' => 'required|exists:restaurants,id',
-            'name' => ['required', 'string', 'min:3'],
-            'description' => ['required', 'string', 'min:10'],
-            'price' => ['required', 'numeric', 'regex:/[1-9]/'],
-            'course' =>['required', 'string', 'min:5' ],
-            'photo' =>['required', 'url'],
-            'available' =>['required', 'boolean'],
-            'ingredient_names' =>['required','array','min:1'],
-            'ingredient_names.*' =>['string']
-        ]);
+    {   
+        $restaurant = Restaurant::findOrFail($request->restaurant->id);
 
-        $dishId = $request->input('dish_id');
+        if($restaurant){
+            $data = $request->validate([
+                'name' => ['required', 'string', 'min:3'],
+                'description' => ['required', 'string', 'min:10'],
+                'price' => ['required', 'numeric', 'regex:/[1-9]/'],
+                'course' =>['required', 'string', 'min:5' ],
+                'photo' =>['required', 'url'],
+                'available' =>['required', 'boolean'],
+                'ingredient_names' =>['required','array','min:1'],
+                'ingredient_names.*' =>['string']
+            ]);
 
-        $ingredientNames = $request->input('ingredient_names', []);
+            $ingredientNames = $request->input('ingredient_names', []);
 
-        $ingredientIds = Ingredient::whereIn('name', $ingredientNames)->pluck('id')->toArray();
-
-        if($dishId){
-            $dish = Dish::findOrFail($dishId);
-            $dish->update($request->except('dish_id', 'ingredient_names'));
-            $dish->ingredients()->sync($ingredientIds);
+            $ingredientIds = Ingredient::whereIn('name', $ingredientNames)->pluck('id')->toArray();
+            
+            $newDish = Dish::create($request->except(['ingredient_names']));
+            $newDish->restaurant_id = $restaurant->id;
+            $newDish->save();
+            $newDish->ingredients()->sync($ingredientIds);
+            
         }
-        else{
-            $dish = Dish::create($request->except(['ingredient_names']));
-            $dish->ingredients()->sync($ingredientIds);
-        }
+        
 
     }
 
@@ -75,7 +73,7 @@ class DishesController extends Controller
      */
     public function show($dishId)
     {
-        $dish = Dish::findOrFail($restaurantId);
+        $dish = Dish::findOrFail($dishId);
         $ingredients = $dish->ingredients;
         return response()->json([
             'success' => true,
