@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->double('total_price', 6, 2);
+            $table->string('customer_name');
             $table->string('customer_address');
+            $table->string('phone_number');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

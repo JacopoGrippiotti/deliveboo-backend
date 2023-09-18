@@ -51,8 +51,8 @@ class AdminController extends Controller
         ]);
 
         $data['user_id'] = Auth::user()->id;
-
-        $typesNames = $request->types;
+        $newRestaurant = Restaurant::create($data);
+        $typesNames = $newRestaurant->types;
         $typeIds = [];
         foreach ($typesNames as $typeName) {
             $type = Type::where('name', $typeName)->first();
@@ -60,27 +60,28 @@ class AdminController extends Controller
                 $typeIds[] = $type->id;
             }
         }
-        $newRestaurant = Restaurant::create($data);
+
         $newRestaurant->types()->sync($typeIds);
     }
-    // public function create(){}
+
     public function edit(int $id){
-            $restaurant = Restaurant::with('types')->findOrFail($id);
-            if (!$restaurant) {
-                return response()->json(['message' => 'Ristorante non trovato'], 404);
-            }
-            return response()->json(['restaurant' => $restaurant]);
+        $restaurant = Restaurant::with('types')->findOrFail($id);
+        if (!$restaurant) {
+            return response()->json(['message' => 'Ristorante non trovato'], 404);
+        }
+        return response()->json(['restaurant' => $restaurant]);
     }
+
     public function update(Request $request, Restaurant $restaurant){
         $data = $request->validate([
-            'name' => ['required', 'string', 'min:3'],
+            'name' => ['required', 'string', 'min:2'],
             'address' => ['required', 'string', 'min:5'],
             'city' => ['required', 'string', 'min:5'],
         ]);
 
         $data['user_id'] = $restaurant->user->id;
 
-        $typesNames = $request->types;
+        $typesNames = $restaurant->types;
         $typeIds = [];
         foreach ($typesNames as $typeName) {
             $type = Type::where('name', $typeName)->first();
@@ -88,9 +89,11 @@ class AdminController extends Controller
                 $typeIds[] = $type->id;
             }
         }
+
         $restaurant->update($data);
         $restaurant->types()->sync($typeIds);
     }
+
     public function destroy($id){
         $restaurant = Restaurant::findOrFail($id);
         if (!$restaurant) {
@@ -100,6 +103,7 @@ class AdminController extends Controller
         $restaurant->delete();
         return redirect()->back()->with('success', 'Ristorante eliminato con successo.');
     }
+
     public function deletedIndex(int $userId){
         $user = User::findOrFail($userId);
         $trashedRestaurants = $user->restaurants->onlyTrashed()->get();
@@ -108,15 +112,14 @@ class AdminController extends Controller
             'results' => $trashedRestaurants
         ]);
     }
+
     public function restore(int $restaurantId){
         $trashedRestaurant = Restaurant::onlyTrashed()->findOrFail($restaurantId);
         $restaurant->restore();
 
-        return response()->json([
-            'success' => 'Il ristorante è stato ripristinato con successo.',
-            'results' => $restaurant
-        ]);
+        return redirect()->back()->with('success', 'Ristorante ripristinato con successo.');
     }
+
     public function obliterate(int $restaurantId){
         $restaurant = Restaurant::onlyTrashed()->findOrFail($restaurantId);
         // Storage::delete($restaurant->image);
