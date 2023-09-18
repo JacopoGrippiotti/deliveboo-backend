@@ -29,15 +29,15 @@ class AdminController extends Controller
     }
 
     public function show($restaurantId){
-        $restaurant = Restaurant::findOrFail($restaurantId);
+        $restaurant = Restaurant::with('dishes')->findOrFail($restaurantId);
         $dishes = $restaurant->dishes;
-        $ingredients = $dishes->ingredients;
+        // $ingredients = $dishes->ingredients;
         return response()->json([
             'success' => true,
             'results' => [
                 'restaurant' => $restaurant,
                 'dishes' => $dishes,
-                'ingredients' => $ingredients
+                // 'ingredients' => $ingredients
             ]
         ]);
     }
