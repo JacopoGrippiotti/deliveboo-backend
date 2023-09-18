@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Dish extends Model
 {
     use HasFactory;
-
+    use SoftDeletes;
+    
     protected $casts = [
         'ingredients' => 'array'
     ];
@@ -34,7 +35,6 @@ class Dish extends Model
     }
 
     protected $fillable = [
-        'restaurant_id',
         'name',
         'description',
         'price',
