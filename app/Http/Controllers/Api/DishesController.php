@@ -140,12 +140,20 @@ class DishesController extends Controller
         return redirect()->back()->with('success', 'Piatto eliminato con successo.');
     }
 
-    public function deletedIndex(int $userId){
-        $user = User::findOrFail($userId);
-        $trashedDishes = $user->restaurants->dishes->onlyTrashed()->get();
+    public function deletedIndex($restaurantId){
+        $restaurant = Restaurant::findOrFail($restaurantId);
+        $trashedDishes = $restaurant->dishes->onlyTrashed()->get();
         return response()->json([
             'success' => 'true',
             'results' => $trashedDishes
         ]);
     }
+
+    public function restore( $dishId){
+        $trashedDish = Dish::onlyTrashed()->findOrFail($dishId);
+        $trashedDish->restore();
+
+        return redirect()->back()->with('success', 'Piatto ripristinato con successo.');
+    }
+
 }
