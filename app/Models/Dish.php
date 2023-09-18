@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Dish extends Model
 {
     use HasFactory;
-
+    use SoftDeletes;
+    
     protected $casts = [
         'ingredients' => 'array'
     ];
