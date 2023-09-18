@@ -129,7 +129,7 @@ class DishesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $dish = Dish::findOrFail($id);
         if (!$dish) {
@@ -140,7 +140,7 @@ class DishesController extends Controller
         return redirect()->back()->with('success', 'Piatto eliminato con successo.');
     }
 
-    public function deletedIndex($restaurantId){
+    public function deletedIndex(int $restaurantId){
         $restaurant = Restaurant::findOrFail($restaurantId);
         $trashedDishes = $restaurant->dishes->onlyTrashed()->get();
         return response()->json([
@@ -149,11 +149,20 @@ class DishesController extends Controller
         ]);
     }
 
-    public function restore( $dishId){
+    public function restore(int $dishId){
         $trashedDish = Dish::onlyTrashed()->findOrFail($dishId);
         $trashedDish->restore();
 
         return redirect()->back()->with('success', 'Piatto ripristinato con successo.');
     }
+
+    public function obliterate(int $dishId){
+        $dish = Dish::onlyTrashed()->findOrFail($dishId);
+        // Storage::delete($restaurant->image);
+        $dish->forceDelete();
+
+        return redirect()->back()->with('success', 'Piatto eliminato definitivamente.');
+    }
+
 
 }
