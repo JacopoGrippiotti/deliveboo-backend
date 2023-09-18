@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AdminController as ApiAdminController;
 use App\Http\Controllers\Api\GuestController as ApiGuestController;
 use App\Http\Controllers\Api\LoginController as LoginUserController;
 use App\Http\Controllers\Api\RegisterController as RegisterUserController;
+use App\Http\Controllers\Api\DishesController as ApiDishController;
 use App\Models\Restaurant;
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,19 @@ Route::name('api.admin.')->middleware('auth')->group(function () {
     Route::get('{user}/restaurants/deleted', [ApiAdminController::class, 'deletedIndex'])->name('trashed.restaurants');
     Route::delete('{user}/restaurants/deleted/{restaurant}', [ApiAdminController::class, 'restore'])->name('restore.restaurant');
     Route::delete('{user}/restaurants/deleted/{restaurant}/hardDelete', [ApiAdminController::class, 'obliterate'])->name('obliterate.restaurants');
+
+    Route::get('/{user}/dishes', [ApiDishController::class, 'index'])->name('index.restaurants');
+    Route::get('/{user}/dishes/{dish}', [ApiDishController::class, 'show'])->name('show.restaurants');
+    Route::get('/{user}/dishes/create', [ApiDishController::class, 'create'])->name('create.restaurants');
+    Route::post('/{user}/dishes', [ApiDishController::class, 'store'])->name('store.restaurants');
+    Route::get('/{user}/dishes/{dish}/edit', [ApiDishController::class, 'edit'])->name('edit.restaurants');
+    Route::put('/{user}/dishes/{dish}', [ApiDishController::class, 'update'])->name('update.restaurants');
+    Route::delete('/{user}/dishes/{dish}', [ApiDishController::class, 'delete'])->name('destroy.restaurants');
+    Route::get('{user}/dishes/deleted', [ApiDishController::class, 'deletedIndex'])->name('trashed.restaurants');
+    Route::delete('{user}/dishes/deleted/{dish}', [ApiDishController::class, 'restore'])->name('restore.restaurant');
+    Route::delete('{user}/dishes/deleted/{dish}/hardDelete', [ApiDishController::class, 'obliterate'])->name('obliterate.restaurants');
 });
+
 
 Route::name('api.guest.')->group(function (){
     Route::get('/restaurants', [ApiGuestController::class, 'indexRestaurants'])->name('index.restaurants');
