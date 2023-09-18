@@ -25,7 +25,7 @@ class LoginController extends Controller
         // Tentativo di autenticazione se è true l'utente viene autenticato
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             // Genera un token JWT (se necessario) e restituiscilo nella risposta
-            $token = Auth::user()->createToken('AuthToken')->accessToken;
+            $token = Auth::user()->createToken('login-token')->plainTextToken;
             $user = Auth::user();
             return response()->json(['token' => $token,
                                       'user' => $user,
