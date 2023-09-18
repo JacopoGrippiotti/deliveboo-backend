@@ -24,4 +24,11 @@ class Restaurant extends Model
     public function orders(){
         return $this->hasMany(Order::class);     //stiamo permettendo al ristorante di avere più ordini
     }
+
+    protected $fillable = [
+        'name',
+        'address',
+        'city',
+        'user_id'
+    ];
 }
