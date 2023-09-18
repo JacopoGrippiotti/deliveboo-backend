@@ -15,17 +15,20 @@ class OrderSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(Faker $faker): void
-    {   
+    {
         $fakerIt = Fakerit::create('it_IT');
-        
-        
+
+
         $restaurantIds= Restaurant::all()->pluck('id');
         for($i=0; $i<30; $i++){
           $randomRestaurant = $faker->randomElement($restaurantIds);
           $newOrder = new Order();
           $newOrder->restaurant_id = $randomRestaurant;
-          $newOrder->total_price = $faker->randomFloat(2, 5.0,40.0 );
+          $newOrder->customer_name = $fakerIt->name();
           $newOrder->customer_address = $fakerIt->streetAddress();
+          $newOrder->phone_number = $fakerIt->phoneNumber();
+          $newOrder->status = $faker->randomElement([1, 0]);
+          $newOrder->total_price = $faker->randomFloat(2, 5.0, 40.0);
           $newOrder->save();
         }
     }
