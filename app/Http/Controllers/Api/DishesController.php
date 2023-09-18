@@ -73,9 +73,17 @@ class DishesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($dishId)
     {
-        //
+        $dish = Dish::findOrFail($restaurantId);
+        $ingredients = $dish->ingredients;
+        return response()->json([
+            'success' => true,
+            'results' => [
+                'dish' => $dish,
+                'ingredients' => $ingredients,
+            ]
+        ]);
     }
 
     /**
@@ -83,7 +91,11 @@ class DishesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dish = Dish::with('ingredients')->findOrFail($id);
+            if (!$dish) {
+                return response()->json(['message' => 'Piatto non trovato'], 404);
+            }
+            return response()->json(['dish' => $dish]);
     }
 
     /**
@@ -97,7 +109,7 @@ class DishesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
         //
     }
