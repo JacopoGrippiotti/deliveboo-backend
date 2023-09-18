@@ -4,15 +4,26 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Restaurant;
 
 class DishesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($restaurant_id)
     {
-        //
+        $restaurant = Restaurant::findOrFail($restaurantId);
+
+        $dishes = $restaurant->dishes;
+
+        return response()->json([
+            'success' => true,
+            'results' => [
+                'restaurant' => $restaurant,
+                'dishes' => $dishes]
+            ]);
     }
 
     /**
@@ -28,13 +39,40 @@ class DishesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'restaurant_id' => 'required|exists:restaurants,id',
+            'name' => ['required', 'string', 'min:3'],
+            'description' => ['required', 'string', 'min:10'],
+            'price' => ['required', 'numeric', 'regex:/[1-9]/'],
+            'course' =>['required', 'string', 'min:5' ],
+            'photo' =>['required', 'url'],
+            'available' =>['required', 'boolean'],
+            'ingredient_names' =>['required','array','min:1'],
+            'ingredient_names.*' =>['string']
+        ]);
+
+        $dishId = $request->input('dish_id');
+
+        $ingredientNames = $request->input('ingredient_names', []);
+        
+        $ingredientIds = Ingredient::whereIn('name', $ingredientNames)->pluck('id')->toArray();
+
+        if($dishId){
+            $dish = Dish::findOrFail($dishId);
+            $dish->update($request->except('dish_id', 'ingredient_names'));
+            $dish->ingredients()->sync($ingredientIds);
+        }
+        else{
+            $dish = Dish::create($request->except(['ingredient_names']));
+            $dish->ingredients()->sync($ingredientIds);
+        }
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
         //
     }
