@@ -32,4 +32,14 @@ class Dish extends Model
     public function categories(){
         return $this->belongsToMany(Category::class);  
     }
+
+    protected $fillable = [
+        'restaurant_id',
+        'name',
+        'description',
+        'price',
+        'course',
+        'photo',
+        'available'
+    ];
 }
