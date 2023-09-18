@@ -35,16 +35,19 @@ Route::name('api.admin.')->middleware(['auth:sanctum'])->group(function () {
     Route::delete('{user}/restaurants/deleted/{restaurant}', [ApiAdminController::class, 'restore'])->name('restore.restaurant');
     Route::delete('{user}/restaurants/deleted/{restaurant}/hardDelete', [ApiAdminController::class, 'obliterate'])->name('obliterate.restaurants');
 
-    Route::get('/{user}/dishes', [ApiDishController::class, 'index'])->name('index.dishes');
-    Route::get('/{user}/dishes/{dish}', [ApiDishController::class, 'show'])->name('show.dishes');
-    Route::get('/{user}/dishes/create', [ApiDishController::class, 'create'])->name('create.dishes');
-    Route::post('/{user}/dishes', [ApiDishController::class, 'store'])->name('store.dishes');
-    Route::get('/{user}/dishes/{dish}/edit', [ApiDishController::class, 'edit'])->name('edit.dishes');
-    Route::put('/{user}/dishes/{dish}', [ApiDishController::class, 'update'])->name('update.dishes');
-    Route::delete('/{user}/dishes/{dish}', [ApiDishController::class, 'delete'])->name('destroy.dishes');
-    Route::get('{user}/dishes/deleted', [ApiDishController::class, 'deletedIndex'])->name('trashed.dishes');
-    Route::delete('{user}/dishes/deleted/{dish}', [ApiDishController::class, 'restore'])->name('restore.dish');
-    Route::delete('{user}/dishes/deleted/{dish}/hardDelete', [ApiDishController::class, 'obliterate'])->name('obliterate.dishes');
+});
+
+Route::prefix(['{user}', 'restaurants', '{restaurant}'])->name('api.admin')->middleware(['auth:sanctum'])->group(function(){
+    // Route::get('/{user}/dishes', [ApiDishController::class, 'index'])->name('index.dishes');
+    Route::get('/{dish}', [ApiDishController::class, 'show'])->name('show.dishes');
+    Route::get('/dishes/create', [ApiDishController::class, 'create'])->name('create.dishes');
+    Route::post('/dishes', [ApiDishController::class, 'store'])->name('store.dishes');
+    Route::get('/{dish}/edit', [ApiDishController::class, 'edit'])->name('edit.dishes');
+    Route::put('/{dish}', [ApiDishController::class, 'update'])->name('update.dishes');
+    Route::delete('/{dish}', [ApiDishController::class, 'delete'])->name('destroy.dishes');
+    Route::get('/deleted-dishes', [ApiDishController::class, 'deletedIndex'])->name('trashed.dishes');
+    Route::delete('/deleted-dishes/{dish}', [ApiDishController::class, 'restore'])->name('restore.dish');
+    Route::delete('/deleted-dishes/{dish}/hardDelete', [ApiDishController::class, 'obliterate'])->name('obliterate.dishes');
 });
 
 
