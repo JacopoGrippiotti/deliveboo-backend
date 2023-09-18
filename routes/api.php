@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\GuestController as ApiGuestController;
 use App\Http\Controllers\Api\LoginController as LoginUserController;
 use App\Http\Controllers\Api\RegisterController as RegisterUserController;
 use App\Http\Controllers\Api\DishesController as ApiDishController;
+use App\Http\Controllers\Api\OrdersController as ApiOrderController;
 use App\Models\Restaurant;
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,10 @@ Route::prefix('{user}/restaurants/{restaurant}')->name('api.admin.')->middleware
     Route::get('/deleted-dishes', [ApiDishController::class, 'deletedIndex'])->name('trashed.dishes');
     Route::delete('/deleted-dishes/{dish}', [ApiDishController::class, 'restore'])->name('restore.dish');
     Route::delete('/deleted-dishes/{dish}/hardDelete', [ApiDishController::class, 'obliterate'])->name('obliterate.dishes');
+
+    Route::get('/orders', [ApiOrderController::class, 'index'])->name('index.orders');
+    Route::get('/orders/{order}', [ApiOrderController::class, 'show'])->name('show.orders');
+    Route::delete('/orders/{order}', [ApiOrderController::class, 'destroy'])->name('trashed.orders');
 });
 
 
@@ -55,6 +60,7 @@ Route::prefix('{user}/restaurants/{restaurant}')->name('api.admin.')->middleware
 Route::name('api.guest.')->group(function (){
     Route::get('/restaurants', [ApiGuestController::class, 'indexRestaurants'])->name('index.restaurants');
     Route::get('/restaurants/{id}', [ApiGuestController::class, 'showRestaurant'])->name('show.restaurant');
+    Route::post('/cart', [ApiOrderController::class, 'store'])->name('cart');
 });
 
 
