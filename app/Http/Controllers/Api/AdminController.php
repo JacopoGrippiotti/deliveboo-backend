@@ -28,8 +28,8 @@ class AdminController extends Controller
         ]);
     }
 
-    public function show(int $id){
-        $restaurant = Restaurant::findOrFail($id);
+    public function show($restaurantId){
+        $restaurant = Restaurant::with('dishes')->find($restaurantId);
 
         // $ingredients = $dishes->ingredients;
         return response()->json([
