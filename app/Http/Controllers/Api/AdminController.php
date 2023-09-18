@@ -115,7 +115,7 @@ class AdminController extends Controller
 
     public function restore(int $restaurantId){
         $trashedRestaurant = Restaurant::onlyTrashed()->findOrFail($restaurantId);
-        $restaurant->restore();
+        $trashedRestaurant->restore();
 
         return redirect()->back()->with('success', 'Ristorante ripristinato con successo.');
     }
