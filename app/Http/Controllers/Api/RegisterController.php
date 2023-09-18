@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Laravel\Sanctum\HasApiTokens;
 
 class RegisterController extends Controller
 {
+    use HasApiTokens;
+
     public function register(Request $request)
     {
 
@@ -34,12 +37,12 @@ class RegisterController extends Controller
         ]);
 
         // Generazione del token
-        $token = $user->createToken('api-token')->plainTextToken;
+        $token = $user->createToken('AuthToken')->plainTextToken;
 
         return response()->json([
+            'token' => $token,
+            'token_type' => 'Bearer',
             'user' => $user,
-            'access_token' => $token,
-            'token_type' => 'api-token',
         ]);
     }catch(\Exception $e) {
         return response()->json(['error' => 'Errore durante la registrazione'], 500); // Internal Server Error
