@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Restaurant;
 use App\Models\Ingredient;
+use App\Models\Dish;
 
 class DishesController extends Controller
 {
@@ -39,7 +40,7 @@ class DishesController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
+    {
         $restaurant = Restaurant::findOrFail($request->restaurant->id);
 
         if($restaurant){
@@ -57,14 +58,14 @@ class DishesController extends Controller
             $ingredientNames = $request->input('ingredient_names', []);
 
             $ingredientIds = Ingredient::whereIn('name', $ingredientNames)->pluck('id')->toArray();
-            
+
             $newDish = Dish::create($request->except(['ingredient_names']));
             $newDish->restaurant_id = $restaurant->id;
             $newDish->save();
             $newDish->ingredients()->sync($ingredientIds);
-            
+
         }
-        
+
 
     }
 
@@ -114,7 +115,7 @@ class DishesController extends Controller
                 'ingredient_names' =>['required','array','min:1'],
                 'ingredient_names.*' =>['string']
             ]);
-            
+
             $ingredientNames = $request->input('ingredient_names', []);
 
             $ingredientIds = Ingredient::whereIn('name', $ingredientNames)->pluck('id')->toArray();
