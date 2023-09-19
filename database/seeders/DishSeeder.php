@@ -63,7 +63,7 @@ class DishSeeder extends Seeder
             $newDish->ingredients()->sync($ingredientIds);
             $newDish->categories()->sync($categoriesIds);
             $order = Order::find($randomOrder);
-            $order->dishes()->sync([$newDish->id]);
+            $order->dishes()->attach([$newDish->id]);
             $newDish->save();
           }
         }
