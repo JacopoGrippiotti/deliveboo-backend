@@ -16,6 +16,13 @@ class UserSeeder extends Seeder
      */
     public function run(Faker $faker ,Fakerpay $fakerpay): void
     {
+        $newUser = new User();
+        $newUser->name = 'Gabriele';
+        $newUser->email= 'g@gmail.com';
+        $newUser->password= Hash::make('ciaociao');
+        $newUser->vat_num = $fakerpay->vat();
+        $newUser->save();
+
         for ($i=0; $i < 100; $i++){
             $newUser = new User();
             $newUser->name = $faker->firstname();
