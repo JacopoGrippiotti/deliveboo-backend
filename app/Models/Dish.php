@@ -10,10 +10,7 @@ class Dish extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    
-    protected $casts = [
-        'ingredients' => 'array'
-    ];
+
 
     public function restaurant(){
         return $this->belongsTo(Restaurant::class);  //stiamo affermando che ogni piatto può avere un solo ristorante ad esso associato
@@ -28,11 +25,11 @@ class Dish extends Model
     }
 
     public function type(){
-        return $this->belongsTo(Type::class);  
+        return $this->belongsTo(Type::class);
     }
 
     public function categories(){
-        return $this->belongsToMany(Category::class);  
+        return $this->belongsToMany(Category::class);
     }
 
     protected $fillable = [
