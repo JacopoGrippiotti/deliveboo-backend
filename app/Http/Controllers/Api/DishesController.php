@@ -14,17 +14,16 @@ class DishesController extends Controller
     /**
      * Display a listing of the resource.
      */
-     public function index($restaurant_id)
+     public function index($userId, $restaurantId)
      {
-         $restaurant = Restaurant::findOrFail($restaurant_id);
+         $restaurant = Restaurant::findOrFail($restaurantId);
 
          $dishes = $restaurant->dishes;
 
          return response()->json([
              'success' => true,
-             'results' => [
-                 'restaurant' => $restaurant,
-                 'dishes' => $dishes]
+             'results' => $dishes
+
              ]);
      }
 
@@ -72,15 +71,17 @@ class DishesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($dishId)
+    public function show($userId, $restaurantId, $dishId)
     {
         $dish = Dish::findOrFail($dishId);
+        // dd($dish);
         $ingredients = $dish->ingredients;
         return response()->json([
             'success' => true,
             'results' => [
                 'dish' => $dish,
-                'ingredients' => $ingredients,
+                'ingredients' => $ingredients
+
             ]
         ]);
     }
@@ -88,9 +89,9 @@ class DishesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit($userId, $restaurantId, $dishId)
     {
-        $dish = Dish::with('ingredients')->findOrFail($id);
+        $dish = Dish::with('ingredients')->findOrFail($dishId);
             if (!$dish) {
                 return response()->json(['message' => 'Piatto non trovato'], 404);
             }

@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Order;
 use App\Models\Dish;
+use App\Models\User;
 
 class OrdersController extends Controller
 {
-    public function index(int $id){
-        $restaurant = Restaurant::findOrFail($id);
+    public function index(int $userId, int $restaurantId){
+        // $user = User::findOrFail($userId);
+        $restaurant = Restaurant::findOrFail($restaurantId);
         $orders = $restaurant->orders;
 
         return response()->json([
@@ -20,7 +22,7 @@ class OrdersController extends Controller
         ]);
     }
 
-    public function show(int $orderId){
+    public function show($userId, $restaurantId, int $orderId){
         $order = Order::findOrFail($orderId);
         $dishesOrder = $order->dishes;
 
@@ -45,7 +47,7 @@ class OrdersController extends Controller
         $newOrder->save();
         $newOrder->dishes()->sync($dishesIds);
     }
-    public function destroy($orderId){
+    public function destroy($userId, $restaurantId, $orderId){
         $order = Order::findOrFail($orderId);
         if (!$order) {
             return redirect()->back()->with('error', 'Ordine non trovato.');

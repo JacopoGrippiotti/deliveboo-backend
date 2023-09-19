@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Restaurant;
 use App\Models\Type;
@@ -11,35 +12,40 @@ class AdminController extends Controller
 {
     public function index($userId)
     {
+        $user = User::findOrFail($userId);
+        $restaurant = $user->restaurants;
 
-        // Verifica se l'utente è autenticato
-
-        $user = User::findOrFail($userId); // Trova l'utente
-        // Carica i ristoranti associati all'utente
-        $restaurants = $user->restaurants;
-
-        // Restituisco i dati
-        return response()->json([
-            'success' => true,
-            'results' => [
-                'user' => $user,
-                'restaurants' => $restaurants
-            ]
-        ]);
+        if ($restaurant) {
+            // Restituisci i dettagli del ristorante
+            return response()->json($restaurant);
+        } else {
+            // Il ristorante non è stato trovato per l'utente autenticato
+            return response()->json(['error' => 'Ristorante non trovato'], 404);
+        }
     }
 
-    public function show($restaurantId){
-        $restaurant = Restaurant::with('dishes')->find($restaurantId);
+    public function show($userId, $restaurantId){
 
-        // $ingredients = $dishes->ingredients;
-        return response()->json([
-            'success' => true,
-            'results' => [
-                'restaurant' => $restaurant,
-                'dishes' => $restaurant->dishes,
-                // 'ingredients' => $ingredients
-            ]
-        ]);
+    // Utilizza $userId e $restaurantId per recuperare i dati necessari
+    // Esempio:
+    // dd($userId, $restaurantId);
+    $restaurant = Restaurant::with('dishes')->find($restaurantId);
+
+    if (!$restaurant) {
+        return response()->json(['error' => 'Ristorante non trovato'], 404);
+    }
+
+    // Assicurati che l'utente associato al ristorante sia quello corretto (se necessario)
+    if ($restaurant->user_id != $userId) {
+        return response()->json(['error' => 'Accesso non autorizzato'], 403);
+    }
+
+    return response()->json([
+        'success' => true,
+        'results' => [
+            'restaurant' => $restaurant,
+        ]
+    ]);
     }
 
     public function store(Request $request){
@@ -64,8 +70,8 @@ class AdminController extends Controller
         $newRestaurant->types()->sync($typeIds);
     }
 
-    public function edit(int $id){
-        $restaurant = Restaurant::with('types')->findOrFail($id);
+    public function edit(int $userId, int $restaurantId){
+        $restaurant = Restaurant::with('types')->findOrFail($restaurantId);
         if (!$restaurant) {
             return response()->json(['message' => 'Ristorante non trovato'], 404);
         }
