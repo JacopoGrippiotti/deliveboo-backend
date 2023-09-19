@@ -55,17 +55,13 @@ class DishesController extends Controller
             ]);
 
             $ingredientNames = $request->input('ingredient_names', []);
-
             $ingredientIds = Ingredient::whereIn('name', $ingredientNames)->pluck('id')->toArray();
 
             $newDish = Dish::create($request->except(['ingredient_names']));
             $newDish->restaurant_id = $restaurant->id;
             $newDish->save();
             $newDish->ingredients()->sync($ingredientIds);
-
         }
-
-
     }
 
     /**
@@ -81,7 +77,6 @@ class DishesController extends Controller
             'results' => [
                 'dish' => $dish,
                 'ingredients' => $ingredients
-
             ]
         ]);
     }
@@ -118,11 +113,9 @@ class DishesController extends Controller
             ]);
 
             $ingredientNames = $request->input('ingredient_names', []);
-
             $ingredientIds = Ingredient::whereIn('name', $ingredientNames)->pluck('id')->toArray();
 
             $dish->update($request->except(['ingredient_names']));
-
             $dish->ingredients()->sync($ingredientIds);
 
         }
