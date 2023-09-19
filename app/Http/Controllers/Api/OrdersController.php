@@ -9,7 +9,8 @@ use App\Models\Order;
 
 class OrdersController extends Controller
 {
-    public function index(Restaurant $restaurant){
+    public function index(int $id){
+        $restaurant = Restaurant::findOrFail($id);
         $orders = $restaurant->orders;
 
         return response()->json([
@@ -17,6 +18,7 @@ class OrdersController extends Controller
             'results' => $orders
         ]);
     }
+
     public function show(int $orderId){
         $order = Order::findOrFail($orderId);
         return response()->json([
