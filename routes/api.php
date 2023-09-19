@@ -26,13 +26,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::name('api.admin.')->middleware(['auth:sanctum'])->group(function () {
     Route::get('/{user}/restaurants', [ApiAdminController::class, 'index'])->name('index.restaurants');
-    Route::get('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'show'])->name('show.restaurants');
     Route::get('/{user}/restaurants/create', [ApiAdminController::class, 'create'])->name('create.restaurants');
     Route::post('/{user}/restaurants', [ApiAdminController::class, 'store'])->name('store.restaurants');
+    Route::get('{user}/restaurants/deleted', [ApiAdminController::class, 'deletedIndex'])->name('trashed.restaurants');
+    Route::get('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'show'])->name('show.restaurants');
     Route::get('/{user}/restaurants/{restaurant}/edit', [ApiAdminController::class, 'edit'])->name('edit.restaurants');
     Route::put('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'update'])->name('update.restaurants');
     Route::delete('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'delete'])->name('destroy.restaurants');
-    Route::get('{user}/restaurants/deleted', [ApiAdminController::class, 'deletedIndex'])->name('trashed.restaurants');
     Route::delete('{user}/restaurants/deleted/{restaurant}', [ApiAdminController::class, 'restore'])->name('restore.restaurant');
     Route::delete('{user}/restaurants/deleted/{restaurant}/hardDelete', [ApiAdminController::class, 'obliterate'])->name('obliterate.restaurants');
 
@@ -40,17 +40,18 @@ Route::name('api.admin.')->middleware(['auth:sanctum'])->group(function () {
 
 Route::prefix('{user}/restaurants/{restaurant}')->name('api.admin.')->middleware(['auth:sanctum'])->group(function(){
     Route::get('/dishes', [ApiDishController::class, 'index'])->name('index.dishes');
-    Route::get('/{dish}', [ApiDishController::class, 'show'])->name('show.dishes');
+    Route::get('/orders', [ApiOrderController::class, 'index'])->name('index.orders');
     Route::get('/create', [ApiDishController::class, 'create'])->name('create.dishes');
     Route::post('/', [ApiDishController::class, 'store'])->name('store.dishes');
-    Route::get('/{dish}/edit', [ApiDishController::class, 'edit'])->name('edit.dishes');
-    Route::put('/{dish}', [ApiDishController::class, 'update'])->name('update.dishes');
-    Route::delete('/{dish}', [ApiDishController::class, 'delete'])->name('destroy.dishes');
     Route::get('/deleted-dishes', [ApiDishController::class, 'deletedIndex'])->name('trashed.dishes');
     Route::delete('/deleted-dishes/{dish}', [ApiDishController::class, 'restore'])->name('restore.dish');
     Route::delete('/deleted-dishes/{dish}/hardDelete', [ApiDishController::class, 'obliterate'])->name('obliterate.dishes');
+    Route::get('/{dish}', [ApiDishController::class, 'show'])->name('show.dishes');
+    Route::put('/{dish}', [ApiDishController::class, 'update'])->name('update.dishes');
+    Route::delete('/{dish}', [ApiDishController::class, 'delete'])->name('destroy.dishes');
+    Route::get('/{dish}/edit', [ApiDishController::class, 'edit'])->name('edit.dishes');
 
-    Route::get('/orders', [ApiOrderController::class, 'index'])->name('index.orders');
+
     Route::get('/orders/{order}', [ApiOrderController::class, 'show'])->name('show.orders');
     Route::delete('/orders/{order}', [ApiOrderController::class, 'destroy'])->name('trashed.orders');
 });
