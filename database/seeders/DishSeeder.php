@@ -30,7 +30,8 @@ class DishSeeder extends Seeder
         foreach($courseArray as $course=>$elementsArray){
 
           foreach($elementsArray as $element){
-            $orderArrayRandom = $faker->randomElements($orderIds,$faker->numberBetween(1, 3));
+            $randomOrder = $faker->randomElement($orderIds);
+            $orderRestaurantId = Order::find($randomOrder)->restaurant_id;
             $ingredientNames = $element['ingredienti'];
             $categoriesNames = $element['categoria'];
             $categoriesIds = [];
@@ -47,9 +48,8 @@ class DishSeeder extends Seeder
                 $categoriesIds[] = $category->id;
                }
             };
-            $randomRestaurant = $faker->randomElement($restaurantIds);
             $newDish = new Dish();
-            $newDish->restaurant_id = $randomRestaurant;
+            $newDish->restaurant_id = $orderRestaurantId;
             $type = Type::where('name',$dish)->first();
             $typeId = $type->id;
             $newDish->type_id = $typeId;
@@ -62,7 +62,8 @@ class DishSeeder extends Seeder
             $newDish->save();
             $newDish->ingredients()->sync($ingredientIds);
             $newDish->categories()->sync($categoriesIds);
-            $newDish->orders()->sync($orderArrayRandom);
+            $order = Order::find($randomOrder);
+            $order->dishes()->sync([$newDish->id]);
             $newDish->save();
           }
         }
