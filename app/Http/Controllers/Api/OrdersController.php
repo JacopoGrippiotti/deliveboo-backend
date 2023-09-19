@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Order;
+use App\Models\Dish;
 
 class OrdersController extends Controller
 {
@@ -21,11 +22,14 @@ class OrdersController extends Controller
 
     public function show(int $orderId){
         $order = Order::findOrFail($orderId);
+        $dishesOrder = $order->dishes;
+
         return response()->json([
             'success' => true,
-            'results' => $order
+            'results' => $dishesOrder
         ]);
     }
+
     public function store(Request $request, Restaurant $restaurant){
         $data = $request->validate([
             'total_price' => ['required', 'decimal:2'],
