@@ -18,15 +18,15 @@ class DishSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(Faker $faker): void {    
+    public function run(Faker $faker): void {
       $dishesArray = config("dishes-filler");
       $typeIds = Type::all()->pluck('id');
       $restaurantIds = Restaurant::all()->pluck('id');
-      
-      
+
+
       $orderIds = Order::all()->pluck('id');
       foreach($dishesArray as $dish=>$courseArray){
-        
+
         foreach($courseArray as $course=>$elementsArray){
 
           foreach($elementsArray as $element){
@@ -55,7 +55,7 @@ class DishSeeder extends Seeder
             $newDish->type_id = $typeId;
             $newDish->name = $element['nome'];
             $newDish->description = $element['descrizione'];
-            $newDish->price = $faker->randomFloat(2, 5.0,40.0 );
+            $newDish->price = $faker->randomFloat(2, 5.00, 40.00);
             $newDish->course = $course;
             $newDish->photo = $faker->name();
             $newDish->available = $faker->boolean();
