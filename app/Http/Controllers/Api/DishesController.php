@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Restaurant;
 use App\Models\Ingredient;
 use App\Models\Dish;
+use App\Models\Type;
 
 class DishesController extends Controller
 {
@@ -38,11 +39,10 @@ class DishesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(User $user, Restaurant $restaurant, Request $request)
     {
-        $restaurant = Restaurant::findOrFail($request->restaurant->id);
 
-        if($restaurant){
+        
             $data = $request->validate([
                 'name' => ['required', 'string', 'min:3'],
                 'description' => ['required', 'string', 'min:10'],
@@ -50,18 +50,32 @@ class DishesController extends Controller
                 'course' =>['required', 'string', 'min:5' ],
                 'photo' =>['required', 'url'],
                 'available' =>['required', 'boolean'],
-                'ingredient_names' =>['required','array','min:1'],
-                'ingredient_names.*' =>['string']
+                'ingredients' =>['required','array','min:1'],
+                'ingredients.*' =>['string'],
+                'type' =>['required', 'string']
             ]);
+            $ingredientNames = $request->input('ingredients',[]);
+            
+            $ingredientIds = [];
 
-            $ingredientNames = $request->input('ingredient_names', []);
-            $ingredientIds = Ingredient::whereIn('name', $ingredientNames)->pluck('id')->toArray();
+            $typeName = $request->input('type');
 
-            $newDish = Dish::create($request->except(['ingredient_names']));
-            $newDish->restaurant_id = $restaurant->id;
+            $type = Type::where('name', $typeName)->first();;
+            
+            foreach ($ingredientNames as $ingredientName) {
+                $ingredient = Ingredient::firstOrCreate(['name' => $ingredientName]);
+                $ingredientIds[] = $ingredient->id;
+            }
+            
+            $newDish = new Dish;
+            $newDish->restaurant_id = $restaurant->id; 
+            $newDish->type_id = $type->id; 
+            $newDish->fill(array_diff_key($data, array_flip(['ingredients'])));
             $newDish->save();
+            
             $newDish->ingredients()->sync($ingredientIds);
-        }
+            
+        
     }
 
     /**
