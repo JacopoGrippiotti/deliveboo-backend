@@ -125,7 +125,9 @@ class AdminController extends Controller
 
     public function deletedIndex(int $userId){
         $user = User::findOrFail($userId);
-        $trashedRestaurants = $user->restaurants->onlyTrashed()->get();
+        $trashedRestaurants = Restaurant::whereHas('user', function ($query) use ($user) {
+            $query->where('id', $user->id);
+        })->onlyTrashed()->get();
         if($trashedRestaurants){
         return response()->json([
             'success' => 'true',
