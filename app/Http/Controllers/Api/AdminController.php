@@ -29,7 +29,7 @@ class AdminController extends Controller
     // Utilizza $userId e $restaurantId per recuperare i dati necessari
     // Esempio:
     // dd($userId, $restaurantId);
-    $restaurant = Restaurant::with('dishes')->find($restaurantId);
+    $restaurant = Restaurant::with('dishes','types')->find($restaurantId);
 
     if (!$restaurant) {
         return response()->json(['error' => 'Ristorante non trovato'], 404);
@@ -81,18 +81,21 @@ class AdminController extends Controller
         return response()->json(['restaurant' => $restaurant]);
     }
 
-    public function update(Request $request, Restaurant $restaurant){
+    public function update($userId,  Restaurant $restaurant, Request $request ){
         $data = $request->validate([
             'name' => ['required', 'string', 'min:2'],
             'address' => ['required', 'string', 'min:5'],
             'city' => ['required', 'string', 'min:5'],
+            'types' => ['required', 'array'],
+            'types.*' => ['string', 'exists:types,name']
         ]);
 
         $data['user_id'] = $restaurant->user->id;
 
-        $typesNames = $restaurant->types;
+        $typeNames = $request->input('types',[]);
         $typeIds = [];
-        foreach ($typesNames as $typeName) {
+        
+        foreach ($typeNames as $typeName) {
             $type = Type::where('name', $typeName)->first();
             if($type){
                 $typeIds[] = $type->id;
