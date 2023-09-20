@@ -14,7 +14,7 @@ class GuestController extends Controller
         $data = $request->all();
         dd($data);
         if ($request->has('type') && $request->has('name')) {
-            $cuisine = $request->input('type');
+            $cuisine = json_decode($request->input('type'));
 
             $restaurantName = $request->input('name');
 
@@ -26,7 +26,7 @@ class GuestController extends Controller
             }
         }else if($request->has('type')){
             // Estrarre il tipo di cucina dalla richiesta
-            $cuisine = $request->input('type');
+            $cuisine = json_decode($request->input('type'));
             // Eseguire la query per ottenere i ristoranti che corrispondono al tipo di cucina
             if (is_array($cuisine)){
             $restaurants = Restaurant::with('types')->whereHas('types', function ($query) use ($cuisine) {
