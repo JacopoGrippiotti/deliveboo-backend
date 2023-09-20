@@ -124,7 +124,7 @@ class AdminController extends Controller
 
     public function deletedIndex(int $userId){
         $user = User::findOrFail($userId);
-        $trashedRestaurants = Restaurant::whereHas('user', function ($query) use ($user) {
+        $trashedRestaurants = Restaurant::with('types')->whereHas('user', function ($query) use ($user) {
             $query->where('id', $user->id);
         })->onlyTrashed()->get();
         if($trashedRestaurants){
@@ -138,7 +138,7 @@ class AdminController extends Controller
         }
     }
     public function restore(int $userId, int $restaurantId){
-        $trashedRestaurant = Restaurant::onlyTrashed()->findOrFail($restaurantId);
+        $trashedRestaurant = Restaurant::with('types')->onlyTrashed()->findOrFail($restaurantId);
         $trashedRestaurant->restore();
 
         return response()->json(['message' => 'Ristorante ripristinato con successo.']);
