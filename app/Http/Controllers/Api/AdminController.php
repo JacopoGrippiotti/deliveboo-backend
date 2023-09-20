@@ -71,7 +71,7 @@ class AdminController extends Controller
                 $typeIds[] = $type->id;
             }
         }
-        $newRestaurant = Restaurant::create($data);
+        $newRestaurant = Restaurant::create(array_except($data, ['types']));
         $newRestaurant->types()->sync($typeIds);
     }
 
