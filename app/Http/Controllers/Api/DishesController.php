@@ -151,16 +151,12 @@ class DishesController extends Controller
     public function restore(int $userId, int $restaurantId, int $dishId){
         $trashedDish = Dish::with('ingredients')->onlyTrashed()->findOrFail($dishId);
         $trashedDish->restore();
-
-        return redirect()->back()->with('success', 'Piatto ripristinato con successo.');
     }
 
     public function obliterate(int $dishId){
         $dish = Dish::onlyTrashed()->findOrFail($dishId);
         // Storage::delete($restaurant->image);
         $dish->forceDelete();
-
-        return redirect()->back()->with('success', 'Piatto eliminato definitivamente.');
     }
 
 

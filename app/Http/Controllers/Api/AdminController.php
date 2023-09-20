@@ -141,7 +141,10 @@ class AdminController extends Controller
         $trashedRestaurant = Restaurant::with('types')->onlyTrashed()->findOrFail($restaurantId);
         $trashedRestaurant->restore();
 
-        return response()->json(['message' => 'Ristorante ripristinato con successo.']);
+        return response()->json([
+            'message' => 'Ristorante ripristinato con successo.',
+            'restoredRestaurant' => $trashedRestaurant
+        ]);
     }
 
     public function obliterate(int $restaurantId){
