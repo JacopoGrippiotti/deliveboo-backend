@@ -47,9 +47,11 @@ class AdminController extends Controller
         ]
     ]);
     }
+
+
     public function store(User $user ,Request $request){
-        // dd($request);
-// dd($request->all());
+
+
         $data = $request->validate([
             'name' => ['required', 'string', 'min:3'],
             'address' => ['required', 'string', 'min:5'],
@@ -58,10 +60,11 @@ class AdminController extends Controller
             'types.*' => ['string', 'exists:types,name']
         ]);
 
+
+
         $data['user_id'] = $user->id;
 
-
-        $typeNames = $request->types;
+        $typeNames = $request->input('types',[]);
         $typeIds = [];
         foreach ($typeNames as $typeName) {
             $type = Type::where('name', $typeName)->first();
@@ -69,39 +72,10 @@ class AdminController extends Controller
                 $typeIds[] = $type->id;
             }
         }
-        $newRestaurant = Restaurant::create($data);
+        $newRestaurant = Restaurant::create(array_diff_key($data, array_flip(['types'])));
+
         $newRestaurant->types()->sync($typeIds);
-        return response()->json(['Ristorante creato con successo.']);
-        // dd($newRestaurant->types);
-        }
-
-    // public function store(User $user ,Request $request){
-
-
-    //     $data = $request->validate([
-    //         'name' => ['required', 'string', 'min:3'],
-    //         'address' => ['required', 'string', 'min:5'],
-    //         'city' => ['required', 'string', 'min:5'],
-    //         'types' => ['required', 'array'],
-    //         'types.*' => ['string', 'exists:types,name']
-    //     ]);
-
-
-
-    //     $data['user_id'] = $user->id;
-
-    //     $typeNames = $request->input('types',[]);
-    //     $typeIds = [];
-    //     foreach ($typeNames as $typeName) {
-    //         $type = Type::where('name', $typeName)->first();
-    //         if($type){
-    //             $typeIds[] = $type->id;
-    //         }
-    //     }
-    //     $newRestaurant = Restaurant::create(array_diff_key($data, array_flip(['types'])));
-
-    //     $newRestaurant->types()->sync($typeIds);
-    // }
+    }
 
     public function edit(int $userId, int $restaurantId){
         $restaurant = Restaurant::with('types')->findOrFail($restaurantId);
