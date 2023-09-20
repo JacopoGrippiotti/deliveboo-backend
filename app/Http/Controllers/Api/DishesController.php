@@ -110,9 +110,8 @@ class DishesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,Dish $dish)
+    public function update($userId, $restaurantId,Dish $dish, Request $request)
     {
-        $dish = Dish::findOrFail($request->dish->id);
 
         if($dish){
             $data = $request->validate([
@@ -138,28 +137,33 @@ class DishesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(int $userId, int $restaurantId, int $dishId)
     {
-        $dish = Dish::findOrFail($id);
+        $dish = Dish::findOrFail($dishId);
         if (!$dish) {
-            return redirect()->back()->with('error', 'Piatto non trovato.');
+            return response()->json(['message' => 'Piatto non trovato.']);
         }
-        $dish->ingredients()->detach();
-        $dish->delete();
-        return redirect()->back()->with('success', 'Piatto eliminato con successo.');
-    }
 
-    public function deletedIndex(int $restaurantId){
+        $dish->delete();
+        return response()->json([
+                                'message' => 'Piatto eliminato con successo.',
+                                'dishDeleted' => $dish
+                            ]);
+    }
+    public function deletedIndex(int $userId, int $restaurantId){
         $restaurant = Restaurant::findOrFail($restaurantId);
-        $trashedDishes = $restaurant->dishes->onlyTrashed()->get();
+        $trashedDishes = Dish::whereHas('restaurant', function ($query) use ($restaurant){
+            $query->where('id', $restaurant->id)->with('ingredients');
+        })->onlyTrashed()->get();
+
         return response()->json([
             'success' => 'true',
             'results' => $trashedDishes
         ]);
     }
 
-    public function restore(int $dishId){
-        $trashedDish = Dish::onlyTrashed()->findOrFail($dishId);
+    public function restore(int $userId, int $restaurantId, int $dishId){
+        $trashedDish = Dish::with('ingredients')->onlyTrashed()->findOrFail($dishId);
         $trashedDish->restore();
 
         return redirect()->back()->with('success', 'Piatto ripristinato con successo.');

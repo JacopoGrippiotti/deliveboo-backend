@@ -48,8 +48,9 @@ class AdminController extends Controller
     ]);
     }
 
+
     public function store(User $user ,Request $request){
-        // dd($request);
+
 
         $data = $request->validate([
             'name' => ['required', 'string', 'min:3'],
@@ -58,11 +59,11 @@ class AdminController extends Controller
             'types' => ['required', 'array'],
             'types.*' => ['string', 'exists:types,name']
         ]);
-        
-        
-        
+
+
+
         $data['user_id'] = $user->id;
-        
+
         $typeNames = $request->input('types',[]);
         $typeIds = [];
         foreach ($typeNames as $typeName) {
@@ -72,7 +73,7 @@ class AdminController extends Controller
             }
         }
         $newRestaurant = Restaurant::create(array_diff_key($data, array_flip(['types'])));
-        
+
         $newRestaurant->types()->sync($typeIds);
     }
 
@@ -107,30 +108,37 @@ class AdminController extends Controller
 
         $restaurant->update($data);
         $restaurant->types()->sync($typeIds);
-        
+
     }
 
     public function destroy($userId, $restaurantId){
-        $restaurant = Restaurant::findOrFail($restaurantId);
+        $restaurant = Restaurant::with('dishes')->findOrFail($restaurantId);
         if (!$restaurant) {
             return response()->json(['message' => 'Ristorante non trovato.']);
         }
-        $restaurant->types()->detach();
         $restaurant->delete();
-        return response()->json(['message' => 'Ristorante eliminato con successo.']);
+        return response()->json([
+            'message' => 'Ristorante eliminato con successo.',
+            'restaurantDeleted' => $restaurant]);
     }
 
     public function deletedIndex(int $userId){
         $user = User::findOrFail($userId);
-        $trashedRestaurants = $user->restaurants->onlyTrashed()->get();
+        $trashedRestaurants = Restaurant::with('types')->whereHas('user', function ($query) use ($user) {
+            $query->where('id', $user->id);
+        })->onlyTrashed()->get();
+        if($trashedRestaurants){
         return response()->json([
             'success' => 'true',
             'results' => $trashedRestaurants
         ]);
     }
-
+        else{
+            return response()->json(['Niente']);
+        }
+    }
     public function restore(int $userId, int $restaurantId){
-        $trashedRestaurant = Restaurant::onlyTrashed()->findOrFail($restaurantId);
+        $trashedRestaurant = Restaurant::with('types')->onlyTrashed()->findOrFail($restaurantId);
         $trashedRestaurant->restore();
 
         return response()->json(['message' => 'Ristorante ripristinato con successo.']);
