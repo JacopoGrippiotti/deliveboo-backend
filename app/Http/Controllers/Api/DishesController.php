@@ -96,9 +96,8 @@ class DishesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,Dish $dish)
+    public function update($userId, $restaurantId,Dish $dish, Request $request)
     {
-        $dish = Dish::findOrFail($request->dish->id);
 
         if($dish){
             $data = $request->validate([
