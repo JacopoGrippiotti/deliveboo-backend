@@ -55,21 +55,23 @@ class AdminController extends Controller
             'name' => ['required', 'string', 'min:3'],
             'address' => ['required', 'string', 'min:5'],
             'city' => ['required', 'string', 'min:5'],
+            'types' => ['required', 'array'],
+            'types.*' => ['string', 'exists:types,name']
         ]);
         
         
         $data['user_id'] = $user->id;
-        $data['types'] = $request->types;
-        $newRestaurant = Restaurant::create($data);
-        $typesNames = $newRestaurant->types;
+        
+        
+        $typeNames = $request->input('types',[]);
         $typeIds = [];
-        foreach ($typesNames as $typeName) {
+        foreach ($typeNames as $typeName) {
             $type = Type::where('name', $typeName)->first();
             if($type){
                 $typeIds[] = $type->id;
             }
         }
-
+        $newRestaurant = Restaurant::create($data);
         $newRestaurant->types()->sync($typeIds);
     }
 
