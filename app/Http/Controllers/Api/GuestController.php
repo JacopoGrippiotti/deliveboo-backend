@@ -11,13 +11,12 @@ class GuestController extends Controller
 {
     public function indexRestaurants(Request $request){
 
-        $data = $request->all();
-        dd($data);
+        // $data = $request->all();
+        // dd($data);
         if ($request->has('type') && $request->has('name')) {
-            $cuisine = json_decode($request->input('type'));
-
+            $cuisine = explode(', ', $request->input('type'));
             $restaurantName = $request->input('name');
-
+            // dd($cuisine);
             if (is_array($cuisine) && count($cuisine) > 0) {
                 $restaurants = Restaurant::with('types')
                     ->whereHas('types', function ($subquery) use ($cuisine) {
@@ -26,7 +25,7 @@ class GuestController extends Controller
             }
         }else if($request->has('type')){
             // Estrarre il tipo di cucina dalla richiesta
-            $cuisine = json_decode($request->input('type'));
+            $cuisine = explode(', ', $request->input('type'));
             // Eseguire la query per ottenere i ristoranti che corrispondono al tipo di cucina
             if (is_array($cuisine)){
             $restaurants = Restaurant::with('types')->whereHas('types', function ($query) use ($cuisine) {
