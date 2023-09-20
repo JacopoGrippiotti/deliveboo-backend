@@ -12,4 +12,6 @@ class Ingredient extends Model
     public function dishes(){
         return $this->belongsToMany(Dish::class);  //stiamo affermando che un ingrediente può trovarsi in piatti differenti 
     }
+
+    protected $fillable = ['name'];
 }
