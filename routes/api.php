@@ -24,6 +24,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::name('api.guest.')->group(function (){
+    Route::get('/restaurants', [ApiGuestController::class, 'indexRestaurants'])->name('index.restaurants');
+    Route::get('/restaurants/{id}', [ApiGuestController::class, 'showRestaurant'])->name('show.restaurant');
+    Route::post('/cart', [ApiOrderController::class, 'store'])->name('cart');
+});
+
 Route::name('api.admin.')->group(function () {
     Route::get('/{user}/restaurants', [ApiAdminController::class, 'index'])->name('index.restaurants');
     // Route::get('/{user}/restaurants/create', [ApiAdminController::class, 'create'])->name('create.restaurants');
@@ -53,11 +59,7 @@ Route::prefix('{user}/restaurants/{restaurant}')->name('api.admin.')->group(func
     Route::get('/orders/{order}', [ApiOrderController::class, 'show'])->name('show.orders');
     Route::delete('/orders/{order}', [ApiOrderController::class, 'destroy'])->name('trashed.orders');
 });
-Route::name('api.guest.')->group(function (){
-    Route::get('/restaurants', [ApiGuestController::class, 'indexRestaurants'])->name('index.restaurants');
-    Route::get('/restaurants/{id}', [ApiGuestController::class, 'showRestaurant'])->name('show.restaurant');
-    Route::post('/cart', [ApiOrderController::class, 'store'])->name('cart');
-});
+
 
 
 Route::post('/register', [RegisterUserController::class, 'register'])->name('api.register');
