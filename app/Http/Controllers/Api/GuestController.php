@@ -17,14 +17,9 @@ class GuestController extends Controller
 
             if (is_array($cuisine) && count($cuisine) > 0) {
                 $restaurants = Restaurant::with('types')
-                    ->whereHas('types', function ($subquery) use ($cuisine) {$subquery->whereIn('name', $cuisine);})
-                    ->where('name', 'LIKE', '%' . $restaurantName . '%')->get();
-            } else {
-                // Gestire il caso in cui $cuisine non è un array o è vuoto
-                // Ad esempio, restituire tutti i ristoranti senza filtro per tipo di cucina
-                $restaurants = Restaurant::with('types')
-                    ->where('name', 'LIKE', '%' . $restaurantName . '%')
-                    ->paginate(10);
+                    ->whereHas('types', function ($subquery) use ($cuisine) {
+                        $subquery->whereIn('name', $cuisine);
+                    }, '=', count($cuisine))->where('name', 'LIKE', '%' . $restaurantName . '%')->get();
             }
         }else if($request->has('type')){
             // Estrarre il tipo di cucina dalla richiesta
@@ -33,7 +28,7 @@ class GuestController extends Controller
             if (is_array($cuisine)){
             $restaurants = Restaurant::with('types')->whereHas('types', function ($query) use ($cuisine) {
                 $query->whereIn('name', $cuisine);
-            })->paginate(10);
+            }, '=', count($cuisine))->paginate(10);
             }
         }else if($request->has('name')){
             $restaurantName = $request->input('name');
