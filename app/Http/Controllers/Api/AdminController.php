@@ -60,8 +60,8 @@ class AdminController extends Controller
         ]);
         
         
-        $data['user_id'] = $user->id;
         
+        $data['user_id'] = $user->id;
         
         $typeNames = $request->input('types',[]);
         $typeIds = [];
@@ -71,7 +71,8 @@ class AdminController extends Controller
                 $typeIds[] = $type->id;
             }
         }
-        $newRestaurant = Restaurant::create(array_except($data, ['types']));
+        $newRestaurant = Restaurant::create(array_diff_key($data, array_flip(['types'])));
+        
         $newRestaurant->types()->sync($typeIds);
     }
 
