@@ -137,9 +137,12 @@ class DishesController extends Controller
                                 'dishDeleted' => $dish
                             ]);
     }
-    public function deletedIndex(int $restaurantId){
+    public function deletedIndex(int $userId, int $restaurantId){
         $restaurant = Restaurant::findOrFail($restaurantId);
-        $trashedDishes = $restaurant->dishes->onlyTrashed()->get();
+        $trashedDishes = Dish::whereHas('restaurant', function ($query) use ($restaurant){
+            $query->where('id', $restaurant->id);
+        })->onlyTrashed()->get();
+
         return response()->json([
             'success' => 'true',
             'results' => $trashedDishes
