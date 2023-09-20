@@ -11,8 +11,11 @@ class GuestController extends Controller
 {
     public function indexRestaurants(Request $request){
 
+        $data = $request->all();
+        dd($data);
         if ($request->has('type') && $request->has('name')) {
             $cuisine = $request->input('type');
+
             $restaurantName = $request->input('name');
 
             if (is_array($cuisine) && count($cuisine) > 0) {
