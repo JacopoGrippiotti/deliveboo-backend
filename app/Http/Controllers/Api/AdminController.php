@@ -116,7 +116,6 @@ class AdminController extends Controller
         if (!$restaurant) {
             return response()->json(['message' => 'Ristorante non trovato.']);
         }
-        $restaurant->types()->detach();
         $restaurant->delete();
         return response()->json([
             'message' => 'Ristorante eliminato con successo.',

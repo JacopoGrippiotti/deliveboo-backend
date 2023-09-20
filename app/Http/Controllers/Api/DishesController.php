@@ -129,8 +129,7 @@ class DishesController extends Controller
         if (!$dish) {
             return response()->json(['message' => 'Piatto non trovato.']);
         }
-        $dish->ingredients()->detach();
-        $dish->categories()->detach();
+
         $dish->delete();
         return response()->json([
                                 'message' => 'Piatto eliminato con successo.',
