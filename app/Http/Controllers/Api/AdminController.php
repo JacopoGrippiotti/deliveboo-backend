@@ -94,7 +94,7 @@ class AdminController extends Controller
 
         $typeNames = $request->input('types',[]);
         $typeIds = [];
-        
+
         foreach ($typeNames as $typeName) {
             $type = Type::where('name', $typeName)->first();
             if($type){
@@ -107,14 +107,14 @@ class AdminController extends Controller
         
     }
 
-    public function destroy($id){
-        $restaurant = Restaurant::findOrFail($id);
+    public function destroy($userId, $restaurantId){
+        $restaurant = Restaurant::findOrFail($restaurantId);
         if (!$restaurant) {
-            return redirect()->back()->with('error', 'Ristorante non trovato.');
+            return response()->json(['message' => 'Ristorante non trovato.']);
         }
         $restaurant->types()->detach();
         $restaurant->delete();
-        return redirect()->back()->with('success', 'Ristorante eliminato con successo.');
+        return response()->json(['message' => 'Ristorante eliminato con successo.']);
     }
 
     public function deletedIndex(int $userId){
@@ -126,11 +126,11 @@ class AdminController extends Controller
         ]);
     }
 
-    public function restore(int $restaurantId){
+    public function restore(int $userId, int $restaurantId){
         $trashedRestaurant = Restaurant::onlyTrashed()->findOrFail($restaurantId);
         $trashedRestaurant->restore();
 
-        return redirect()->back()->with('success', 'Ristorante ripristinato con successo.');
+        return response()->json(['message' => 'Ristorante ripristinato con successo.']);
     }
 
     public function obliterate(int $restaurantId){
@@ -138,7 +138,7 @@ class AdminController extends Controller
         // Storage::delete($restaurant->image);
         $restaurant->forceDelete();
 
-        return redirect()->back()->with('success', 'Ristorante eliminato definitivamente.');
+        return response()->json(['message' => 'Ristorante eliminato definitivamente.']);
     }
 
 }
