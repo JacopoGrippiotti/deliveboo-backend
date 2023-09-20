@@ -112,7 +112,7 @@ class AdminController extends Controller
     }
 
     public function destroy($userId, $restaurantId){
-        $restaurant = Restaurant::findOrFail($restaurantId);
+        $restaurant = Restaurant::with('dishes')->findOrFail($restaurantId);
         if (!$restaurant) {
             return response()->json(['message' => 'Ristorante non trovato.']);
         }
