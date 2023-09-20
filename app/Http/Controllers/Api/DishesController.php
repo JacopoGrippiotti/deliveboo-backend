@@ -124,17 +124,20 @@ class DishesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $id)
+    public function destroy(int $userId, int $restaurantId, int $dishId)
     {
-        $dish = Dish::findOrFail($id);
+        $dish = Dish::findOrFail($dishId);
         if (!$dish) {
-            return redirect()->back()->with('error', 'Piatto non trovato.');
+            return response()->json(['message' => 'Piatto non trovato.']);
         }
         $dish->ingredients()->detach();
+        $dish->categories()->detach();
         $dish->delete();
-        return redirect()->back()->with('success', 'Piatto eliminato con successo.');
+        return response()->json([
+                                'message' => 'Piatto eliminato con successo.',
+                                'dishDeleted' => $dish
+                            ]);
     }
-
     public function deletedIndex(int $restaurantId){
         $restaurant = Restaurant::findOrFail($restaurantId);
         $trashedDishes = $restaurant->dishes->onlyTrashed()->get();

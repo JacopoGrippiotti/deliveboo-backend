@@ -118,18 +118,24 @@ class AdminController extends Controller
         }
         $restaurant->types()->detach();
         $restaurant->delete();
-        return response()->json(['message' => 'Ristorante eliminato con successo.']);
+        return response()->json([
+            'message' => 'Ristorante eliminato con successo.',
+            'restaurantDeleted' => $restaurant]);
     }
 
     public function deletedIndex(int $userId){
         $user = User::findOrFail($userId);
         $trashedRestaurants = $user->restaurants->onlyTrashed()->get();
+        if($trashedRestaurants){
         return response()->json([
             'success' => 'true',
             'results' => $trashedRestaurants
         ]);
     }
-
+        else{
+            return response()->json(['Niente']);
+        }
+    }
     public function restore(int $userId, int $restaurantId){
         $trashedRestaurant = Restaurant::onlyTrashed()->findOrFail($restaurantId);
         $trashedRestaurant->restore();
