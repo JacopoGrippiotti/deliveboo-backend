@@ -49,6 +49,7 @@ class AdminController extends Controller
     }
 
     public function store(Request $request){
+        // dd($request);
 
         $data = $request->validate([
             'name' => ['required', 'string', 'min:3'],
@@ -56,7 +57,9 @@ class AdminController extends Controller
             'city' => ['required', 'string', 'min:5'],
         ]);
 
-        $data['user_id'] = Auth::user()->id;
+        $data['user_id'] = $request->user_id;
+        // $data['user_id'] = Auth::user()->id;
+        $data['type'] = $request->type;
         $newRestaurant = Restaurant::create($data);
         $typesNames = $newRestaurant->types;
         $typeIds = [];
