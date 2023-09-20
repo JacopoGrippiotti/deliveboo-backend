@@ -14,11 +14,11 @@ class GuestController extends Controller
         if($request->has('type') && $request->has('name')){
             $cuisine = $request->input('type');
             $restaurantName = $request->input('name');
-
-            $restaurants = Restaurant::whereHas('types', function ($subquery) use ($cuisine) {
+            if (is_array($cuisine)){
+            $restaurants = Restaurant::with('types')->whereIn('types', function ($subquery) use ($cuisine) {
                 $subquery->where('name', $cuisine);
-            })->where('name', 'LIKE', '%' . $restaurantName . '%')->with('types')->paginate(10);
-
+            })->where('name', 'LIKE', '%' . $restaurantName . '%')->paginate(10);
+        }
         }else if($request->has('type')){
             // Estrarre il tipo di cucina dalla richiesta
             $cuisine = $request->input('type');
