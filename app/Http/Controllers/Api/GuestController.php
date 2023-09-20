@@ -17,7 +17,7 @@ class GuestController extends Controller
 
             $restaurants = Restaurant::whereHas('types', function ($subquery) use ($cuisine) {
                 $subquery->where('name', $cuisine);
-            })->where('name', 'LIKE', '%' . $restaurantName . '%')->with('types')->get();
+            })->where('name', 'LIKE', '%' . $restaurantName . '%')->with('types')->paginate(10);
 
         }else if($request->has('type')){
             // Estrarre il tipo di cucina dalla richiesta
@@ -25,10 +25,10 @@ class GuestController extends Controller
             // Eseguire la query per ottenere i ristoranti che corrispondono al tipo di cucina
             $restaurants = Restaurant::whereHas('types', function ($query) use ($cuisine) {
                 $query->where('name', $cuisine);
-            })->with('types')->get();
+            })->with('types')->paginate(10);
         }else if($request->has('name')){
             $restaurantName = $request->input('name');
-            $restaurants = Restaurant::where('name', 'LIKE', '%' . $restaurantName . '%')->get();
+            $restaurants = Restaurant::where('name', 'LIKE', '%' . $restaurantName . '%')->paginate(10);
 
         } else{
             $restaurants = Restaurant::with('types')->paginate(20);
