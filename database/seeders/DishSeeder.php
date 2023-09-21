@@ -57,7 +57,7 @@ class DishSeeder extends Seeder
             $newDish->description = $element['descrizione'];
             $newDish->price = $faker->randomFloat(2, 5.00, 40.00);
             $newDish->course = $course;
-            $newDish->photo = $faker->name();
+            $newDish->photo = $element['immagine'];
             $newDish->available = $faker->boolean();
             $newDish->save();
             $newDish->ingredients()->sync($ingredientIds);
