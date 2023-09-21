@@ -58,7 +58,6 @@ class GuestController extends Controller
         'success' => true,
         'results' => [
             'restaurant' => $restaurant,
-            'types' => $types,
         ]
     ]);
     }
