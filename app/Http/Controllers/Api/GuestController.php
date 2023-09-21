@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Restaurant;
 use App\Models\Type;
+use App\Models\Dish;
+use App\Models\Ingredient;
+use App\Models\Category;
 
 class GuestController extends Controller
 {
@@ -46,19 +49,16 @@ class GuestController extends Controller
             'results' => $restaurants,
         ]);
     }
-    public function showRestaurant(int $id){
-        $restaurant = Restaurant::findOrFail($id);
-        $dishes = $restaurant->dishes;
-        $categories = $dishes->categories;
-        $ingredients = $dishes->ingredients;
-        return response()->json([
-            'success' => true,
-            'results' => [
-                $restaurant,
-                $dishes,
-                $ingredients,
-                $categories
-            ]
-        ]);
+
+    public function showRestaurant(int $restaurantId){
+    $restaurant = Restaurant::with('dishes.ingredients', 'dishes.categories')->find($restaurantId);
+    $types = $restaurant->types;
+
+    return response()->json([
+        'success' => true,
+        'results' => [
+            'restaurant' => $restaurant,
+        ]
+    ]);
     }
 }
