@@ -42,7 +42,7 @@ class DishesController extends Controller
     public function store(User $user, Restaurant $restaurant, Request $request)
     {
 
-        
+
             $data = $request->validate([
                 'name' => ['required', 'string', 'min:3'],
                 'description' => ['required', 'string', 'min:10'],
@@ -55,27 +55,27 @@ class DishesController extends Controller
                 'type' =>['required', 'string']
             ]);
             $ingredientNames = $request->input('ingredients',[]);
-            
+
             $ingredientIds = [];
 
             $typeName = $request->input('type');
 
             $type = Type::where('name', $typeName)->first();;
-            
+
             foreach ($ingredientNames as $ingredientName) {
                 $ingredient = Ingredient::firstOrCreate(['name' => $ingredientName]);
                 $ingredientIds[] = $ingredient->id;
             }
-            
+
             $newDish = new Dish;
-            $newDish->restaurant_id = $restaurant->id; 
-            $newDish->type_id = $type->id; 
+            $newDish->restaurant_id = $restaurant->id;
+            $newDish->type_id = $type->id;
             $newDish->fill(array_diff_key($data, array_flip(['ingredients'])));
             $newDish->save();
-            
+
             $newDish->ingredients()->sync($ingredientIds);
-            
-        
+
+
     }
 
     /**
@@ -121,14 +121,17 @@ class DishesController extends Controller
                 'course' =>['required', 'string', 'min:5' ],
                 'photo' =>['required', 'url'],
                 'available' =>['required', 'boolean'],
-                'ingredient_names' =>['required','array','min:1'],
-                'ingredient_names.*' =>['string']
+                'ingredients' =>['required','array','min:1'],
+                'ingredients.*' =>['string']
             ]);
 
-            $ingredientNames = $request->input('ingredient_names', []);
-            $ingredientIds = Ingredient::whereIn('name', $ingredientNames)->pluck('id')->toArray();
-
-            $dish->update($request->except(['ingredient_names']));
+            $ingredientNames = $request->input('ingredients', []);
+            // $ingredientIds = Ingredient::whereIn('name', $ingredientNames)->pluck('id')->toArray();
+            foreach ($ingredientNames as $ingredientName) {
+                $ingredient = Ingredient::firstOrCreate(['name' => $ingredientName]);
+                $ingredientIds[] = $ingredient->id;
+            }
+            $dish->update($request->except(['ingredients']));
             $dish->ingredients()->sync($ingredientIds);
 
         }

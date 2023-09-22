@@ -20,7 +20,7 @@ class OrderSeeder extends Seeder
 
 
         $restaurantIds= Restaurant::all()->pluck('id');
-        for($i=0; $i<30; $i++){
+        for($i=0; $i<100; $i++){
           $randomRestaurant = $faker->randomElement($restaurantIds);
           $newOrder = new Order();
           $newOrder->restaurant_id = $randomRestaurant;
