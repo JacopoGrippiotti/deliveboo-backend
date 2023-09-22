@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\LoginController as LoginUserController;
 use App\Http\Controllers\Api\RegisterController as RegisterUserController;
 use App\Http\Controllers\Api\DishesController as ApiDishController;
 use App\Http\Controllers\Api\OrdersController as ApiOrderController;
+use App\Http\Controllers\PaymentController as ApiPaymentController;
 use App\Models\Restaurant;
 /*
 |--------------------------------------------------------------------------
@@ -68,3 +69,7 @@ Route::post('/login', [LoginUserController::class, 'login'])->name('api.login');
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/logout', [LoginUserController::class, 'logout'])->name('api.logout');
 });
+
+
+Route::get('/getClientToken', [ApiPaymentController::class, 'generateClientToken'])->name('api.getClientToken');
+Route::post('/sendNonce', [ApiPaymentController::class, 'storeNonce'])->name('api.sendNonce');
