@@ -10,14 +10,14 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         "ingredienti"=> ["spaghetti", "uova", "guanciale", "pecorino romano", "pepe nero"],
         "descrizione"=> "Uno dei piatti più iconici della cucina romana, gli spaghetti alla carbonara sono una delizia cremosa preparata con uova, guanciale croccante e pecorino romano, conditi con pepe nero appena macinato.",
         "categoria"=> ["Pasta", "Carne", "Latticini", "Spezie"],
-        "immagine" => 'https://i.pinimg.com/564x/e0/e2/67/e0e2677cb75dd29f93ce17de3cc73731.jpg'
+        'immagine' => 'https://i.pinimg.com/564x/e0/e2/67/e0e2677cb75dd29f93ce17de3cc73731.jpg'
       ],
       [
         "nome"=> "Linguine al Pesto Genovese",
         "ingredienti"=> ["linguine", "pesto genovese", "patate", "fagiolini", "pinoli"],
         "descrizione"=> "Un primo piatto tipico della Liguria, le linguine al pesto genovese sono arricchite con patate e fagiolini, e condite con il celebre pesto a base di basilico, pinoli, olio e formaggio.",
         "categoria"=> ["Pasta", "Verdure", "Frutta"],
-        'immagine'=> 'https://i.pinimg.com/564x/1d/74/38/1d7438676ceb0692ddce3bd86ce69f72.jpg'
+        'immagine' => 'https://i.pinimg.com/564x/1d/74/38/1d7438676ceb0692ddce3bd86ce69f72.jpg'
       ],
       [
         "nome"=> "Risotto ai Funghi Porcini",
@@ -181,187 +181,187 @@ return $listDishes=[   //APERTURA MEGA ARRAY
       ],
 
       "Francese"=>[
-    "primi"=> [
-      [
-        "nome"=> "Coq au Vin",
-        "ingredienti"=> ["pollo", "vino rosso", "cipolla", "pancetta", "funghi"],
-        "descrizione"=> "Il Coq au Vin è un piatto francese tradizionale. Preparato con pollo cotto lentamente in vino rosso con cipolla, pancetta e funghi, è un piatto ricco e saporito.",
-        "categoria"=> ["Carne", "Funghi", "Verdure"],
-        'immagine' => 'https://i.pinimg.com/564x/a9/02/c2/a902c241f1a738b6b5decffbd92f4a34.jpg'
-      ],
-      [
-        "nome"=> "Ratatouille",
-        "ingredienti"=> ["melanzane", "zucchine", "peperoni", "pomodori", "cipolla"],
-        "descrizione"=> "La Ratatouille è una pietanza provenzale a base di verdure. Melanzane, zucchine, peperoni, pomodori e cipolla vengono cotti lentamente con erbe aromatiche per creare un piatto colorato e gustoso.",
-        "categoria"=> ["Verdure"],
-        'immagine' => 'https://i.pinimg.com/564x/b9/3d/87/b93d876592e241165149f96667e34937.jpg'
-      ],
-      [
-        "nome"=> "Bouillabaisse",
-        "ingredienti"=> ["pesce", "crostacei", "pomodoro", "cipolla", "zafferano"],
-        "descrizione"=> "La Bouillabaisse è una zuppa di pesce provenzale. Preparata con vari tipi di pesce e crostacei, pomodoro, cipolla e zafferano, è un piatto di mare ricco di sapore.",
-        "categoria"=> ["Pesce", "Zuppe", "Spezie", "Verdure"],
-        'immagine' => 'https://i.pinimg.com/564x/86/88/d5/8688d52882de1a1d4ee1bb609c20b4d3.jpg'
-      ],
-      [
-        "nome"=> "Soupe à l'Oignon",
-        "ingredienti"=> ["cipolla", "brodo di carne", "pane", "formaggio gruyère"],
-        "descrizione"=> "La Soupe à l'Oignon è una zuppa di cipolle francese. Le cipolle sono lentamente caramellate in brodo di carne, quindi la zuppa è coperta di pane tostato e formaggio gruyère fuso.",
-        "categoria"=> ["Zuppe", "Latticini", "Verdure", "Grano"],
-        'immagine' => 'https://i.pinimg.com/564x/ef/a9/95/efa9953031eb882686c0b2f94540fafc.jpg'
-      ],
-      [
-        "nome"=> "Quiche Lorraine",
-        "ingredienti"=> ["pancetta", "uova", "panna", "formaggio gruyère"],
-        "descrizione"=> "La Quiche Lorraine è una torta salata francese. Riempita con pancetta, uova, panna e formaggio gruyère, è una delizia cremosa e salata.",
-        "categoria"=> ["Latticini", "Carne"],
-        'immagine' => 'https://i.pinimg.com/564x/d1/8e/6c/d18e6c3a45e386f79c375bc60211d373.jpg'
-      ],
-      [
-        "nome"=> "Salade Niçoise",
-        "ingredienti"=> ["tonno", "uova sode", "olive nere", "pomodori", "fagiolini"],
-        "descrizione"=> "La Salade Niçoise è una insalata provenzale. Con tonno, uova sode, olive nere, pomodori e fagiolini, è fresca e saporita.",
-        "categoria"=> ["Verdure", "Pesce"],
-        'immagine' => 'https://i.pinimg.com/564x/0d/f2/d5/0df2d5cb225019fcceb8d134e4417e84.jpg'
-      ],
-      [
-        "nome"=> "Cassoulet",
-        "ingredienti"=> ["fagioli", "salsiccia", "agnello", "prosciutto", "pane grattugiato"],
-        "descrizione"=> "Il Cassoulet è un piatto al forno della regione del Languedoc. Preparato con fagioli, salsiccia, agnello, prosciutto e pane grattugiato, è un comfort food ricco e calorico.",
-        "categoria"=> ["Grano", "Carne"],
-        'immagine' => 'https://i.pinimg.com/564x/fc/bf/d8/fcbfd85b217715be34ae713623d49329.jpg'
-      ],
-      [
-        "nome"=> "Pissaladière",
-        "ingredienti"=> ["cipolla", "acciughe", "olive nere", "impasto per pizza"],
-        "descrizione"=> "La Pissaladière è una focaccia tipica della Provenza. Coperta di cipolla caramellata, acciughe, olive nere e erbe aromatiche, è una prelibatezza salata.",
-        "categoria"=> ["Verdure", "Pesce", "Grano"],
-        'immagine' => 'https://i.pinimg.com/736x/ac/49/d3/ac49d3c576e335733c420baae03fa5c7.jpg'
-      ],
-      [
-        "nome"=> "Confit de Canard",
-        "ingredienti"=> ["cosce d'anatra", "grassi d'anatra", "aglio",],
-        "descrizione"=> "Il Confit de Canard è un piatto di anatra tipico del sud-ovest della Francia. Le cosce d'anatra sono cotte lentamente nel proprio grasso con aglio ed erbe aromatiche, risultando in una carne tenera e saporita.",
-        "categoria"=> ["Carne"],
-        'immagine' => 'https://i.pinimg.com/564x/58/74/11/587411af266221f94cf3a74622ecc306.jpg'
-      ],
-      [
-        "nome"=> "Boudin Blanc",
-        "ingredienti"=> ["salsiccia bianca", "cipolla", "mele", "burro"],
-        "descrizione"=> "Il Boudin Blanc è una salsiccia bianca francese. Preparata con carne di maiale finemente macinata, cipolla, mele e burro, è una salsiccia delicata e gustosa.",
-        "categoria"=> ["Carne", "Verdure", "Frutta", "Latticini"],
-        'immagine' => 'https://i.pinimg.com/564x/a9/94/14/a99414c0bcb43b3907a0c3cccedba4b0.jpg'
-      ]
-    ],
-    "secondi"=> [
-      [
-        "nome"=> "Bœuf Bourguignon",
-        "ingredienti"=> ["carne di manzo", "vino rosso", "cipolla", "funghi", "pancetta"],
-        "descrizione"=> "Il Bœuf Bourguignon è un piatto di manzo tipico della Borgogna. La carne di manzo è brasata lentamente in vino rosso con cipolla, funghi e pancetta, creando un sapore ricco e profondo.",
-        "categoria"=> ["Carne", "Verdure", "Funghi"],
-        'immagine' => 'https://i.pinimg.com/564x/73/3a/b7/733ab7c74690d70c022a08043af7ed28.jpg'
-      ],
-      [
-        "nome"=> "Canard à l'Orange",
-        "ingredienti"=> ["anatra", "succo d'arancia", "Grand Marnier", "zucchero"],
-        "descrizione"=> "Il Canard à l'Orange è un piatto di anatra famoso in Francia. L'anatra viene cotta con una salsa all'arancia preparata con succo d'arancia, Grand Marnier e zucchero, risultando in un contrasto dolce-amaro.",
-        "categoria"=> ["Carne", "Frutta", "Dolci"],
-        'immagine' => 'https://i.pinimg.com/564x/6e/ad/25/6ead259601f5641e22bcb80f10a36446.jpg'
-      ],
-      [
-        "nome"=> "Filet Mignon au Poivre",
-        "ingredienti"=> ["filetto di manzo", "pepe nero", "panna", "brodo di carne"],
-        "descrizione"=> "Il Filet Mignon au Poivre è un piatto di manzo elegante. Il filetto di manzo è cotto con una salsa al pepe nero, panna e brodo di carne, creando un sapore ricco e speziato.",
-        "categoria"=> ["Carne", "Spezie", "Latticini"],
-        'immagine' => 'https://i.pinimg.com/564x/b7/f0/ec/b7f0ecc8a7231cc6929e4a7611952ec6.jpg'
-      ],
-      [
-        "nome"=> "Cassoulet",
-        "ingredienti"=> ["fagioli", "salsiccia", "agnello", "prosciutto", "pane grattugiato"],
-        "descrizione"=> "Il Cassoulet è un piatto al forno della regione del Languedoc. Preparato con fagioli, salsiccia, agnello, prosciutto e pane grattugiato, è un comfort food ricco e calorico.",
-        "categoria"=> ["Grano", "Carne"],
-        'immagine' => 'https://i.pinimg.com/564x/fc/bf/d8/fcbfd85b217715be34ae713623d49329.jpg'
-      ],
-      [
-        "nome"=> "Tournedos Rossini",
-        "ingredienti"=> ["filetto di manzo", "fegato d'anatra", "foie gras", "panna", "Madeira"],
-        "descrizione"=> "Il Tournedos Rossini è un piatto di manzo gourmet. Il filetto di manzo è servito con fegato d'anatra (foie gras) e una salsa al Madeira, creando un piatto straordinariamente ricco.",
-        "categoria"=> ["Carne", "Latticini"],
-        'immagine' => 'https://i.pinimg.com/736x/42/f9/61/42f961b73fcb0861135a50e59802c1db.jpg'
-      ],
-      [
-        "nome"=> "Poulet Frites",
-        "ingredienti"=> ["pollo", "patatine fritte", "maionese"],
-        "descrizione"=> "Il Poulet Frites è una versione francese del pollo fritto. Il pollo è servito con patatine fritte croccanti e maionese, un piatto semplice ma delizioso.",
-        "categoria"=> ["Carne", "Verdure"],
-        'immagine' => 'https://i.pinimg.com/564x/e4/81/16/e4811616a735fd56968f026cdec8ce3f.jpg'
-      ],
-      [
-        "nome"=> "Coq au Vin",
-        "ingredienti"=> ["pollo", "vino rosso", "cipolla", "pancetta", "funghi"],
-        "descrizione"=> "Il Coq au Vin è un piatto francese tradizionale. Preparato con pollo cotto lentamente in vino rosso con cipolla, pancetta e funghi, è un piatto ricco e saporito.",
-        "categoria"=> ["Carne", "Verdure", "Funghi"],
-        'immagine' => 'https://i.pinimg.com/564x/a9/02/c2/a902c241f1a738b6b5decffbd92f4a34.jpg'
-      ],
-      [
-        "nome"=> "Confit de Canard",
-        "ingredienti"=> ["cosce d'anatra", "grassi d'anatra", "aglio",],
-        "descrizione"=> "Il Confit de Canard è un piatto di anatra tipico del sud-ovest della Francia. Le cosce d'anatra sono cotte lentamente nel proprio grasso con aglio ed erbe aromatiche, risultando in una carne tenera e saporita.",
-        "categoria"=> ["Carne"],
-        'immagine' => 'https://i.pinimg.com/736x/0e/b5/e9/0eb5e91c7f459930a7f90d3dbb24a07f.jpg'
-      ],
-      [
-        "nome"=> "Boudin Blanc",
-        "ingredienti"=> ["salsiccia bianca", "cipolla", "mele", "burro"],
-        "descrizione"=> "Il Boudin Blanc è una salsiccia bianca francese. Preparata con carne di maiale finemente macinata, cipolla, mele e burro, è una salsiccia delicata e gustosa.",
-        "categoria"=> ["Carne", "Frutta", "Latticini", "Verdure"],
-        'immagine' => 'https://i.pinimg.com/564x/a3/4d/10/a34d10e5b8f8c3c60af3a66189f6496e.jpg'
-      ],
-      [
-        "nome"=> "Poule au Pot",
-        "ingredienti"=> ["pollo", "verdure", "brodo di pollo", "spezie"],
-        "descrizione"=> "La Poule au Pot è una ricetta tradizionale francese. Un intero pollo è cotto in un brodo di pollo aromatico con verdure e spezie, creando un piatto sano e confortante.",
-        "categoria"=> ["Carne", "Verdure", "Spezie"],
-        'immagine' => 'https://i.pinimg.com/564x/55/df/53/55df53de1dbd468cd48db32dfda39dc8.jpg'
-      ]
-    ],
-    "dolci"=> [
-      [
-        "nome"=> "Crème Brûlée",
-        "ingredienti"=> ["crema", "zucchero", "vaniglia"],
-        "descrizione"=> "La Crème Brûlée è un dessert classico francese. Preparata con crema, zucchero e vaniglia, è caramellata sulla parte superiore per creare uno strato croccante.",
-        "categoria"=> ["Dolci", "Spezie"],
-        'immagine' => 'https://i.pinimg.com/564x/b8/16/af/b816af22c30988d63b90e312e4717157.jpg'
-      ],
-      [
-        "nome"=> "Tarte Tatin",
-        "ingredienti"=> ["mele", "zucchero", "burro", "pasta sfoglia"],
-        "descrizione"=> "La Tarte Tatin è una torta di mele capovolta. Le mele caramellate sono cotte sotto uno strato di pasta sfoglia e poi rovesciate, creando un dessert delizioso.",
-        "categoria"=> ["Latticini", "Frutta", "Grano", "Dolci"],
-        'immagine' => 'https://i.pinimg.com/564x/70/72/81/70728173249f3adaebe49dcf69c9b45e.jpg'
-      ],
-      [
-        "nome"=> "Madeleine",
-        "ingredienti"=> ["farina", "zucchero", "uova", "burro", "limone"],
-        "descrizione"=> "Le Madeleine sono piccoli dolci francesi a forma di conchiglia. Sono preparate con farina, zucchero, uova, burro e scorza di limone, risultando in bocconcini morbidi e profumati.",
-        "categoria"=> ["Grano", "Frutta", "Dolci"],
-        'immagine' => 'https://i.pinimg.com/736x/c7/d9/6e/c7d96e7d9d16011f15430fec8fa691ff.jpg'
-      ],
-      [
-        "nome"=> "Mousse au Chocolat",
-        "ingredienti"=> ["cioccolato", "uova", "zucchero", "panna"],
-        "descrizione"=> "La Mousse au Chocolat è una mousse al cioccolato francese. Preparata con cioccolato fuso, uova, zucchero e panna montata, è una delizia cremosa per gli amanti del cioccolato.",
-        "categoria"=> ["Dolci", "Latticini"],
-        'immagine' => 'https://i.pinimg.com/564x/9f/e0/1f/9fe01fc08d63867788da191764eef97f.jpg'
-      ],
-      [
-        "nome"=> "Îles Flottantes",
-        "ingredienti"=> ["uova", "latte", "zucchero", "vaniglia"],
-        "descrizione"=> "Le Îles Flottantes sono un dessert francese leggero e delicato. Uova sode galleggiano in un latte dolce alla vaniglia, il tutto coperto da caramello.",
-        "categoria"=> ["Dolci", "Spezie", "Latticini"],
-        'immagine' => 'https://i.pinimg.com/564x/64/0e/d4/640ed47ad2716e00e2e01b65fdb27dac.jpg'
-      ]
-    ]
+        "primi"=> [
+        [
+            "nome"=> "Coq au Vin",
+            "ingredienti"=> ["pollo", "vino rosso", "cipolla", "pancetta", "funghi"],
+            "descrizione"=> "Il Coq au Vin è un piatto francese tradizionale. Preparato con pollo cotto lentamente in vino rosso con cipolla, pancetta e funghi, è un piatto ricco e saporito.",
+            "categoria"=> ["Carne", "Funghi", "Verdure"],
+            'immagine' => 'https://i.pinimg.com/564x/a9/02/c2/a902c241f1a738b6b5decffbd92f4a34.jpg'
+        ],
+        [
+            "nome"=> "Ratatouille",
+            "ingredienti"=> ["melanzane", "zucchine", "peperoni", "pomodori", "cipolla"],
+            "descrizione"=> "La Ratatouille è una pietanza provenzale a base di verdure. Melanzane, zucchine, peperoni, pomodori e cipolla vengono cotti lentamente con erbe aromatiche per creare un piatto colorato e gustoso.",
+            "categoria"=> ["Verdure"],
+            'immagine' => 'https://i.pinimg.com/564x/b9/3d/87/b93d876592e241165149f96667e34937.jpg'
+        ],
+        [
+            "nome"=> "Bouillabaisse",
+            "ingredienti"=> ["pesce", "crostacei", "pomodoro", "cipolla", "zafferano"],
+            "descrizione"=> "La Bouillabaisse è una zuppa di pesce provenzale. Preparata con vari tipi di pesce e crostacei, pomodoro, cipolla e zafferano, è un piatto di mare ricco di sapore.",
+            "categoria"=> ["Pesce", "Zuppe", "Spezie", "Verdure"],
+            'immagine' => 'https://i.pinimg.com/564x/86/88/d5/8688d52882de1a1d4ee1bb609c20b4d3.jpg'
+        ],
+        [
+            "nome"=> "Soupe à l'Oignon",
+            "ingredienti"=> ["cipolla", "brodo di carne", "pane", "formaggio gruyère"],
+            "descrizione"=> "La Soupe à l'Oignon è una zuppa di cipolle francese. Le cipolle sono lentamente caramellate in brodo di carne, quindi la zuppa è coperta di pane tostato e formaggio gruyère fuso.",
+            "categoria"=> ["Zuppe", "Latticini", "Verdure", "Grano"],
+            'immagine' => 'https://i.pinimg.com/564x/ef/a9/95/efa9953031eb882686c0b2f94540fafc.jpg'
+        ],
+        [
+            "nome"=> "Quiche Lorraine",
+            "ingredienti"=> ["pancetta", "uova", "panna", "formaggio gruyère"],
+            "descrizione"=> "La Quiche Lorraine è una torta salata francese. Riempita con pancetta, uova, panna e formaggio gruyère, è una delizia cremosa e salata.",
+            "categoria"=> ["Latticini", "Carne"],
+            'immagine' => 'https://i.pinimg.com/564x/d1/8e/6c/d18e6c3a45e386f79c375bc60211d373.jpg'
+        ],
+        [
+            "nome"=> "Salade Niçoise",
+            "ingredienti"=> ["tonno", "uova sode", "olive nere", "pomodori", "fagiolini"],
+            "descrizione"=> "La Salade Niçoise è una insalata provenzale. Con tonno, uova sode, olive nere, pomodori e fagiolini, è fresca e saporita.",
+            "categoria"=> ["Verdure", "Pesce"],
+            'immagine' => 'https://i.pinimg.com/564x/0d/f2/d5/0df2d5cb225019fcceb8d134e4417e84.jpg'
+        ],
+        [
+            "nome"=> "Cassoulet",
+            "ingredienti"=> ["fagioli", "salsiccia", "agnello", "prosciutto", "pane grattugiato"],
+            "descrizione"=> "Il Cassoulet è un piatto al forno della regione del Languedoc. Preparato con fagioli, salsiccia, agnello, prosciutto e pane grattugiato, è un comfort food ricco e calorico.",
+            "categoria"=> ["Grano", "Carne"],
+            'immagine' => 'https://i.pinimg.com/564x/fc/bf/d8/fcbfd85b217715be34ae713623d49329.jpg'
+        ],
+        [
+            "nome"=> "Pissaladière",
+            "ingredienti"=> ["cipolla", "acciughe", "olive nere", "impasto per pizza"],
+            "descrizione"=> "La Pissaladière è una focaccia tipica della Provenza. Coperta di cipolla caramellata, acciughe, olive nere e erbe aromatiche, è una prelibatezza salata.",
+            "categoria"=> ["Verdure", "Pesce", "Grano"],
+            'immagine' => 'https://i.pinimg.com/736x/ac/49/d3/ac49d3c576e335733c420baae03fa5c7.jpg'
+        ],
+        [
+            "nome"=> "Confit de Canard",
+            "ingredienti"=> ["cosce d'anatra", "grassi d'anatra", "aglio",],
+            "descrizione"=> "Il Confit de Canard è un piatto di anatra tipico del sud-ovest della Francia. Le cosce d'anatra sono cotte lentamente nel proprio grasso con aglio ed erbe aromatiche, risultando in una carne tenera e saporita.",
+            "categoria"=> ["Carne"],
+            'immagine' => 'https://i.pinimg.com/564x/58/74/11/587411af266221f94cf3a74622ecc306.jpg'
+        ],
+        [
+            "nome"=> "Boudin Blanc",
+            "ingredienti"=> ["salsiccia bianca", "cipolla", "mele", "burro"],
+            "descrizione"=> "Il Boudin Blanc è una salsiccia bianca francese. Preparata con carne di maiale finemente macinata, cipolla, mele e burro, è una salsiccia delicata e gustosa.",
+            "categoria"=> ["Carne", "Verdure", "Frutta", "Latticini"],
+            'immagine' => 'https://i.pinimg.com/564x/a9/94/14/a99414c0bcb43b3907a0c3cccedba4b0.jpg'
+        ]
+        ],
+        "secondi"=> [
+        [
+            "nome"=> "Bœuf Bourguignon",
+            "ingredienti"=> ["carne di manzo", "vino rosso", "cipolla", "funghi", "pancetta"],
+            "descrizione"=> "Il Bœuf Bourguignon è un piatto di manzo tipico della Borgogna. La carne di manzo è brasata lentamente in vino rosso con cipolla, funghi e pancetta, creando un sapore ricco e profondo.",
+            "categoria"=> ["Carne", "Verdure", "Funghi"],
+            'immagine' => 'https://i.pinimg.com/564x/73/3a/b7/733ab7c74690d70c022a08043af7ed28.jpg'
+        ],
+        [
+            "nome"=> "Canard à l'Orange",
+            "ingredienti"=> ["anatra", "succo d'arancia", "Grand Marnier", "zucchero"],
+            "descrizione"=> "Il Canard à l'Orange è un piatto di anatra famoso in Francia. L'anatra viene cotta con una salsa all'arancia preparata con succo d'arancia, Grand Marnier e zucchero, risultando in un contrasto dolce-amaro.",
+            "categoria"=> ["Carne", "Frutta", "Dolci"],
+            'immagine' => 'https://i.pinimg.com/564x/6e/ad/25/6ead259601f5641e22bcb80f10a36446.jpg'
+        ],
+        [
+            "nome"=> "Filet Mignon au Poivre",
+            "ingredienti"=> ["filetto di manzo", "pepe nero", "panna", "brodo di carne"],
+            "descrizione"=> "Il Filet Mignon au Poivre è un piatto di manzo elegante. Il filetto di manzo è cotto con una salsa al pepe nero, panna e brodo di carne, creando un sapore ricco e speziato.",
+            "categoria"=> ["Carne", "Spezie", "Latticini"],
+            'immagine' => 'https://i.pinimg.com/564x/b7/f0/ec/b7f0ecc8a7231cc6929e4a7611952ec6.jpg'
+        ],
+        [
+            "nome"=> "Cassoulet",
+            "ingredienti"=> ["fagioli", "salsiccia", "agnello", "prosciutto", "pane grattugiato"],
+            "descrizione"=> "Il Cassoulet è un piatto al forno della regione del Languedoc. Preparato con fagioli, salsiccia, agnello, prosciutto e pane grattugiato, è un comfort food ricco e calorico.",
+            "categoria"=> ["Grano", "Carne"],
+            'immagine' => 'https://i.pinimg.com/564x/fc/bf/d8/fcbfd85b217715be34ae713623d49329.jpg'
+        ],
+        [
+            "nome"=> "Tournedos Rossini",
+            "ingredienti"=> ["filetto di manzo", "fegato d'anatra", "foie gras", "panna", "Madeira"],
+            "descrizione"=> "Il Tournedos Rossini è un piatto di manzo gourmet. Il filetto di manzo è servito con fegato d'anatra (foie gras) e una salsa al Madeira, creando un piatto straordinariamente ricco.",
+            "categoria"=> ["Carne", "Latticini"],
+            'immagine' => 'https://i.pinimg.com/736x/42/f9/61/42f961b73fcb0861135a50e59802c1db.jpg'
+        ],
+        [
+            "nome"=> "Poulet Frites",
+            "ingredienti"=> ["pollo", "patatine fritte", "maionese"],
+            "descrizione"=> "Il Poulet Frites è una versione francese del pollo fritto. Il pollo è servito con patatine fritte croccanti e maionese, un piatto semplice ma delizioso.",
+            "categoria"=> ["Carne", "Verdure"],
+            'immagine' => 'https://i.pinimg.com/564x/e4/81/16/e4811616a735fd56968f026cdec8ce3f.jpg'
+        ],
+        [
+            "nome"=> "Coq au Vin",
+            "ingredienti"=> ["pollo", "vino rosso", "cipolla", "pancetta", "funghi"],
+            "descrizione"=> "Il Coq au Vin è un piatto francese tradizionale. Preparato con pollo cotto lentamente in vino rosso con cipolla, pancetta e funghi, è un piatto ricco e saporito.",
+            "categoria"=> ["Carne", "Verdure", "Funghi"],
+            'immagine' => 'https://i.pinimg.com/564x/a9/02/c2/a902c241f1a738b6b5decffbd92f4a34.jpg'
+        ],
+        [
+            "nome"=> "Confit de Canard",
+            "ingredienti"=> ["cosce d'anatra", "grassi d'anatra", "aglio",],
+            "descrizione"=> "Il Confit de Canard è un piatto di anatra tipico del sud-ovest della Francia. Le cosce d'anatra sono cotte lentamente nel proprio grasso con aglio ed erbe aromatiche, risultando in una carne tenera e saporita.",
+            "categoria"=> ["Carne"],
+            'immagine' => 'https://i.pinimg.com/736x/0e/b5/e9/0eb5e91c7f459930a7f90d3dbb24a07f.jpg'
+        ],
+        [
+            "nome"=> "Boudin Blanc",
+            "ingredienti"=> ["salsiccia bianca", "cipolla", "mele", "burro"],
+            "descrizione"=> "Il Boudin Blanc è una salsiccia bianca francese. Preparata con carne di maiale finemente macinata, cipolla, mele e burro, è una salsiccia delicata e gustosa.",
+            "categoria"=> ["Carne", "Frutta", "Latticini", "Verdure"],
+            'immagine' => 'https://i.pinimg.com/564x/a3/4d/10/a34d10e5b8f8c3c60af3a66189f6496e.jpg'
+        ],
+        [
+            "nome"=> "Poule au Pot",
+            "ingredienti"=> ["pollo", "verdure", "brodo di pollo", "spezie"],
+            "descrizione"=> "La Poule au Pot è una ricetta tradizionale francese. Un intero pollo è cotto in un brodo di pollo aromatico con verdure e spezie, creando un piatto sano e confortante.",
+            "categoria"=> ["Carne", "Verdure", "Spezie"],
+            'immagine' => 'https://i.pinimg.com/564x/55/df/53/55df53de1dbd468cd48db32dfda39dc8.jpg'
+        ]
+        ],
+        "dolci"=> [
+        [
+            "nome"=> "Crème Brûlée",
+            "ingredienti"=> ["crema", "zucchero", "vaniglia"],
+            "descrizione"=> "La Crème Brûlée è un dessert classico francese. Preparata con crema, zucchero e vaniglia, è caramellata sulla parte superiore per creare uno strato croccante.",
+            "categoria"=> ["Dolci", "Spezie"],
+            'immagine' => 'https://i.pinimg.com/564x/b8/16/af/b816af22c30988d63b90e312e4717157.jpg'
+        ],
+        [
+            "nome"=> "Tarte Tatin",
+            "ingredienti"=> ["mele", "zucchero", "burro", "pasta sfoglia"],
+            "descrizione"=> "La Tarte Tatin è una torta di mele capovolta. Le mele caramellate sono cotte sotto uno strato di pasta sfoglia e poi rovesciate, creando un dessert delizioso.",
+            "categoria"=> ["Latticini", "Frutta", "Grano", "Dolci"],
+            'immagine' => 'https://i.pinimg.com/564x/70/72/81/70728173249f3adaebe49dcf69c9b45e.jpg'
+        ],
+        [
+            "nome"=> "Madeleine",
+            "ingredienti"=> ["farina", "zucchero", "uova", "burro", "limone"],
+            "descrizione"=> "Le Madeleine sono piccoli dolci francesi a forma di conchiglia. Sono preparate con farina, zucchero, uova, burro e scorza di limone, risultando in bocconcini morbidi e profumati.",
+            "categoria"=> ["Grano", "Frutta", "Dolci"],
+            'immagine' => 'https://i.pinimg.com/736x/c7/d9/6e/c7d96e7d9d16011f15430fec8fa691ff.jpg'
+        ],
+        [
+            "nome"=> "Mousse au Chocolat",
+            "ingredienti"=> ["cioccolato", "uova", "zucchero", "panna"],
+            "descrizione"=> "La Mousse au Chocolat è una mousse al cioccolato francese. Preparata con cioccolato fuso, uova, zucchero e panna montata, è una delizia cremosa per gli amanti del cioccolato.",
+            "categoria"=> ["Dolci", "Latticini"],
+            'immagine' => 'https://i.pinimg.com/564x/9f/e0/1f/9fe01fc08d63867788da191764eef97f.jpg'
+        ],
+        [
+            "nome"=> "Îles Flottantes",
+            "ingredienti"=> ["uova", "latte", "zucchero", "vaniglia"],
+            "descrizione"=> "Le Îles Flottantes sono un dessert francese leggero e delicato. Uova sode galleggiano in un latte dolce alla vaniglia, il tutto coperto da caramello.",
+            "categoria"=> ["Dolci", "Spezie", "Latticini"],
+            'immagine' => 'https://i.pinimg.com/564x/64/0e/d4/640ed47ad2716e00e2e01b65fdb27dac.jpg'
+        ]
+        ]
       ],
   "Giapponese"=>[
     "primi"=> [
@@ -792,7 +792,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         "ingredienti"=> ["tofu", "funghi", "peperoncino", "aceto di riso", "zenzero"],
         "descrizione"=> "La Zuppa Acida e Piccante è una zuppa cinese con tofu, funghi, peperoncino, aceto di riso e zenzero. È nota per il suo sapore audace e contrastante.",
         "categoria"=> ["Zuppe", "Funghi", "Verdure", "Spezie"],
-        'immagine' => 'Zuppa Acida e Piccante'
+        'immagine' => 'https://i.pinimg.com/736x/6f/a6/5e/6fa65e82173dcc90e8efa6a450df290b.jpg'
       ],
       [
         "nome"=> "Zuppa di Fagioli di Soia Neri",
@@ -1026,7 +1026,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         "ingredienti"=> ["bistecca di maiale", "marinatura", "mais alla griglia", "verdure"],
         "descrizione"=> "La Bistecca di Maiale alla Griglia è bistecca di maiale marinata e grigliata, spesso servita con mais alla griglia e verdure. È una specialità americana.",
         "categoria"=> ["Carne", "Spezie", "Verdure"],
-        'immagine' => ''
+        'immagine' => 'https://i.pinimg.com/736x/ff/92/8c/ff928c81f95b96eebfde81e1e46fce14.jpg'
       ],
       [
         "nome"=> "Chicken and Waffles",
@@ -1063,7 +1063,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         "ingredienti"=> ["mele", "zucchero", "cannella", "crosta di pasta", "gelato alla vaniglia"],
         "descrizione"=> "L'Apple Pie è una torta americana classica con mele dolci, zucchero e cannella, cotta in una crosta di pasta e spesso servita con gelato alla vaniglia.",
         "categoria"=> ["Dolci", "Frutta", "Spezie", "Grano", "Gelano"],
-        'immagine' => ''
+        'immagine' => 'https://i.pinimg.com/736x/fc/5a/25/fc5a25c12a57f82f746852b52b9436a1.jpg'
       ],
       [
         "nome"=> "Chocolate Chip Cookies",
