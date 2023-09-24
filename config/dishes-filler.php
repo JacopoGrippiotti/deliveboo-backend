@@ -4,7 +4,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
 
 
   "Italiana"=>[
-    "primi"=> [
+    "Primi"=> [
       [
         "nome"=> "Spaghetti alla Carbonara",
         "ingredienti"=> ["spaghetti", "uova", "guanciale", "pecorino romano", "pepe nero"],
@@ -69,7 +69,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/564x/0c/1e/6e/0c1e6e12672f9c2346ffa07601cb308a.jpg'
       ]
     ],
-    "secondi"=> [
+    "Secondi"=> [
       [
         "nome"=> "Ossobuco alla Milanese",
         "ingredienti"=> ["ossobuco", "gremolada", "riso alla milanese"],
@@ -141,7 +141,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/564x/5c/c1/c2/5cc1c20aa562398737a81b2c974f943e.jpg'
       ]
     ],
-    "dolci"=> [
+    "Dolci"=> [
       [
         "nome"=> "Tiramisù",
         "ingredienti"=> ["mascarpone", "savoiardi", "caffè", "cacao in polvere"],
@@ -181,7 +181,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
       ],
 
       "Francese"=>[
-        "primi"=> [
+        "Primi"=> [
         [
             "nome"=> "Coq au Vin",
             "ingredienti"=> ["pollo", "vino rosso", "cipolla", "pancetta", "funghi"],
@@ -253,7 +253,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
             'immagine' => 'https://i.pinimg.com/564x/a9/94/14/a99414c0bcb43b3907a0c3cccedba4b0.jpg'
         ]
         ],
-        "secondi"=> [
+        "Secondi"=> [
         [
             "nome"=> "Bœuf Bourguignon",
             "ingredienti"=> ["carne di manzo", "vino rosso", "cipolla", "funghi", "pancetta"],
@@ -325,7 +325,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
             'immagine' => 'https://i.pinimg.com/564x/55/df/53/55df53de1dbd468cd48db32dfda39dc8.jpg'
         ]
         ],
-        "dolci"=> [
+        "Dolci"=> [
         [
             "nome"=> "Crème Brûlée",
             "ingredienti"=> ["crema", "zucchero", "vaniglia"],
@@ -364,7 +364,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         ]
       ],
   "Giapponese"=>[
-    "primi"=> [
+    "Primi"=> [
       [
         "nome"=> "Ramen",
         "ingredienti"=> ["noodles", "brodo di carne", "carne di maiale", "uova", "cipolla verde"],
@@ -436,7 +436,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/564x/a9/7b/21/a97b219aa5da5fd62f5e17773d0266db.jpg'
       ]
     ],
-    "secondi"=> [
+    "Secondi"=> [
       [
         "nome"=> "Teriyaki di Salmone",
         "ingredienti"=> ["salmone", "salsa teriyaki", "sesamo", "cipolla verde"],
@@ -508,7 +508,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/564x/b1/3c/0a/b13c0aa87e6a62ee576e72c353123656.jpg'
       ]
     ],
-    "dolci"=> [
+    "Dolci"=> [
       [
         "nome"=> "Mochi",
         "ingredienti"=> ["mochiko (farina di riso glutinoso)", "zucchero", "anice stellato", "ripieni vari"],
@@ -547,7 +547,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
     ]
       ],
   "Messicana"=>[
-    "primi"=> [
+    "Primi"=> [
       [
         "nome"=> "Tacos al Pastor",
         "ingredienti"=> ["carne di maiale marinata", "tortillas di mais", "cipolla", "coriandolo", "salsa al pastor"],
@@ -619,7 +619,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/474x/ab/1e/3c/ab1e3cccc7b9d5e9b9b0a7917955e0a2.jpg'
       ]
     ],
-    "secondi"=> [
+    "Secondi"=> [
       [
         "nome"=> "Tacos de Carnitas",
         "ingredienti"=> ["carne di maiale arrosto", "cipolla", "coriandolo", "salsa verde", "tortillas di mais"],
@@ -691,7 +691,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/736x/08/d1/71/08d171dce2988fc22ffc6b37739d6fff.jpg'
       ]
     ],
-    "dolci"=> [
+    "Dolci"=> [
       [
         "nome"=> "Churros",
         "ingredienti"=> ["pastella fritta", "zucchero", "cannella", "cioccolato caldo"],
@@ -730,7 +730,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
     ]
       ],
   "Cinese"=>[
-    "primi"=> [
+    "Primi"=> [
       [
         "nome"=> "Jiaozi",
         "ingredienti"=> ["pasta di farina di grano", "ripieno di carne o verdure", "zenzero", "salsa di soia"],
@@ -802,7 +802,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/564x/8a/5f/6f/8a5f6f5f855c9277d1020471ab199cfd.jpg'
       ]
     ],
-    "secondi"=> [
+    "Secondi"=> [
       [
         "nome"=> "Anatra alla Pechinese",
         "ingredienti"=> ["anatra", "salsa di soia", "zenzero", "aglio", "pancake sottili"],
@@ -874,7 +874,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/736x/a4/67/2d/a4672ddc1e7dc666a1baa4500157cb63.jpg'
       ]
     ],
-    "dolci"=> [
+    "Dolci"=> [
       [
         "nome"=> "Ananas in Caramello",
         "ingredienti"=> ["fette di ananas", "caramello", "cannella", "ghiaccio"],
@@ -913,7 +913,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
     ]
       ],
   "Americana"=>[
-    "primi"=> [
+    "Primi"=> [
       [
         "nome"=> "Hamburger",
         "ingredienti"=> ["carne macinata", "pane per hamburger", "formaggio", "lattuga", "pomodoro"],
@@ -985,7 +985,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/564x/3e/ea/f2/3eeaf273a76a419caff6a1bb4d8382db.jpg'
       ]
     ],
-    "secondi"=> [
+    "Secondi"=> [
       [
         "nome"=> "Steak",
         "ingredienti"=> ["bistecca", "patate", "verdure grigliate", "salsa al pepe"],
@@ -1057,7 +1057,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/736x/a0/36/2f/a0362f37568a678dfd25ba5456135244.jpg'
       ]
     ],
-    "dolci"=> [
+    "Dolci"=> [
       [
         "nome"=> "Apple Pie",
         "ingredienti"=> ["mele", "zucchero", "cannella", "crosta di pasta", "gelato alla vaniglia"],
@@ -1096,7 +1096,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
     ]
       ],
   "Indiano"=>[
-    "primi"=> [
+    "Primi"=> [
       [
         "nome"=> "Chicken Tikka Masala",
         "ingredienti"=> ["pollo", "yogurt", "pomodoro", "spezie indiane"],
@@ -1168,7 +1168,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/736x/1b/da/ca/1bdaca54b40441bc8a1bccc733e3ca43.jpg'
       ]
     ],
-    "secondi"=> [
+    "Secondi"=> [
       [
         "nome"=> "Butter Chicken",
         "ingredienti"=> ["pollo", "salsa di pomodoro", "burro", "crema"],
@@ -1240,7 +1240,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/736x/48/be/76/48be768bbfceaab53707f18f9ea42376.jpg'
       ]
     ],
-    "dolci"=> [
+    "Dolci"=> [
       [
         "nome"=> "Gulab Jamun",
         "ingredienti"=> ["latte in polvere", "zucchero", "cardamomo"],
@@ -1279,7 +1279,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
     ]
       ],
   "Mediterranea"=>[
-    "primi"=> [
+    "Primi"=> [
       [
         "nome"=> "Pasta al Pomodoro e Basilico",
         "ingredienti"=> ["spaghetti", "pomodoro", "basilico", "aglio", "olio d'oliva"],
@@ -1351,7 +1351,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/564x/d8/60/2a/d8602a02ad33a4f83dec5f153276b31d.jpg'
       ]
     ],
-    "secondi"=> [
+    "Secondi"=> [
       [
         "nome"=> "Salmone alla Griglia",
         "ingredienti"=> ["salmone", "limone", "olio d'oliva"],
@@ -1423,7 +1423,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/736x/65/21/95/65219572e404baeeef245bf193fbe156.jpg'
       ]
     ],
-    "dolci"=> [
+    "Dolci"=> [
       [
         "nome"=> "Tiramisù",
         "ingredienti"=> ["mascarpone", "savoiardi", "caffè", "cacao in polvere"],
@@ -1462,7 +1462,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
     ]
       ],
   "Mediorientale"=>[
-    "primi"=> [
+    "Primi"=> [
       [
         "nome"=> "Hummus",
         "ingredienti"=> ["ceci", "tahini", "aglio", "limone", "olio d'oliva"],
@@ -1534,7 +1534,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/564x/c4/89/57/c48957b7ddd2fcd30283325aa8000e9f.jpg'
       ]
     ],
-    "secondi"=> [
+    "Secondi"=> [
       [
         "nome"=> "Kebab di Pollo",
         "ingredienti"=> ["pollo marinato", "cipolla", "peperoni", "spezie"],
@@ -1606,7 +1606,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/736x/7e/d3/21/7ed321f9e373e2b05e489b983478660f.jpg'
       ]
     ],
-    "dolci"=> [
+    "Dolci"=> [
       [
         "nome"=> "Baklava",
         "ingredienti"=> ["noci", "mandorle", "nocciole", "fogli di pasta fillo", "miele"],
@@ -1646,7 +1646,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
     ]
       ],
   "Vietnamita"=>[
-    "primi"=> [
+    "Primi"=> [
       [
         "nome"=> "Pho",
         "ingredienti"=> ["tagliatelle di riso", "manzo", "brodo di carne", "anice stellato", "zenzero"],
@@ -1718,7 +1718,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/564x/ae/7d/bf/ae7dbfd906bc7e541a621a224587acec.jpg'
       ]
     ],
-    "secondi"=> [
+    "Secondi"=> [
       [
         "nome"=> "Bun Rieu",
         "ingredienti"=> ["zuppa di granchio", "vermicelli di riso", "uova di quaglia", "pomodori",],
@@ -1790,7 +1790,7 @@ return $listDishes=[   //APERTURA MEGA ARRAY
         'immagine' => 'https://i.pinimg.com/564x/32/67/f5/3267f59229e98df2c145c6694a212695.jpg'
       ]
     ],
-    "dolci"=> [
+    "Dolci"=> [
       [
         "nome"=> "Che Ba Mau",
         "ingredienti"=> ["ghiaccio", "fagioli mungo", "gelatina", "latte di cocco", "sciroppo di pandan"],
