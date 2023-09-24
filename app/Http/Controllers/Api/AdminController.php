@@ -13,11 +13,11 @@ class AdminController extends Controller
     public function index($userId)
     {
         $user = User::findOrFail($userId);
-        $restaurant = $user->restaurants;
+        $restaurants = $user->restaurants()->with('types')->get();
 
-        if ($restaurant) {
+        if ($restaurants) {
             // Restituisci i dettagli del ristorante
-            return response()->json($restaurant);
+            return response()->json($restaurants);
         } else {
             // Il ristorante non è stato trovato per l'utente autenticato
             return response()->json(['error' => 'Ristorante non trovato'], 404);
