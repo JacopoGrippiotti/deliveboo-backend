@@ -33,17 +33,20 @@ class OrdersController extends Controller
     }
 
     public function store(Request $request){
+
+        
         $data = $request->validate([
-            'total_price' => ['required', 'decimal:2'],
+            'total_price' => ['required', 'numeric'],  
             'customer_name' => ['required', 'string'],
             'customer_address' => ['required', 'string'],
-            'phone_number' => ['required', 'string'],
+            'phone_number' => ['required', 'string'], 
         ]);
-        $data['status'] = 0;
-        $data['restaurant_id'] = $restaurant->id;
+
+        
+        $data['status'] = $request->input('status');
+        $data['restaurant_id'] = $request->input('restaurant_id');
         $newOrder = Order::create($data);
-        $dishes = $request->dishes;
-        $dishesIds = Dish::whereIn('name', $dishes)->pluck('id')->toArray();
+        $dishesIds = $request->dishes;
         $newOrder->save();
         $newOrder->dishes()->sync($dishesIds);
     }
