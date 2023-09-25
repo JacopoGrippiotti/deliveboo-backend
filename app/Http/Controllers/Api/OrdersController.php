@@ -49,11 +49,9 @@ class OrdersController extends Controller
     }
     public function destroy($userId, $restaurantId, $orderId){
         $order = Order::findOrFail($orderId);
-        if (!$order) {
-            return redirect()->back()->with('error', 'Ordine non trovato.');
-        }
-        $order->dishes()->detach();
+
+
         $order->delete();
-        return redirect()->back()->with('success', 'Ordine eliminato con successo.');
+
     }
 }
