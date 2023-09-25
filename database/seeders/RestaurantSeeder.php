@@ -23,9 +23,13 @@ class RestaurantSeeder extends Seeder
         $fakerIt = Fakerit::create('it_IT');
         $restaurantsNames = config('restaurantsnames-filler');
 
-          $userIds= User::all()->pluck('id');
-          $types = Type::all()->pluck('id');
+        $userIds= User::all()->pluck('id');
+        $types = Type::all()->pluck('id');
 
+
+        $assignedRestaurantNames = [];
+        $assignedUserIds = [];
+        $pureRestaurantsNames = [];
         $imagesRestaurants = [
 
                 'https://i.pinimg.com/564x/33/f6/71/33f671dfbb39b83203cbcec01fce31a8.jpg',
@@ -83,23 +87,49 @@ class RestaurantSeeder extends Seeder
                 'https://i.pinimg.com/564x/1e/e3/10/1ee3106240596e0faf6671df5701f3cb.jpg'
         ];
 
-
-          foreach($restaurantsNames as $restaurantsName => $restaurantNamesArray){
-
+        foreach($restaurantsNames as $restaurantsName => $restaurantNamesArray){
             foreach($restaurantNamesArray as $restaurantName){
+                $pureRestaurantsNames[] = $restaurantName;
+                $randomUserId= $faker->randomElement($userIds);
+                $user = User::findOrFail($randomUserId);
+                if(!$user->restaurants->count()){
+                    $newRestaurant = new Restaurant();
+                    $newRestaurant->user_id=$randomUserId;
+                    $newRestaurant->name = $restaurantName;
+                    $newRestaurant->address = $fakerIt->streetAddress();
+                    $newRestaurant->city = $fakerAddress->state();
+                    $newRestaurant->image = $faker->randomElement($imagesRestaurants);
+                    $newRestaurant->save();
 
-            $typeArrayRandom = $faker->randomElements($types,$faker->numberBetween(1, 3));
-            $randomUser= $faker->randomElement($userIds);
+                    $typeArrayRandom = $faker->randomElements($types,$faker->numberBetween(1, 3));
+                    $newRestaurant->types()->sync($typeArrayRandom);
+
+                    $newRestaurant->save();
+
+                    $assignedRestaurantNames[] = $restaurantName;
+                    $assignedUserIds[] = $newRestaurant->user_id;
+                }
+            }
+        }
+        $nonAssignedRestaurantNames = array_diff($pureRestaurantsNames, $assignedRestaurantNames);
+        $nonAssignedUserIds = array_diff($userIds->toArray(), $assignedUserIds);
+        foreach ($nonAssignedRestaurantNames as $restaurantName) {
+            // Seleziona casualmente un utente tra quelli senza ristorante
+            $randomUserId = $nonAssignedUserIds[array_rand($nonAssignedUserIds)];
+
+            // Crea un nuovo ristorante con il nome selezionato
             $newRestaurant = new Restaurant();
-            $newRestaurant->user_id=$randomUser;
+            $newRestaurant->user_id = $randomUserId;
             $newRestaurant->name = $restaurantName;
             $newRestaurant->address = $fakerIt->streetAddress();
             $newRestaurant->city = $fakerAddress->state();
             $newRestaurant->image = $faker->randomElement($imagesRestaurants);
             $newRestaurant->save();
+
+            $typeArrayRandom = $faker->randomElements($types,$faker->numberBetween(1, 3));
             $newRestaurant->types()->sync($typeArrayRandom);
+
             $newRestaurant->save();
         }
     }
-        }
-    }
+}
