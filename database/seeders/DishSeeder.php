@@ -22,15 +22,62 @@ class DishSeeder extends Seeder
       $dishesArray = config("dishes-filler");
       $typeIds = Type::all()->pluck('id');
       $restaurantIds = Restaurant::all()->pluck('id');
-      $orderIds = Order::all()->pluck('id');
-
+    //   $orderIds = Order::all()->pluck('id');
+      $pureRestaurantIds = $restaurantIds->toArray();
+      $assignedRestaurantIds = [];
+    for($i=0; $i < 2; $i++){
       foreach($dishesArray as $dish=>$courseArray){
-
         foreach($courseArray as $course=>$elementsArray){
-
           foreach($elementsArray as $element){
-            $randomOrder = $faker->randomElement($orderIds);
-            $orderRestaurantId = Order::find($randomOrder)->restaurant_id;
+            if($i==1){
+                $ingredientNames = $element['ingredienti'];
+            $categoriesNames = $element['categoria'];
+            $categoriesIds = [];
+            $ingredientIds = [];
+
+            foreach($ingredientNames as $ingredientName){
+               $ingredient = Ingredient::where('name',$ingredientName)->first();
+               if($ingredient){
+                $ingredientIds[] = $ingredient->id;
+               }
+            };
+
+            foreach($categoriesNames as $categoryName){
+               $category = Category::where('name',$categoryName)->first();
+               if($category){
+                $categoriesIds[] = $category->id;
+               }
+            };
+
+            $newDish = new Dish();
+            $newDish->restaurant_id = $faker->randomElement($nonAssignedRestaurantIds);
+            //     if (!in_array($newDish->restaurant_id, $assignedRestaurantIds)) {
+            //         $assignedRestaurantIds[] = $newDish->restaurant_id;
+            //         $nonAssignedRestaurantIds = array_diff($pureRestaurantIds, $assignedRestaurantIds);
+            // }
+            $type = Type::where('name',$dish)->first();
+            $typeId = $type->id;
+
+            $newDish->type_id = $typeId;
+            $newDish->name = $element['nome'];
+            $newDish->description = $element['descrizione'];
+            $newDish->price = $faker->randomFloat(2, 5.00, 40.00);
+            $newDish->course = $course;
+            $newDish->photo = $element['immagine'];
+            $newDish->available = $faker->boolean();
+            $newDish->save();
+
+            $newDish->ingredients()->sync($ingredientIds);
+            $newDish->categories()->sync($categoriesIds);
+
+            // $order = Order::find($randomOrder);
+            // $order->dishes()->attach([$newDish->id]);
+
+            $newDish->save();
+            }
+
+            // $randomOrder = $faker->randomElement($orderIds);
+            // $orderRestaurantId = Order::find($randomOrder)->restaurant_id;
             $ingredientNames = $element['ingredienti'];
             $categoriesNames = $element['categoria'];
             $categoriesIds = [];
@@ -51,8 +98,11 @@ class DishSeeder extends Seeder
             };
 
             $newDish = new Dish();
-            $newDish->restaurant_id = $orderRestaurantId;
-
+            $newDish->restaurant_id = $faker->randomElement($restaurantIds);
+                if (!in_array($newDish->restaurant_id, $assignedRestaurantIds)) {
+                    $assignedRestaurantIds[] = $newDish->restaurant_id;
+                    $nonAssignedRestaurantIds = array_diff($pureRestaurantIds, $assignedRestaurantIds);
+            }
             $type = Type::where('name',$dish)->first();
             $typeId = $type->id;
 
@@ -68,14 +118,15 @@ class DishSeeder extends Seeder
             $newDish->ingredients()->sync($ingredientIds);
             $newDish->categories()->sync($categoriesIds);
 
-            $order = Order::find($randomOrder);
-            $order->dishes()->attach([$newDish->id]);
+            // $order = Order::find($randomOrder);
+            // $order->dishes()->attach([$newDish->id]);
 
             $newDish->save();
+
           }
         }
 
       }
-
+    }
     }
   }

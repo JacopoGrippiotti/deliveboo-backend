@@ -16,20 +16,20 @@ class OrderSeeder extends Seeder
      */
     public function run(Faker $faker): void
     {
-        $fakerIt = Fakerit::create('it_IT');
+        // $fakerIt = Fakerit::create('it_IT');
 
 
-        $restaurantIds= Restaurant::all()->pluck('id');
-        for($i=0; $i<100; $i++){
-          $randomRestaurant = $faker->randomElement($restaurantIds);
-          $newOrder = new Order();
-          $newOrder->restaurant_id = $randomRestaurant;
-          $newOrder->customer_name = $fakerIt->name();
-          $newOrder->customer_address = $fakerIt->streetAddress();
-          $newOrder->phone_number = $fakerIt->phoneNumber();
-          $newOrder->status = $faker->randomElement([1, 0]);
-          $newOrder->total_price = $faker->randomFloat(2, 5.0, 40.0);
-          $newOrder->save();
-        }
+        // $restaurantIds= Restaurant::all()->pluck('id');
+        // for($i=0; $i<100; $i++){
+        //   $randomRestaurant = $faker->randomElement($restaurantIds);
+        //   $newOrder = new Order();
+        //   $newOrder->restaurant_id = $randomRestaurant;
+        //   $newOrder->customer_name = $fakerIt->name();
+        //   $newOrder->customer_address = $fakerIt->streetAddress();
+        //   $newOrder->phone_number = $fakerIt->phoneNumber();
+        //   $newOrder->status = $faker->randomElement([1, 0]);
+        //   $newOrder->total_price = $faker->randomFloat(2, 5.0, 40.0);
+        //   $newOrder->save();
+        // }
     }
 }
