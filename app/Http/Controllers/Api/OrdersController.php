@@ -32,7 +32,7 @@ class OrdersController extends Controller
         ]);
     }
 
-    public function store(Request $request, Restaurant $restaurant){
+    public function store(Request $request){
         $data = $request->validate([
             'total_price' => ['required', 'decimal:2'],
             'customer_name' => ['required', 'string'],
