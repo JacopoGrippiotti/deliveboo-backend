@@ -27,6 +27,7 @@ class PaymentController extends Controller
   public function storeNonce(Request $request){
     
     $nonce = $request->input('nonce');
+    $amount = $request->input('amount');
 
     $gateway = new Gateway ([
       'environment' => env('BRAINTREE_ENV'),
@@ -36,7 +37,7 @@ class PaymentController extends Controller
     ]);
 
     $result = $gateway->transaction()->sale([
-      'amount' => '10.00', 
+      'amount' => $amount, 
       'paymentMethodNonce' => $nonce,
       'options' => [
           'submitForSettlement' => true,
