@@ -29,6 +29,7 @@ Route::name('api.guest.')->group(function (){
     Route::get('/restaurants', [ApiGuestController::class, 'indexRestaurants'])->name('index.restaurants');
     Route::get('/restaurants/{id}', [ApiGuestController::class, 'showRestaurant'])->name('show.restaurant');
     Route::post('/cart', [ApiOrderController::class, 'store'])->name('cart');
+    Route::post('/orders', [ApiOrderController::class, 'store'])->name('store.orders');
 });
 
 Route::name('api.admin.')->group(function () {
