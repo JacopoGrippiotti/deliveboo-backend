@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Restaurant;
 use App\Models\Ingredient;
@@ -42,38 +43,40 @@ class DishesController extends Controller
     public function store(User $user, Restaurant $restaurant, Request $request)
     {
 
+        // $img_path = Storage::put('uploads', $request['photo']);
 
             $data = $request->validate([
                 'name' => ['required', 'string', 'min:3'],
-                'description' => ['required', 'string', 'min:10'],
-                'price' => ['required', 'numeric', 'regex:/[1-9]/'],
-                'course' =>['required', 'string', 'min:5' ],
-                'photo' =>['required', 'url'],
+                'description' => ['required', 'string', 'min:5'],
+                'price' => ['required'],
+                'course' =>['required'],
+            //     'photo' =>['file'],
                 'available' =>['required', 'boolean'],
                 'ingredients' =>['required','array','min:1'],
                 'ingredients.*' =>['string'],
                 'type' =>['required', 'string']
             ]);
+            // $data['photo'] = $img_path;
             $ingredientNames = $request->input('ingredients',[]);
-
             $ingredientIds = [];
 
-            $typeName = $request->input('type');
+            $typeName = $request->type;
 
-            $type = Type::where('name', $typeName)->first();;
+            $type = Type::where('name', $typeName)->first();
 
             foreach ($ingredientNames as $ingredientName) {
                 $ingredient = Ingredient::firstOrCreate(['name' => $ingredientName]);
                 $ingredientIds[] = $ingredient->id;
             }
 
-            $newDish = new Dish;
+            $newDish = new Dish();
             $newDish->restaurant_id = $restaurant->id;
             $newDish->type_id = $type->id;
             $newDish->fill(array_diff_key($data, array_flip(['ingredients'])));
             $newDish->save();
 
             $newDish->ingredients()->sync($ingredientIds);
+            $newDish->save();
 
 
     }

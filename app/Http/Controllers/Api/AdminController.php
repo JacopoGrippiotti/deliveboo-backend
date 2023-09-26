@@ -55,7 +55,7 @@ class AdminController extends Controller
     $img_path = Storage::put('uploads', $request['image']);
 
         $data = $request->validate([
-            'name' => ['required', 'string', 'min:3'],
+            'name' => ['required', 'string', 'min:2'],
             'address' => ['required', 'string', 'min:5'],
             'city' => ['required', 'string', 'min:5'],
 

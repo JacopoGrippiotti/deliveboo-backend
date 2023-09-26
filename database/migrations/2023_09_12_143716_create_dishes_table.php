@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->double('price', 5, 2);
             $table->string('course');
-            $table->text('photo');
+            $table->string('photo')->nullable();
             $table->boolean('available');
             $table->timestamps();
         });
