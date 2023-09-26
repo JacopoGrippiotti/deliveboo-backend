@@ -21,7 +21,7 @@ class RestaurantSeeder extends Seeder
     public function run(Faker $faker, Fakeraddress $fakerAddress): void
     {
         $fakerIt = Fakerit::create('it_IT');
-        $restaurantsNames = config('restaurantsnames-filler');
+        $restaurants = config('restaurantsnames-filler');
 
         $userIds= User::all()->pluck('id');
         $types = Type::all()->pluck('id');
@@ -87,7 +87,7 @@ class RestaurantSeeder extends Seeder
                 'https://i.pinimg.com/564x/1e/e3/10/1ee3106240596e0faf6671df5701f3cb.jpg'
         ];
 
-        foreach($restaurantsNames as $restaurantsName => $restaurantNamesArray){
+        foreach($restaurants as $restaurantsType => $restaurantNamesArray){
             foreach($restaurantNamesArray as $restaurantName){
                 $pureRestaurantsNames[] = $restaurantName;
                 $randomUserId= $faker->randomElement($userIds);
@@ -101,8 +101,9 @@ class RestaurantSeeder extends Seeder
                     $newRestaurant->image = $faker->randomElement($imagesRestaurants);
                     $newRestaurant->save();
 
-                    $typeArrayRandom = $faker->randomElements($types,$faker->numberBetween(1, 3));
-                    $newRestaurant->types()->sync($typeArrayRandom);
+                    // $typeArrayRandom = $faker->randomElements($types,$faker->numberBetween(1, 3));
+                    $type = Type::where('name', $restaurantsType)->pluck('id');
+                    $newRestaurant->types()->sync($type);
 
                     $newRestaurant->save();
 
@@ -126,8 +127,10 @@ class RestaurantSeeder extends Seeder
             $newRestaurant->image = $faker->randomElement($imagesRestaurants);
             $newRestaurant->save();
 
-            $typeArrayRandom = $faker->randomElements($types,$faker->numberBetween(1, 3));
-            $newRestaurant->types()->sync($typeArrayRandom);
+            // $typeArrayRandom = $faker->randomElements($types,$faker->numberBetween(1, 3));
+            // $newRestaurant->types()->sync($typeArrayRandom);
+            $type = Type::where('name', $restaurantsType)->pluck('id');
+            $newRestaurant->types()->sync($type);
 
             $newRestaurant->save();
         }
