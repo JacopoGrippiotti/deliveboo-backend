@@ -17,9 +17,10 @@ class IngredientSeeder extends Seeder
         $ingredients = config("ingredients-filler");
 
             foreach($ingredients as $element){
-                $newIngredient = new Ingredient();
-                $newIngredient->name = $element;
-                $newIngredient->save();
+
+                $ingredient = Ingredient::firstOrCreate(['name' => $element])->first();
+                $ingredient->save();
+
         }
     }
 }
