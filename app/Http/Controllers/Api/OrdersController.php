@@ -41,14 +41,24 @@ class OrdersController extends Controller
             'customer_address' => ['required', 'string'],
             'phone_number' => ['required', 'string'], 
         ]);
-
         
+        $quantities = $request->quantities;
         $data['status'] = $request->input('status');
         $data['restaurant_id'] = $request->input('restaurant_id');
         $newOrder = Order::create($data);
         $dishesIds = $request->dishes;
-        $newOrder->save();
-        $newOrder->dishes()->sync($dishesIds);
+        if (count($dishesIds) === count($quantities)) {
+            $dishQuantityPairs = [];
+            for ($i = 0; $i < count($dishesIds); $i++) {
+                $dishId = $dishesIds[$i];
+                $quantity = $quantities[$i];
+                $dishQuantityPairs[$dishId] = ['quantity' => $quantity];
+            }
+            
+            $newOrder->dishes()->sync($dishQuantityPairs);
+        } 
+       
+        
     }
     public function destroy($userId, $restaurantId, $orderId){
         $order = Order::findOrFail($orderId);
