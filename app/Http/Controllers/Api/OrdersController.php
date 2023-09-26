@@ -16,9 +16,25 @@ class OrdersController extends Controller
         $restaurant = Restaurant::findOrFail($restaurantId);
         $orders = $restaurant->orders;
 
+
+        $monthlySales = [];
+        
+    foreach ($orders as $order) {
+       $createdAt = Carbon::parse($order->created_at);
+       $yearMonth = $createdAt->format('Y-m'); // Formato "AAAA-MM"
+
+    if (!isset($monthlySales[$yearMonth])) {
+        $monthlySales[$yearMonth] = 0;
+    }
+
+    $monthlySales[$yearMonth] += $order->total_price; // Sostituisci 'amount' con il campo corretto per l'ammontare dell'ordine
+}   
+    $annualSales = array_sum(array_values($monthlySales));
         return response()->json([
             'success' => 'true',
-            'results' => $orders
+            'results' => $orders,
+            'monthly_sales' => $monthlySales,
+            'annual_sales' => $annualSales
         ]);
     }
 
