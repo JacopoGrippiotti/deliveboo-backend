@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Restaurant;
 use App\Models\Type;
@@ -51,15 +52,18 @@ class AdminController extends Controller
 
     public function store(User $user ,Request $request){
 
+    $img_path = Storage::put('uploads', $request['image']);
 
         $data = $request->validate([
             'name' => ['required', 'string', 'min:3'],
             'address' => ['required', 'string', 'min:5'],
             'city' => ['required', 'string', 'min:5'],
+
             'types' => ['required', 'array'],
             'types.*' => ['string', 'exists:types,name']
         ]);
 
+        $data['image']= $img_path;
 
 
         $data['user_id'] = $user->id;

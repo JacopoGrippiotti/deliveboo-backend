@@ -31,6 +31,7 @@ class Restaurant extends Model
         'name',
         'address',
         'city',
+        'image',
         'user_id'
     ];
 }
