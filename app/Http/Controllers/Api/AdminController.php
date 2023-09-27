@@ -90,13 +90,18 @@ class AdminController extends Controller
     }
 
     public function update($userId,  Restaurant $restaurant, Request $request ){
+        $img_path = Storage::put('uploads', $request['image']);
+
         $data = $request->validate([
             'name' => ['required', 'string', 'min:2'],
             'address' => ['required', 'string', 'min:5'],
             'city' => ['required', 'string', 'min:5'],
             'types' => ['required', 'array'],
-            'types.*' => ['string', 'exists:types,name']
+            'types.*' => ['string', 'exists:types,name'],
+            'image' =>['file'],
         ]);
+
+        $data['image'] = $img_path;
 
         $data['user_id'] = $restaurant->user->id;
 
