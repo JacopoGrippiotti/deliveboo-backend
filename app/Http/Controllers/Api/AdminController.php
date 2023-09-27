@@ -55,7 +55,7 @@ class AdminController extends Controller
     $img_path = Storage::put('uploads', $request['image']);
 
         $data = $request->validate([
-            'name' => ['required', 'string', 'min:3'],
+            'name' => ['required', 'string', 'min:2'],
             'address' => ['required', 'string', 'min:5'],
             'city' => ['required', 'string', 'min:5'],
 
@@ -90,13 +90,18 @@ class AdminController extends Controller
     }
 
     public function update($userId,  Restaurant $restaurant, Request $request ){
+        $img_path = Storage::put('uploads', $request['image']);
+
         $data = $request->validate([
             'name' => ['required', 'string', 'min:2'],
             'address' => ['required', 'string', 'min:5'],
             'city' => ['required', 'string', 'min:5'],
             'types' => ['required', 'array'],
-            'types.*' => ['string', 'exists:types,name']
+            'types.*' => ['string', 'exists:types,name'],
+            'image' =>['file'],
         ]);
+
+        $data['image'] = $img_path;
 
         $data['user_id'] = $restaurant->user->id;
 
@@ -120,6 +125,10 @@ class AdminController extends Controller
         if (!$restaurant) {
             return response()->json(['message' => 'Ristorante non trovato.']);
         }
+        $img_path = $restaurant->image;
+        $newImagePath = 'deleted-images/' . basename($img_path);
+        Storage::move($img_path, $newImagePath);
+
         $restaurant->delete();
         return response()->json([
             'message' => 'Ristorante eliminato con successo.',
@@ -143,6 +152,11 @@ class AdminController extends Controller
     }
     public function restore(int $userId, int $restaurantId){
         $trashedRestaurant = Restaurant::with('types')->onlyTrashed()->findOrFail($restaurantId);
+
+        $img_path = $trashedRestaurant->image;
+        $newImagePath = 'uploads/' . basename($img_path);
+        Storage::move($img_path, $newImagePath);
+
         $trashedRestaurant->restore();
 
         return response()->json([
