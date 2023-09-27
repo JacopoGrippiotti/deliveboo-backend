@@ -132,7 +132,7 @@ class DishesController extends Controller
                 'description' => ['required', 'string', 'min:10'],
                 'price' => ['required', 'numeric', 'regex:/[1-9]/'],
                 'course' =>['required', 'string', 'min:5' ],
-                // 'photo' =>['file'],
+                'photo' =>['file'],
                 'available' =>['required', 'boolean'],
                 'ingredients' =>['required','array','min:1'],
                 'ingredients.*' =>['string']
