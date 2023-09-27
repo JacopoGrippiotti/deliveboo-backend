@@ -39,7 +39,7 @@ Route::name('api.admin.')->group(function () {
     Route::get('{user}/restaurants/deleted', [ApiAdminController::class, 'deletedIndex'])->name('trashed.restaurants');
     Route::get('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'show'])->name('show.restaurants');
     Route::get('/{user}/restaurants/{restaurant}/edit', [ApiAdminController::class, 'edit'])->name('edit.restaurants');
-    Route::put('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'update'])->name('update.restaurants');
+    Route::post('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'update'])->name('update.restaurants');
     Route::delete('/{user}/restaurants/{restaurant}', [ApiAdminController::class, 'destroy'])->name('destroy.restaurants');
     Route::delete('{user}/restaurants/deleted/{restaurant}', [ApiAdminController::class, 'restore'])->name('restore.restaurant');
     Route::delete('{user}/restaurants/deleted/{restaurant}/hardDelete', [ApiAdminController::class, 'obliterate'])->name('obliterate.restaurants');
