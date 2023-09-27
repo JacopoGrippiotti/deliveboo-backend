@@ -8,6 +8,7 @@ use App\Models\Restaurant;
 use App\Models\Order;
 use App\Models\Dish;
 use App\Models\User;
+use Carbon\Carbon;
 
 class OrdersController extends Controller
 {
@@ -16,9 +17,43 @@ class OrdersController extends Controller
         $restaurant = Restaurant::findOrFail($restaurantId);
         $orders = $restaurant->orders;
 
+
+        $monthlyOrderCount = [];   
+        $monthlySales = [];
+    
+    foreach ($orders as $order) {
+       $createdAt = Carbon::parse($order->created_at);
+       $yearMonth = $createdAt->format('Y-m'); // Formato "AAAA-MM"
+
+    if (!isset($monthlySales[$yearMonth])) {
+        $monthlySales[$yearMonth] = 0;
+    }
+
+    $monthlySales[$yearMonth] += $order->total_price; // Sostituisci 'amount' con il campo corretto per l'ammontare dell'ordine
+}   
+    
+    foreach ($orders as $order) {
+       $createdAt = Carbon::parse($order->created_at);
+       $yearMonth = $createdAt->format('Y-m'); // Formato "AAAA-MM"
+
+    if (!isset( $monthlyOrderCount[$yearMonth])) {
+        $monthlyOrderCount[$yearMonth] = 0;
+    }
+
+    $monthlyOrderCount[$yearMonth]++; // Sostituisci 'amount' con il campo corretto per l'ammontare dell'ordine
+}   
+        
+        ksort($monthlyOrderCount);
+        ksort($monthlySales);
+        $orderedMonthlySales = array_values($monthlySales);
+        $orderedMonthlyOrderCount = array_values($monthlyOrderCount);
+        $annualSales = array_sum(array_values($monthlySales));
+    
         return response()->json([
             'success' => 'true',
-            'results' => $orders
+            'results' => $orders,
+            'monthly_sales' =>$orderedMonthlySales,
+            'monthly_order_count' =>  $orderedMonthlyOrderCount
         ]);
     }
 
