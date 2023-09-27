@@ -120,6 +120,10 @@ class AdminController extends Controller
         if (!$restaurant) {
             return response()->json(['message' => 'Ristorante non trovato.']);
         }
+        $img_path = $restaurant->image;
+        $newImagePath = 'deleted-images/' . basename($img_path);
+        Storage::move($img_path, $newImagePath);
+
         $restaurant->delete();
         return response()->json([
             'message' => 'Ristorante eliminato con successo.',
@@ -143,6 +147,11 @@ class AdminController extends Controller
     }
     public function restore(int $userId, int $restaurantId){
         $trashedRestaurant = Restaurant::with('types')->onlyTrashed()->findOrFail($restaurantId);
+
+        $img_path = $trashedRestaurant->image;
+        $newImagePath = 'uploads/' . basename($img_path);
+        Storage::move($img_path, $newImagePath);
+
         $trashedRestaurant->restore();
 
         return response()->json([

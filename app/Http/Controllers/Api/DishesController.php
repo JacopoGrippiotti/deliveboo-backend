@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
 use App\Models\User;
 use App\Models\Restaurant;
 use App\Models\Ingredient;
@@ -43,20 +45,21 @@ class DishesController extends Controller
     public function store(User $user, Restaurant $restaurant, Request $request)
     {
 
-        // $img_path = Storage::put('uploads', $request['photo']);
+        try{
+            $img_path = Storage::put('uploads', $request['photo']);
 
             $data = $request->validate([
                 'name' => ['required', 'string', 'min:3'],
                 'description' => ['required', 'string', 'min:5'],
                 'price' => ['required'],
                 'course' =>['required'],
-            //     'photo' =>['file'],
-                'available' =>['required', 'boolean'],
+                'photo' =>['file'],
+                'available' =>['boolean'],
                 'ingredients' =>['required','array','min:1'],
                 'ingredients.*' =>['string'],
                 'type' =>['required', 'string']
             ]);
-            // $data['photo'] = $img_path;
+            $data['photo'] = $img_path;
             $ingredientNames = $request->input('ingredients',[]);
             $ingredientIds = [];
 
@@ -77,8 +80,11 @@ class DishesController extends Controller
 
             $newDish->ingredients()->sync($ingredientIds);
             $newDish->save();
-
-
+            return response()->json(['success' => 'Piatto creato']);
+        }
+            catch(ValidationException $e){
+                return response()->json(['errors' => $e->validator->getMessageBag()], 422);
+            }
     }
 
     /**
@@ -113,21 +119,27 @@ class DishesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update($userId, $restaurantId,Dish $dish, Request $request)
+    public function update(User $user, Restaurant $restaurant, Dish $dish, Request $request)
     {
 
-        if($dish){
+
+        try{
+
+    $img_path = Storage::put('uploads', $request['photo']);
+
             $data = $request->validate([
                 'name' => ['required', 'string', 'min:3'],
                 'description' => ['required', 'string', 'min:10'],
                 'price' => ['required', 'numeric', 'regex:/[1-9]/'],
                 'course' =>['required', 'string', 'min:5' ],
-                'photo' =>['required', 'url'],
+                // 'photo' =>['file'],
                 'available' =>['required', 'boolean'],
                 'ingredients' =>['required','array','min:1'],
                 'ingredients.*' =>['string']
             ]);
 
+            $data['photo'] = $img_path;
+            echo($data['photo']);
             $ingredientNames = $request->input('ingredients', []);
             // $ingredientIds = Ingredient::whereIn('name', $ingredientNames)->pluck('id')->toArray();
             foreach ($ingredientNames as $ingredientName) {
@@ -137,7 +149,9 @@ class DishesController extends Controller
             $dish->update($request->except(['ingredients']));
             $dish->ingredients()->sync($ingredientIds);
 
-        }
+        }catch(ValidationException $e){
+                return response()->json(['errors' => $e->validator->getMessageBag()], 422);
+            }
     }
 
     /**
@@ -149,6 +163,10 @@ class DishesController extends Controller
         if (!$dish) {
             return response()->json(['message' => 'Piatto non trovato.']);
         }
+        $img_path = $dish->photo;
+
+        $newImagePath = 'deleted-images/' . basename($img_path);
+        Storage::move($img_path, $newImagePath);
 
         $dish->delete();
         return response()->json([
@@ -170,6 +188,11 @@ class DishesController extends Controller
 
     public function restore(int $userId, int $restaurantId, int $dishId){
         $trashedDish = Dish::with('ingredients')->onlyTrashed()->findOrFail($dishId);
+        $img_path = $trashedDish->photo;
+
+        $newImagePath = 'uploads/' . basename($img_path);
+        Storage::move($img_path, $newImagePath);
+
         $trashedDish->restore();
     }
 

@@ -55,7 +55,7 @@ Route::prefix('{user}/restaurants/{restaurant}')->name('api.admin.')->group(func
     Route::delete('/deleted-dishes/{dish}', [ApiDishController::class, 'restore'])->name('restore.dish');
     Route::delete('/deleted-dishes/{dish}/hardDelete', [ApiDishController::class, 'obliterate'])->name('obliterate.dishes');
     Route::get('/dishes/{dish}', [ApiDishController::class, 'show'])->name('show.dishes');
-    Route::put('/dishes/{dish}', [ApiDishController::class, 'update'])->name('update.dishes');
+    Route::post('/dishes/{dish}', [ApiDishController::class, 'update'])->name('update.dishes');
     Route::delete('/dishes/{dish}', [ApiDishController::class, 'destroy'])->name('destroy.dishes');
     Route::get('/dishes/{dish}/edit', [ApiDishController::class, 'edit'])->name('edit.dishes');
     Route::get('/orders/{order}', [ApiOrderController::class, 'show'])->name('show.orders');
