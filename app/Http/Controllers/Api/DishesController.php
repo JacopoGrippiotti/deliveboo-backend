@@ -125,7 +125,7 @@ class DishesController extends Controller
 
         try{
 
-    $img_path = Storage::put('uploads', $request['photo']);
+            $img_path = Storage::put('uploads', $request['photo']);
 
             $data = $request->validate([
                 'name' => ['required', 'string', 'min:3'],
@@ -139,14 +139,14 @@ class DishesController extends Controller
             ]);
 
             $data['photo'] = $img_path;
-            echo($data['photo']);
+
             $ingredientNames = $request->input('ingredients', []);
             // $ingredientIds = Ingredient::whereIn('name', $ingredientNames)->pluck('id')->toArray();
             foreach ($ingredientNames as $ingredientName) {
                 $ingredient = Ingredient::firstOrCreate(['name' => $ingredientName]);
                 $ingredientIds[] = $ingredient->id;
             }
-            $dish->update($request->except(['ingredients']));
+            $dish->update(array_diff_key($data, array_flip(['ingredients'])));
             $dish->ingredients()->sync($ingredientIds);
 
         }catch(ValidationException $e){
