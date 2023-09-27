@@ -24,7 +24,9 @@ class OrdersController extends Controller
 
     public function show($userId, $restaurantId, int $orderId){
         $order = Order::findOrFail($orderId);
-        $dishesOrder = $order->dishes;
+
+        // Carica i piatti correlati all'ordine con la quantità dalla tabella ponte
+        $dishesOrder = $order->dishes()->withPivot('quantity')->get();
 
         return response()->json([
             'success' => true,
@@ -34,14 +36,14 @@ class OrdersController extends Controller
 
     public function store(Request $request){
 
-        
+
         $data = $request->validate([
-            'total_price' => ['required', 'numeric'],  
+            'total_price' => ['required', 'numeric'],
             'customer_name' => ['required', 'string'],
             'customer_address' => ['required', 'string'],
-            'phone_number' => ['required', 'string'], 
+            'phone_number' => ['required', 'string'],
         ]);
-        
+
         $quantities = $request->quantities;
         $data['status'] = $request->input('status');
         $data['restaurant_id'] = $request->input('restaurant_id');
@@ -54,11 +56,11 @@ class OrdersController extends Controller
                 $quantity = $quantities[$i];
                 $dishQuantityPairs[$dishId] = ['quantity' => $quantity];
             }
-            
+
             $newOrder->dishes()->sync($dishQuantityPairs);
-        } 
-       
-        
+        }
+
+
     }
     public function destroy($userId, $restaurantId, $orderId){
         $order = Order::findOrFail($orderId);
