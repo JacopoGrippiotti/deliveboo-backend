@@ -18,7 +18,7 @@ class AdminController extends Controller
 
         if ($restaurants) {
             // Restituisci i dettagli del ristorante
-            return response()->json($restaurants);
+            return response()->json(['restaurants' => $restaurants, 'user'=>$user]);
         } else {
             // Il ristorante non è stato trovato per l'utente autenticato
             return response()->json(['error' => 'Ristorante non trovato'], 404);
