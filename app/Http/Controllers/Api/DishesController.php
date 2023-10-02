@@ -186,7 +186,7 @@ class DishesController extends Controller
 
     public function restore(int $userId, int $restaurantId, int $dishId){
         $trashedDish = Dish::with('ingredients')->onlyTrashed()->findOrFail($dishId);
-        Storage::move($img_path, $newImagePath);
+
 
         $trashedDish->restore();
     }
