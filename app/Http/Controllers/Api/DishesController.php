@@ -125,20 +125,20 @@ class DishesController extends Controller
 
         try{
 
-            $img_path = Storage::put('uploads', $request['photo']);
+            $request['photo'] ? $img_path = Storage::put('uploads', $request['photo']) : '';
 
             $data = $request->validate([
                 'name' => ['required', 'string', 'min:3'],
                 'description' => ['required', 'string', 'min:10'],
                 'price' => ['required', 'numeric', 'regex:/[1-9]/'],
                 'course' =>['required', 'string', 'min:5' ],
-                'photo' =>['file'],
+                // 'photo' =>['file'],
                 'available' =>['required', 'boolean'],
                 'ingredients' =>['required','array','min:1'],
                 'ingredients.*' =>['string']
             ]);
 
-            $data['photo'] = $img_path;
+            $img_path ? $data['photo'] = $img_path : '';
 
             $ingredientNames = $request->input('ingredients', []);
             // $ingredientIds = Ingredient::whereIn('name', $ingredientNames)->pluck('id')->toArray();

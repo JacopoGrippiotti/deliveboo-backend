@@ -89,8 +89,9 @@ class AdminController extends Controller
         return response()->json(['restaurant' => $restaurant]);
     }
 
-    public function update($userId,  Restaurant $restaurant, Request $request ){
-        $img_path = Storage::put('uploads', $request['image']);
+    public function update(User $user,  Restaurant $restaurant, Request $request ){
+
+        $request['image'] ? $img_path = Storage::put('uploads', $request['image']) : '';
 
         $data = $request->validate([
             'name' => ['required', 'string', 'min:2'],
@@ -98,10 +99,10 @@ class AdminController extends Controller
             'city' => ['required', 'string', 'min:5'],
             'types' => ['required', 'array'],
             'types.*' => ['string', 'exists:types,name'],
-            'image' =>['file'],
+            // 'image' =>['file', 'nullable'],
         ]);
 
-        $data['image'] = $img_path;
+        $img_path ? $data['image'] = $img_path : '';
 
         $data['user_id'] = $restaurant->user->id;
 
