@@ -165,8 +165,6 @@ class DishesController extends Controller
         }
         $img_path = $dish->photo;
 
-        $newImagePath = 'deleted-images/' . basename($img_path);
-        Storage::move($img_path, $newImagePath);
 
         $dish->delete();
         return response()->json([
@@ -188,9 +186,6 @@ class DishesController extends Controller
 
     public function restore(int $userId, int $restaurantId, int $dishId){
         $trashedDish = Dish::with('ingredients')->onlyTrashed()->findOrFail($dishId);
-        $img_path = $trashedDish->photo;
-
-        $newImagePath = 'uploads/' . basename($img_path);
         Storage::move($img_path, $newImagePath);
 
         $trashedDish->restore();
