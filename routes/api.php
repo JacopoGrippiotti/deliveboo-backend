@@ -32,7 +32,7 @@ Route::name('api.guest.')->group(function (){
     Route::post('/orders', [ApiOrderController::class, 'store'])->name('store.orders');
 });
 
-Route::name('api.admin.')->group(function () {
+Route::name('api.admin.')->middleware(['auth:sanctum'])->group(function () {
     Route::get('/{user}/restaurants', [ApiAdminController::class, 'index'])->name('index.restaurants');
     // Route::get('/{user}/restaurants/create', [ApiAdminController::class, 'create'])->name('create.restaurants');
     Route::post('/{user}/restaurants', [ApiAdminController::class, 'store'])->name('store.restaurants');
@@ -46,7 +46,7 @@ Route::name('api.admin.')->group(function () {
 
 });
 
-Route::prefix('{user}/restaurants/{restaurant}')->name('api.admin.')->group(function(){
+Route::prefix('{user}/restaurants/{restaurant}')->middleware(['auth:sanctum'])->name('api.admin.')->group(function(){
     Route::get('/dishes', [ApiDishController::class, 'index'])->name('index.dishes');
     Route::get('/orders', [ApiOrderController::class, 'index'])->name('index.orders');
     Route::get('/create', [ApiDishController::class, 'create'])->name('create.dishes');
