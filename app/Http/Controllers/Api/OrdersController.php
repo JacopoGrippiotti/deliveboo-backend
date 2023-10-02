@@ -18,9 +18,9 @@ class OrdersController extends Controller
         $orders = $restaurant->orders;
 
 
-        $monthlyOrderCount = [];   
+        $monthlyOrderCount = [];
         $monthlySales = [];
-    
+
     foreach ($orders as $order) {
        $createdAt = Carbon::parse($order->created_at);
        $yearMonth = $createdAt->format('Y-m'); // Formato "AAAA-MM"
@@ -30,8 +30,8 @@ class OrdersController extends Controller
     }
 
     $monthlySales[$yearMonth] += $order->total_price; // Sostituisci 'amount' con il campo corretto per l'ammontare dell'ordine
-}   
-    
+}
+
     foreach ($orders as $order) {
        $createdAt = Carbon::parse($order->created_at);
        $yearMonth = $createdAt->format('Y-m'); // Formato "AAAA-MM"
@@ -41,14 +41,14 @@ class OrdersController extends Controller
     }
 
     $monthlyOrderCount[$yearMonth]++; // Sostituisci 'amount' con il campo corretto per l'ammontare dell'ordine
-}   
-        
+}
+
         ksort($monthlyOrderCount);
         ksort($monthlySales);
         $orderedMonthlySales = array_values($monthlySales);
         $orderedMonthlyOrderCount = array_values($monthlyOrderCount);
         $annualSales = array_sum(array_values($monthlySales));
-    
+
         return response()->json([
             'success' => 'true',
             'results' => $orders,
@@ -94,7 +94,9 @@ class OrdersController extends Controller
 
             $newOrder->dishes()->sync($dishQuantityPairs);
         }
-
+        return response()->json([
+            'success' => $newOrder,
+        ]);
 
     }
     public function destroy($userId, $restaurantId, $orderId){
