@@ -19,7 +19,8 @@ class DishSeeder extends Seeder
         $restaurants = Restaurant::all();
         $typeIds = Type::all()->pluck('id');
         $categoryIds = Category::all()->pluck('id');
-
+        $restaurantForOrders = Restaurant::find(1);
+        $ordersOfRestaurant = $restaurantForOrders->orders;
         foreach($restaurants as $restaurant){
             $typesRes = $restaurant->types;
             $typesResNames = $restaurant->types->pluck('name')->toArray();
@@ -68,6 +69,8 @@ class DishSeeder extends Seeder
                             $newDish->ingredients()->sync($ingredientsIds);
 
                             $newDish->save();
+
+                            
                         }
                     }
                 }
@@ -77,7 +80,18 @@ class DishSeeder extends Seeder
 
 
         }
+        foreach ($ordersOfRestaurant as $order) {
+                                
+            $numberOfRandomDishes = rand(1, 5); // Ad esempio, da 1 a 5 piatti casuali per ordine
 
+            for ($i = 0; $i < $numberOfRandomDishes; $i++) {
+       
+            $randomDish = Dish::inRandomOrder()->first();
+
+        
+            $order->dishes()->attach($randomDish->id);
+        }
+      }
     }
 
 
