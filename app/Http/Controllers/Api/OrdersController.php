@@ -52,6 +52,7 @@ class OrdersController extends Controller
         return response()->json([
             'success' => 'true',
             'results' => $orders,
+            'restaurant_name'=>$restaurant->name,
             'monthly_sales' =>$orderedMonthlySales,
             'monthly_order_count' =>  $orderedMonthlyOrderCount
         ]);
