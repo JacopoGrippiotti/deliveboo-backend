@@ -16,7 +16,9 @@ class OrdersController extends Controller
         // $user = User::findOrFail($userId);
         $restaurant = Restaurant::findOrFail($restaurantId);
         $query = $restaurant->orders()->getQuery();
-        $orders = $query->orderBy('id', 'desc')->paginate(10);
+        $ordersPaginated = $query->orderBy('id', 'desc')->paginate(10);
+        
+        $orders = $restaurant->orders;
 
         $monthlyOrderCount = [];
         $monthlySales = [];
@@ -51,12 +53,12 @@ class OrdersController extends Controller
 
         return response()->json([
             'success' => 'true',
-            'results' => $orders->items(),
+            'results' => $ordersPaginated->items(),
             'pagination' => [
-                'current_page' => $orders->currentPage(),
-                'last_page' => $orders->lastPage(),
+                'current_page' => $ordersPaginated->currentPage(),
+                'last_page' => $ordersPaginated->lastPage(),
                 'per_page' => 10,
-                'total' => $orders->total(),
+                'total' => $ordersPaginated->total(),
             ],
             'restaurant_name'=>$restaurant->name,
             'monthly_sales' =>$orderedMonthlySales,
