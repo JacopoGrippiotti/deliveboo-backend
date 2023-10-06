@@ -29,7 +29,7 @@ class NewContact extends Mailable
         return new Envelope(
 
             replyTo: $this->lead->email,
-            subject: 'New Contact',
+            subject: 'Someone\'s looking for you!',
         );
     }
 
