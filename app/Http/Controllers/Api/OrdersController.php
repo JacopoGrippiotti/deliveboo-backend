@@ -9,14 +9,14 @@ use App\Models\Order;
 use App\Models\Dish;
 use App\Models\User;
 use Carbon\Carbon;
-
+use Illuminate\Pagination\Paginator;
 class OrdersController extends Controller
 {
     public function index(int $userId, int $restaurantId){
         // $user = User::findOrFail($userId);
         $restaurant = Restaurant::findOrFail($restaurantId);
-        $orders = $restaurant->orders;
-
+        $query = $restaurant->orders()->getQuery();
+        $orders = $query->paginate(10);;
 
         $monthlyOrderCount = [];
         $monthlySales = [];
@@ -51,7 +51,13 @@ class OrdersController extends Controller
 
         return response()->json([
             'success' => 'true',
-            'results' => $orders,
+            'results' => $orders->items(),
+            'pagination' => [
+                'current_page' => $orders->currentPage(),
+                'last_page' => $orders->lastPage(),
+                'per_page' => 10,
+                'total' => $orders->total(),
+            ],
             'restaurant_name'=>$restaurant->name,
             'monthly_sales' =>$orderedMonthlySales,
             'monthly_order_count' =>  $orderedMonthlyOrderCount
