@@ -16,7 +16,7 @@ class OrdersController extends Controller
         // $user = User::findOrFail($userId);
         $restaurant = Restaurant::findOrFail($restaurantId);
         $query = $restaurant->orders()->getQuery();
-        $orders = $query->paginate(10);;
+        $orders = $query->orderBy('id', 'desc')->paginate(10);
 
         $monthlyOrderCount = [];
         $monthlySales = [];
